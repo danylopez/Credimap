@@ -1,2 +1,2 @@
-# Credimap
-Página Web con Calculadora Virtual para comparar productos y tasas de Intermediarias Financieras.
+# No no no.
+Web Page with a virtual caculator to comper products and rates for financial.
