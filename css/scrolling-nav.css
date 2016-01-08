@@ -76,3 +76,8 @@ html {
     text-align: center;
     background-size:100% auto;
 }
+#map
+{
+    width: 80%;
+    height: 90%;
+}
