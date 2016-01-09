@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/scrolling-nav.css">
 	<link rel="stylesheet" href="css/rangeslider/rangeslider.css">	
+    <link rel="stylesheet" href="css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/rangeslider/rangeslider.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -40,13 +41,26 @@
 	   	</div>
 	</div>
 	</nav>
-	<div id="calculator" class="container-fluid">
+	<div id="calculator" class="container-fluid containerStrech">
 	  <h1>Calculadora Virtual</h1>
 	  <br><br>
-	  <div class="container-fluid">
-	  	
+	  <div class="container-fluid ">
+	       <div class="row">
+               <div class="col-md-3">
+                 <span><strong>Importe: </strong></span>
+               </div>
+               <div class="col-md-3">
+                  <span><strong>Importe: </strong></span>
+               </div>
+               <div class="col-md-3">
+                  <span><strong>Importe: </strong></span>
+               </div>
+               <div class="col-md-3">
+                  <span><strong>Importe: </strong></span>
+               </div>
+          </div>	
 	  </div>
-
+          
 	  <input id="amount" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>
 	  
 	</div>
