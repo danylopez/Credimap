@@ -46,22 +46,33 @@
 	  <br><br>
 	  <div class="container-fluid ">
 	       <div class="row">
-               <div class="col-md-3">
-                 <span><strong>Importe: </strong></span>
+               <div class="col-md-1">
+                 <span><strong>Importe:</strong></span>
+               </div>            
+               <div class="col-md-5">
+               <div class="input-group">
+                  <span id="pesosSymbolSpan" class="input-group-addon">$</span>
+                  <input id="amountText" type="text" class="form-control" value="1000">    
+                </div>
+                <br>
+                <input id="amountSlider" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>  
                </div>
-               <div class="col-md-3">
-                  <span><strong>Importe: </strong></span>
+               <div class="col-md-1">
+                  <span><strong>Plazo: </strong></span>
                </div>
-               <div class="col-md-3">
-                  <span><strong>Importe: </strong></span>
-               </div>
-               <div class="col-md-3">
-                  <span><strong>Importe: </strong></span>
+               <div class="col-md-5">
+                    <select class="form-control">
+                      <option>12 meses</option>
+                      <option>24 meses</option>
+                      <option>36 meses</option>
+                      <option>48 meses</option>
+                      <option>60 meses</option>
+                    </select>
                </div>
           </div>	
 	  </div>
           
-	  <input id="amount" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>
+	 
 	  
 	</div>
 	<div id="financial" class="container-fluid">
