@@ -13,3 +13,43 @@ html {
     padding-top: 5% !important; 
     width: 70%;
 }
+
+@media (max-width: 400px) {
+    
+    .containerStrech{
+        padding-top: 5% !important; 
+        width: 100%;
+    }
+    .col-xs-6{
+        padding-left: 1px;
+        padding-right: 1px;
+    }    
+    
+}
+
+@media (min-width: 400px) {
+    
+    .containerStrech{
+        padding-top: 5% !important; 
+        width: 90%;
+    }
+    .col-xs-6{
+        padding-left: 1px;
+        padding-right: 1px;
+    }    
+    
+}
+
+@media (min-width: 550px) {
+    
+    .containerStrech{
+        padding-top: 5% !important; 
+        width: 70%;
+    }
+    .col-xs-6{
+        padding-left: 15px;
+        padding-right: 15px;
+    }    
+    
+}
+

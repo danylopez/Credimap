@@ -1,37 +1,50 @@
- $(function() {
-
-        var amount = $('#amountSlider');
-        //rangeslider initialization
-        amount.rangeslider({
-
-            // Deactivate the feature detection
-            polyfill: false,
-
-            // Callback function
-            onInit: function() {
-               // valueOutput(this.$element[0]);
-
-            },
-
-            // Callback function
-            onSlide: function(position, value) {
-                $('#amountText').val(value);
-            },
-            // Callback function
-            onSlideEnd: function(position, value) {
-          
-            }
-        });
-
-    });
 
 $(document).ready(function (){
     //fixing bug add-on currency size
-    $(":radio").labelauty({ same_width: true });
+    initRangeSliders();
+    $(":radio").labelauty({  minimum_width: "50px"});
     allowJustNumbers();
-        
+     $('[data-toggle="tooltip"]').tooltip(); 
 });
 
+function setBestTaxRate(){
+    
+  var amount = $('#bestTaxRate');
+  amount.val(50);  
+}
+
+function initRangeSliders(){
+    var amount = $('#amountSlider');
+    var bestTaxRateSlider = $('#bestTaxRate');
+    //rangeslider initialization
+    amount.rangeslider({
+
+        // Deactivate the feature detection
+        polyfill: false,
+
+        // Callback function
+        onInit: function() {
+           // valueOutput(this.$element[0]);
+
+        },
+
+        // Callback function
+        onSlide: function(position, value) {
+            $('#amountText').val(value);
+        },
+        // Callback function
+        onSlideEnd: function(position, value) {
+
+        }
+    });
+    
+    bestTaxRateSlider.rangeslider({
+
+        // Deactivate the feature detection
+        polyfill: false
+      
+    });
+}
 
 function allowJustNumbers(){
 

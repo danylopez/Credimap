@@ -3,7 +3,7 @@
 <head>
 	<title>Credimap</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" href="img/logo.ico">
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -48,16 +48,16 @@
 	<div id="calculator" class="container-fluid containerStrech">
 	  <h1 style="font-family: Open Sans, sans-serif;">Calculadora Virtual</h1>
 	  <br><br>
-	  <div class="container-fluid ">
-        
+	  <div class="container-fluid">        
 	       <div class="row">                 
-               <div class="col-md-6">
+               <div class="col-md-6 col-xs-6 ">
                    <div class="input-group">
                       <span id="pesosSymbolSpan" class="input-group-addon">$</span>
-                      <input id="amountText" type="text" class="form-control"  placeholder="Importe">    
+                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" data-toggle="tooltip"  data-placement="top"
+                             title="Ingresa la cantidad en pesos que deseas de prestamo.">    
                     </div>                   
                </div>              
-               <div class="col-md-6">
+               <div class="col-md-6 col-xs-6 ">
                     <select class="form-control">
                       <option value="" disabled selected>Plazo</option>
                       <option>12 meses</option>
@@ -70,16 +70,51 @@
           </div>
           <br>
           <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-6 col-xs-6  ">
                 <input id="amountSlider" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>  
               </div>
-           <div class="col-md-6">
-                 <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"/>
-                <input  type="radio"  name="timeUnitsRadio" data-labelauty="Meses"/>				
-          </div>   
+               <div class="col-md-6 col-xs-6 ">
+                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"/>
+                    <input  type="radio" checked="checked" name="timeUnitsRadio" data-labelauty="Meses"/>				
+              </div>   
      	  </div>
           <br>
           <hr>
+        <br>
+         <div class="row">
+             <div class="panel panel-success">
+  <!-- Default panel contents -->
+  <div class="panel-heading" style="text-align:left">Mejor Opcion : Banco Santander</div>
+              <table class="table table-striped" style="text-align:left">
+    <thead>
+      
+    </thead>
+    <tbody>
+      <tr>
+        <td>Pago mensual promedio</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Pagos totales en 24 meses</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>Intereses pagados en 24 meses</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+       <tr>      
+        <td>Saldo pendiente después de 24 meses</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+        </div>
+        
+    </div>
     </div>
 	<div id="financial" class="container-fluid">
 	  <div id="map" class="container-fluid"></div>
