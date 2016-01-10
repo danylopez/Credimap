@@ -27,13 +27,9 @@
 
 $(document).ready(function (){
     //fixing bug add-on currency size
-    debugger;
-    var h =  $('#pesosSymbolSpan').height();
-    var h2 =  $('#amountText').height();
-    $('#pesosSymbolSpan').height( $('#amountText').height());
+    $(":radio").labelauty({ same_width: true });
     allowJustNumbers();
-    
-    
+        
 });
 
 

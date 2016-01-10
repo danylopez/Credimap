@@ -10,15 +10,19 @@
 	<link rel="stylesheet" href="css/scrolling-nav.css">
 	<link rel="stylesheet" href="css/rangeslider/rangeslider.css">	
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/optioncomp/jquery-labelauty.css">    
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/rangeslider/rangeslider.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/calculator.js"></script> 
+    <script src="js/optioncomp/jquery-labelauty.js"></script> 
 	<script type="text/javascript" src="js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTP4vfQDCAChFlhu7fQXecASEdklPEpfI&signed_in=true&callback=initMap"
         async defer>
     </script>
+    
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="10">
@@ -42,39 +46,41 @@
 	</div>
 	</nav>
 	<div id="calculator" class="container-fluid containerStrech">
-	  <h1>Calculadora Virtual</h1>
+	  <h1 style="font-family: Open Sans, sans-serif;">Calculadora Virtual</h1>
 	  <br><br>
 	  <div class="container-fluid ">
-	       <div class="row">
-               <div class="col-md-1">
-                 <span><strong>Importe:</strong></span>
-               </div>            
-               <div class="col-md-5">
-               <div class="input-group">
-                  <span id="pesosSymbolSpan" class="input-group-addon">$</span>
-                  <input id="amountText" type="text" class="form-control" value="1000">    
-                </div>
-                <br>
-                <input id="amountSlider" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>  
-               </div>
-               <div class="col-md-1">
-                  <span><strong>Plazo: </strong></span>
-               </div>
-               <div class="col-md-5">
+        
+	       <div class="row">                 
+               <div class="col-md-6">
+                   <div class="input-group">
+                      <span id="pesosSymbolSpan" class="input-group-addon">$</span>
+                      <input id="amountText" type="text" class="form-control"  placeholder="Importe">    
+                    </div>                   
+               </div>              
+               <div class="col-md-6">
                     <select class="form-control">
+                      <option value="" disabled selected>Plazo</option>
                       <option>12 meses</option>
                       <option>24 meses</option>
                       <option>36 meses</option>
                       <option>48 meses</option>
                       <option>60 meses</option>
-                    </select>
+                    </select>                 
                </div>
-          </div>	
-	  </div>
-          
-	 
-	  
-	</div>
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-md-6">
+                <input id="amountSlider" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>  
+              </div>
+           <div class="col-md-6">
+                 <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"/>
+                <input  type="radio"  name="timeUnitsRadio" data-labelauty="Meses"/>				
+          </div>   
+     	  </div>
+          <br>
+          <hr>
+    </div>
 	<div id="financial" class="container-fluid">
 	  <div id="map" class="container-fluid"></div>
 	</div>
