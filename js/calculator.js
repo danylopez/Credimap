@@ -5,7 +5,33 @@ $(document).ready(function (){
     $(":radio").labelauty({  minimum_width: "50px"});
     allowJustNumbers();
      $('[data-toggle="tooltip"]').tooltip(); 
+    fillPeriodSelect('a');
+   $("input[name=timeUnitsRadio]:radio").change(function (){
+        onPeriodKindChange();
+    });
 });
+
+function onPeriodKindChange(){
+    $('#plazoSelect').find('option:enabled').remove(); //optimize this later
+    var timeUnits = $('input[name=timeUnitsRadio]:checked').val();
+    fillPeriodSelect(timeUnits);
+    
+}
+
+function fillPeriodSelect(timeUnits){
+    var units;
+    var months = [1,3,6,9,15,18,30];
+    var years =[1,2,3,4,5,6,7,8,9,10,11,12,13,15,15];
+    if(timeUnits=='a'){units=years;}
+    if(timeUnits=='m'){units=months;}
+    
+    for(var i=0;i<units.length;i++){
+        $('#plazoSelect').append($('<option>', {
+            value: units[i],
+            text: units[i]
+        }));
+    }
+}
 
 function setBestTaxRate(){
     

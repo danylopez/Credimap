@@ -56,13 +56,8 @@
                     </div>                   
                </div>              
                <div class="col-md-6 col-xs-6 ">
-                    <select class="form-control">
-                      <option value="" disabled selected>Plazo</option>
-                      <option>12 meses</option>
-                      <option>24 meses</option>
-                      <option>36 meses</option>
-                      <option>48 meses</option>
-                      <option>60 meses</option>
+                    <select class="form-control" id="plazoSelect">
+                      <option value="" disabled selected>Plazo</option>                    
                     </select>                 
                </div>
           </div>
@@ -72,8 +67,8 @@
                 <input id="amountSlider" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>  
               </div>
                <div class="col-md-6 col-xs-6 ">
-                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"/>
-                    <input  type="radio" checked="checked" name="timeUnitsRadio" data-labelauty="Meses"/>				
+                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"                                      checked="checked" value="a"/>
+                    <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses"                                 value="m"/>				
               </div>   
      	  </div>
           <br>
