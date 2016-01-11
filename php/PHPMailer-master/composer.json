@@ -1,5 +1,5 @@
 {
-    "name": "phpmailer/phpmailer",
+    "name": "pamiderc/phpmailer",
     "type": "library",
     "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
     "authors": [
@@ -20,7 +20,9 @@
         }
     ],
     "require": {
-        "php": ">=5.0.0"
+        "phpmailer/phpmailer": "~5.2",
+        "php": ">=5.0.0",
+        "league/oauth2-client": "^0.12.1"
     },
     "require-dev": {
         "phpdocumentor/phpdocumentor": "*",
