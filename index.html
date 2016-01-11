@@ -56,7 +56,7 @@
                     </div>                   
                </div>              
                <div class="col-md-6 col-xs-6 ">
-                    <select class="form-control" id="plazoSelect">
+                    <select class="form-control" id="termSelect">
                       <option value="" disabled selected>Plazo</option>                    
                     </select>                 
                </div>
@@ -75,29 +75,25 @@
           <hr>
         <br>
         <div class="row">
-            <div class="panel panel-success" style="border-style:none">         
+            <div id="divBest" class="panel panel-success tableBest">         
                 <div class="panel-heading" style="text-align:left">Mejor Opcion : Banco Santander</div>
                   <table class="table table-striped" style="text-align:left">            
                     <tbody>
                       <tr>
-                        <td>Pago mensual promedio</td>
-                        <td>Doe</td>
-                        <td>john@example.com</td>
+                        <td>Pago Total de</td>
+                        <td ><span id="totalPayment"></span></td>                      
                       </tr>
                       <tr>
-                        <td>Pagos totales en 24 meses</td>
-                        <td>Moe</td>
-                        <td>mary@example.com</td>
+                        <td>Pago Mensual de</td>
+                        <td ><span id="montlyPayment"></span></td>                       
                       </tr>
                       <tr>
-                        <td>Intereses pagados en 24 meses</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
+                        <td><strong>Intereses pagados en </strong></td>
+                        <td ><span id="taxesPaid" ></span></td>                      
                       </tr>
                        <tr>      
-                        <td>Saldo pendiente después de 24 meses</td>
-                        <td>Dooley</td>
-                        <td>july@example.com</td>
+                        <td>Porcentaje de Interes</td>
+                        <td ><span id="taxPercentage"></span></td>                    
                       </tr>
                     </tbody>
                 </table>

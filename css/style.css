@@ -14,6 +14,11 @@ html {
     width: 70%;
 }
 
+.tableBest{
+    border-style:none;
+    display:none  ;
+}
+
 @media (max-width: 400px) {
     
     .containerStrech{
