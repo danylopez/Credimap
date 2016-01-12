@@ -51,7 +51,7 @@
                <div class="col-md-6 col-xs-6 ">
                    <div class="input-group">
                       <span id="pesosSymbolSpan" class="input-group-addon">$</span>
-                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" data-toggle="tooltip"  data-placement="top"
+                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" data-toggle="tooltip"  data-placement="top" maxlength="7"
                              title="Ingresa la cantidad en pesos que deseas de prestamo.">    
                     </div>                   
                </div>              
@@ -64,11 +64,11 @@
           <br>
           <div class="row">
               <div class="col-md-6 col-xs-6  ">
-                <input id="amountSlider" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>  
+                <input id="amountSlider" type="range" min="0" max="1000000" value="0" step="1000" data-rangeslider></input>  
               </div>
                <div class="col-md-6 col-xs-6 ">
-                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"                                      checked="checked" value="a"/>
-                    <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses"                                 value="m"/>				
+                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"                                      checked="checked" value="años"/>
+                    <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses"                                 value="meses"/>				
               </div>   
      	  </div>
           <br>
@@ -76,7 +76,7 @@
         <br>
         <div class="row">
             <div id="divBest" class="panel panel-success tableBest">         
-                <div class="panel-heading" style="text-align:left">Mejor Opcion : Banco Santander</div>
+                <div class="panel-heading" style="text-align:left"><span id="bestEntityNameSpan"></span></div>
                   <table class="table table-striped" style="text-align:left">            
                     <tbody>
                       <tr>
@@ -88,7 +88,7 @@
                         <td ><span id="montlyPayment"></span></td>                       
                       </tr>
                       <tr>
-                        <td><strong>Intereses pagados en </strong></td>
+                        <td><span id="totalTimeSpan"><strong>Intereses pagados en </strong></span></td>
                         <td ><span id="taxesPaid" ></span></td>                      
                       </tr>
                        <tr>      
