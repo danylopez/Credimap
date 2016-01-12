@@ -18,12 +18,11 @@
 	<script src="js/calculator.js"></script> 
     <script src="js/optioncomp/jquery-labelauty.js"></script> 
 	<script type="text/javascript" src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTP4vfQDCAChFlhu7fQXecASEdklPEpfI&signed_in=true&callback=initMap"
-        async defer>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
     </script>    
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="10">
+<body onload="initialize()" data-spy="scroll" data-target=".navbar" data-offset="10">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -102,13 +101,14 @@
     </div>
     </div>
 	<div id="financial" class="container-fluid">
-	  <div id="map" class="container-fluid"></div>
+	  <h1 style="font-family: Open Sans, sans-serif;">Intermediarias Financieras</h1>
+    <div id="map" class="container-fluid"></div>
 	</div>
 	<div id="contact" class="container-fluid containerStrech">
 		<div class="container">
       		<div id="contact_form" class="row">
         		<div class="col-md-9">
-          			<h2>Contacto</h2>
+          			<h1 style="font-family: Open Sans, sans-serif;">Contacto</h1>
           			<form action="./php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
 
             			<div class="form-group">
