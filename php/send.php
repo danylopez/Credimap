@@ -3,22 +3,25 @@
 date_default_timezone_set('Etc/UTC');
 require './PHPMailer-master/PHPMailerAutoload.php';
 require './PHPMailer-master/vendor/autoload.php';
-define('GUSER', 'micredimap@gmail.com'); 
-define('GPWD', 'credimap1234');
+const GUSER = 'micredimap@gmail.com'; 
+const GPWD = 'credimap1234';
 
 $to = 'alanh.lhp@gmail.com';
 $from = GUSER;
-$from_name = 'Credi Map'
+$from_name = 'Credi Map';
 $subject = 'Interesado en Credito';
-$name = $_POST['name'];
-$phone = $_POST['phone'];
-$email = $_POST['email'];
-$message = $_POST['message'];
+$name = (isset($_POST['name']) ? $_POST['name'] : ''); 
+$phone = (empty($_POST['phone']) ? '(vacio)' : $_POST['phone']);
+$email = (isset($_POST['email']) ? $_POST['email'] : '');
+$message = (empty($_POST['message']) ? '(vacio)' : $_POST['message']);
 $body = "
 <html>
 <body>
 <p>
+<h1>Mensaje</h1>
 $message
+</p>
+<p>
 <h1>Datos Personales</h1>
 Nombre: $name<br/>
 Email: $email<br/>
@@ -32,7 +35,7 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	global $error;
 	$mail = new PHPMailer;
 	$mail->IsSMTP();
-	$mail->SMTPDebug = 3;
+	$mail->SMTPDebug = 0;
 	$mail->Debugoutput = 'html';
 	$mail->SMTPAuth = true; // authentication enabled
 	$mail->SMTPSecure = 'tls'; // secure transfer enabled REQUIRED for Gmail
@@ -43,6 +46,7 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	$mail->From = $from;
 	$mail->FromName = $from_name;
 	$mail->Subject = $subject;
+	$mail->IsHTML(true);
 	$mail->Body = $body;
 	$mail->AddAddress($to);
 	if($mail->send()){
@@ -56,9 +60,11 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 
 //if(smtpmailer($to, $from, $from_name, $subject, $body)){
 if(smtpmailer($to, GUSER, $from_name, $subject, $body)){
-	echo "Mensaje enviado! <a href='../index.html'>Click Aqui</a> para regresar a la pagina principal";
+	//echo "Mensaje enviado! <a href='../index.html'>Click Aqui</a> para regresar a la pagina principal";
+	echo "<script type='text/javascript'>alert('Mensaje enviado!')</script>";
+	header("Refresh:0 , url=../index.html");
 }else{
-		echo "Hubo un error enviando el mensaje";
+	echo "<script type='text/javascript'>alert('Hubo un error al enviar el mensaje, por favor intente denuevo!')</script>";
 }
 
 ?>
