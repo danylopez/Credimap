@@ -50,42 +50,57 @@
                <div class="col-md-6 col-xs-6 ">
                    <div class="input-group">
                       <span id="pesosSymbolSpan" class="input-group-addon">$</span>
-                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" data-toggle="tooltip"  data-placement="top" maxlength="7"
-                             title="Ingresa la cantidad en pesos que deseas de prestamo.">    
+                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" 
+                             data-toggle="tooltip"  data-placement="top" maxlength="7"
+                             title="Ingresa la cantidad en pesos que deseas como préstamo.">    
                     </div>                   
                </div>              
                <div class="col-md-6 col-xs-6 ">
-                    <select class="form-control" id="termSelect">
+                    <select class="form-control" id="termSelect"   data-toggle="tooltip"  data-                                 placement="top" title="Ingresa el plazo en años o meses en el que deseas pagar.">
                       <option value="notSelected" disabled selected>Plazo</option>                    
                     </select>                 
                </div>
           </div>
           <br>
           <div class="row">
-              <div class="col-md-6 col-xs-6  ">
-                <input id="amountSlider" type="range" min="0" max="1000000" value="0" step="1000" data-rangeslider></input>  
+              <div class="col-md-6 col-xs-6">
+                <input id="amountSlider" type="range" min="0" max="1000000" value="0" step="1000" data-                     rangeslider  data-toggle="tooltip"  data-                                 placement="top" title="Ingresa el plazo en años o meses en el que deseas pagar.">                       </input>  
               </div>
                <div class="col-md-6 col-xs-6 ">
-                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"                                      checked="checked" value="años"/>
-                    <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses"                                 value="meses"/>				
+                 <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años" checked="checked" value="años"/>
+                 <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses" value="meses"/>				
               </div>   
      	  </div>
+            <br>
+          <div class="row">
+              <div class="col-md-6 col-xs-6">
+                   <select class="form-control" id="pFrecuencySelect"   data-toggle="tooltip"  data-                                 placement="bottom" title="Ingresa con qué frecuencia deseas pagar.">
+                      <option value="notSelected" disabled selected>Frecuencia de Pago</option>    
+                      <option value="semanal"  >Semanal</option>
+                      <option value="quincenal"  >Quincenal</option>
+                      <option value="mensual"  >Mensual</option>
+                      
+                    </select>   
+              </div>
+              <div class="col-md-6 col-xs-6">
+                   <select class="form-control" id="loanKind"   data-toggle="tooltip"  data-                                 placement="bottom" title="Ingresa el tipo de prestamo que deseas">
+                      <option value="notSelected" disabled selected>Tipo de prestamo</option>
+                      <option value="individual"  >Individual</option>
+                      <option value="grupal"  >Grupal</option>
+                      <option value="solidario"  >Solidario</option>
+                    </select>   
+              </div>              
+         </div>      
           <br>
           <hr>
         <br>
         <div class="row">
             <div id="divBest" class="panel panel-success tableBest">         
-                <div class="panel-heading" style="text-align:left">
-                   
+                <div class="panel-heading col-md-12" style="text-align:left">          
+                    <span id="bestEntityNameSpan" ></span>             
                        
-                     <span id="bestEntityNameSpan"></span>     <button type="button" class="btn                             btn-default" aria-label="Left Align">
-                             <i class="fa fa-envelope"> Contactar</i>
-                            </button>
-                    
-                    <button type="button" class="btn                             btn-default" aria-label="Left Align">
-                             <i class="fa fa-map-marker"> Localizar</i>
-                            </button>
-                       
+             
+               
                 </div>
                   <table class="table table-striped" style="text-align:left">            
                     <tbody>
@@ -102,11 +117,24 @@
                         <td ><span id="taxesPaid" ></span></td>                      
                       </tr>
                        <tr>      
-                        <td>Porcentaje de Interes</td>
+                        <td>Porcentaje de Interes Mensual</td>
                         <td ><span id="taxPercentage"></span></td>                    
                       </tr>
                     </tbody>
                 </table>
+                  <div class="panel-footer">
+                 <button type="button" class="btn btn-default " aria-label="Left Align" >
+                     <i class="fa fa-envelope"> Contactar</i>
+                </button>                    
+                <button type="button" class="btn btn-default " aria-label="Left Align"  >
+                    <i class="fa fa-map-marker"> Localizar</i>
+               </button> 
+              
+              <button type="button" class="btn btn-default " aria-label="Left Align"  >
+                    <i class="fa fa-table"> Todas las entidades</i>
+                </button> 
+                </div>
+                      
             </div>        
         </div>
     </div>

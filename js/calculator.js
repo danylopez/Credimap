@@ -1,7 +1,5 @@
 var financialEntJson;
 
-
-
 $(document).ready(function (){
     //fixing bug add-on currency size
     initRangeSliders();
@@ -16,10 +14,11 @@ $(document).ready(function (){
     $('#amountText').keyup(function() {
       var amount=$(this).val();
       if(amount!='' && amount!=undefined ){
-        $('#amountSlider').val($(this).val()).change();   
+        $('#amountSlider').val(amount).change();   
          var term =  $('#termSelect').find(':selected').val();
-         if(term!='notSelected')
-          onAmauntChange();
+         if(term!='notSelected'){
+            onAmauntChange();            
+        }
       }
       else
         $('#amountSlider').val(0).change();
@@ -31,8 +30,6 @@ $(document).ready(function (){
         if(amount!=''){
              onAmauntChange();
         }
-     
-        
     })
     
     $.getJSON("test.json", function(json) {
@@ -139,8 +136,13 @@ function initRangeSliders(){
         // Callback function
         onSlide: function(position, value) {
             var term =  $('#termSelect').find(':selected').val();
-            if(value>0){          
-               $('#amountText').val(value);
+            var amount = $('#amountText').val();
+            if(value=>0){                  
+                if( parseInt(amount)%1000==0)
+                 $('#amountText').val(value);
+                 
+                if(Math.abs(value-amount)>=1000)
+                     $('#amountText').val(value);
                 if(term!='notSelected')
                  onAmauntChange();
             }
