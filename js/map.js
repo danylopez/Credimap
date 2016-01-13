@@ -25,7 +25,7 @@ function placeSearch(map,request)
                           google.maps.event.addListener(marker, 'click', function() {
                             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                               place.formatted_address + '<br>Tel&#233fono: ' +
-                              place.formatted_phone_number + '<br>P&#225gina Web: <a href="' + 
+                              place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank"  href="' + 
                               place.website + '">' + place.website + '</a></div>');
                             infowindow.open(map, this);
                           });
