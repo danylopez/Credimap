@@ -17,13 +17,23 @@ $(document).ready(function (){
       var amount=$(this).val();
       if(amount!='' && amount!=undefined ){
         $('#amountSlider').val($(this).val()).change();   
-        onAmauntChange();
+         var term =  $('#termSelect').find(':selected').val();
+         if(term!='notSelected')
+          onAmauntChange();
       }
       else
         $('#amountSlider').val(0).change();
       
   });
    
+    $('#termSelect').change(function (){
+        var amount= $('#amountText').val();
+        if(amount!=''){
+             onAmauntChange();
+        }
+     
+        
+    })
     
     $.getJSON("test.json", function(json) {
         financialEntJson = json;
@@ -128,9 +138,11 @@ function initRangeSliders(){
 
         // Callback function
         onSlide: function(position, value) {
-            if(value>0){
+            var term =  $('#termSelect').find(':selected').val();
+            if(value>0){          
                $('#amountText').val(value);
-                onAmauntChange();
+                if(term!='notSelected')
+                 onAmauntChange();
             }
         },
         // Callback function
@@ -144,7 +156,7 @@ function initRangeSliders(){
 function allowJustNumbers(){
 
     $('#amountText').keydown(function (e){
-        debugger;
+    
          if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
              // Allow: Ctrl+A
             (e.keyCode == 65 && e.ctrlKey === true) ||
