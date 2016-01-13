@@ -18,12 +18,11 @@
 	<script src="js/calculator.js"></script> 
     <script src="js/optioncomp/jquery-labelauty.js"></script> 
 	<script type="text/javascript" src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTP4vfQDCAChFlhu7fQXecASEdklPEpfI&signed_in=true&callback=initMap"
-        async defer>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
     </script>    
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="10">
+<body onload="initialize()" data-spy="scroll" data-target=".navbar" data-offset="10">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -51,24 +50,24 @@
                <div class="col-md-6 col-xs-6 ">
                    <div class="input-group">
                       <span id="pesosSymbolSpan" class="input-group-addon">$</span>
-                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" data-toggle="tooltip"  data-placement="top"
+                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" data-toggle="tooltip"  data-placement="top" maxlength="7"
                              title="Ingresa la cantidad en pesos que deseas de prestamo.">    
                     </div>                   
                </div>              
                <div class="col-md-6 col-xs-6 ">
                     <select class="form-control" id="termSelect">
-                      <option value="" disabled selected>Plazo</option>                    
+                      <option value="notSelected" disabled selected>Plazo</option>                    
                     </select>                 
                </div>
           </div>
           <br>
           <div class="row">
               <div class="col-md-6 col-xs-6  ">
-                <input id="amountSlider" type="range" min="1000" max="1000000" value="1000" step="1000" data-rangeslider></input>  
+                <input id="amountSlider" type="range" min="0" max="1000000" value="0" step="1000" data-rangeslider></input>  
               </div>
                <div class="col-md-6 col-xs-6 ">
-                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"                                      checked="checked" value="a"/>
-                    <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses"                                 value="m"/>				
+                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"                                      checked="checked" value="años"/>
+                    <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses"                                 value="meses"/>				
               </div>   
      	  </div>
           <br>
@@ -76,7 +75,18 @@
         <br>
         <div class="row">
             <div id="divBest" class="panel panel-success tableBest">         
-                <div class="panel-heading" style="text-align:left">Mejor Opcion : Banco Santander</div>
+                <div class="panel-heading" style="text-align:left">
+                   
+                       
+                     <span id="bestEntityNameSpan"></span>     <button type="button" class="btn                             btn-default" aria-label="Left Align">
+                             <i class="fa fa-envelope"> Contactar</i>
+                            </button>
+                    
+                    <button type="button" class="btn                             btn-default" aria-label="Left Align">
+                             <i class="fa fa-map-marker"> Localizar</i>
+                            </button>
+                       
+                </div>
                   <table class="table table-striped" style="text-align:left">            
                     <tbody>
                       <tr>
@@ -88,7 +98,7 @@
                         <td ><span id="montlyPayment"></span></td>                       
                       </tr>
                       <tr>
-                        <td><strong>Intereses pagados en </strong></td>
+                        <td><span id="totalTimeSpan"><strong>Intereses pagados en </strong></span></td>
                         <td ><span id="taxesPaid" ></span></td>                      
                       </tr>
                        <tr>      
@@ -102,13 +112,13 @@
     </div>
     </div>
 	<div id="financial" class="container-fluid">
-	  <div id="map" class="container-fluid"></div>
+    <div id="map" class="container-fluid"></div>
 	</div>
 	<div id="contact" class="container-fluid containerStrech">
 		<div class="container">
       		<div id="contact_form" class="row">
         		<div class="col-md-9">
-          			<h2>Contacto</h2>
+          			<h1 style="font-family: Open Sans, sans-serif;">Contacto</h1>
           			<form action="./php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
 
             			<div class="form-group">

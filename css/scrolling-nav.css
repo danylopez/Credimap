@@ -46,13 +46,13 @@
     background-size:100% auto;
 }
 #financial {
-    background-color: #FFFFFF;
+    background-color: rgb(219,228,245);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     height: 100%;
-    padding-top: 150px;
+    padding-top: 50px;
     text-align: center;
     background-size:100% auto;
 }

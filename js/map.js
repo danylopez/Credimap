@@ -1,100 +1,112 @@
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 19.3202176, lng: -99.224016},
-    scrollwheel: false,
-    zoom: 13,
-    disableDefaultUI: false
-  });
-  var infoWindow = new google.maps.InfoWindow({map: map});
+var infowindow,
+    placemarkers=[];
 
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Aquí estas.');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-}
-
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'ERROR: No encontramos su posicion' :
-                        'Error: Your browser doesn\'t support geolocation.');
-}
-/*
-function initMap() {
-  var city = {lat: 19.3202176, lng: -99.224016};
-
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: city,
-    zoom: 13
-  });
-
-  // Try HTML5 geolocation.
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-      var pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      city = pos;
-
-      infoWindow.setPosition(pos);
-      infoWindow.setContent('Aquí estas.');
-      map.setCenter(pos);
-    }, function() {
-      handleLocationError(true, infoWindow, map.getCenter());
-    });
-  } else {
-    // Browser doesn't support Geolocation
-    handleLocationError(false, infoWindow, map.getCenter());
-  }
-
-  infowindow = new google.maps.InfoWindow();
-
+function placeSearch(map,request)
+{
+  var map=map;
   var service = new google.maps.places.PlacesService(map);
-  service.nearbySearch({
-    location: city,
-    radius: 500,
-    types: ['banks']
-  }, callback);
+  service.search(request, 
+                 function(results,status)
+                 {
+                  if (status == google.maps.places.PlacesServiceStatus.OK) 
+                  {
+                    var bounds=new google.maps.LatLngBounds();
+                    for (var i = 0; i < results.length; ++i) 
+                    { 
+                      service.getDetails({
+                        placeId: results[i].place_id
+                      }, function(place, status) {
+                        if (status === google.maps.places.PlacesServiceStatus.OK) {
+                          var marker = new google.maps.Marker({
+                            map: map,
+                            icon: 'http://i.imgur.com/KWzGggP.png',
+                            position: place.geometry.location
+                          });
+                          google.maps.event.addListener(marker, 'click', function() {
+                            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                              place.formatted_address + '<br>Tel&#233fono: ' +
+                              place.formatted_phone_number + '<br>P&#225gina Web: <a href="' + 
+                              place.website + '">' + place.website + '</a></div>');
+                            infowindow.open(map, this);
+                          });
+                        }
+                      });
+                      bounds.extend(results[i].geometry.location);
+                      placemarkers.push(createMarker(results[i].geometry.location,
+                                   map,
+                                   'http://i.imgur.com/KWzGggP.png',
+                                   '<strong>'+results[i].name+'</strong></br>',
+                                   false,
+                                   {
+                                    fnc:function() 
+                                    {
+                                      infowindow.open();
+                                    }
+                      
+                                   }));
+                    }
+                    map.fitBounds(bounds);
+                  }
+                 }
+                 );
+
 }
 
-function callback(results, status) {
-  if (status === google.maps.places.PlacesServiceStatus.OK) {
-    for (var i = 0; i < results.length; i++) {
-      createMarker(results[i]);
-    }
-  }
-}
-
-function createMarker(place) {
-  var placeLoc = place.geometry.location;
+function createMarker(latlng,map,icon,content,center,action) 
+{
   var marker = new google.maps.Marker({
     map: map,
-    position: place.geometry.location
+    position: latlng,
+    content:content
   });
-
+  if(icon){marker.setIcon(icon);}
+  
+  if(center)
+  {
+    map.setCenter(latlng);
+  }
+  
   google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name);
+    infowindow.setContent(this.content);
     infowindow.open(map, this);
   });
+  
+  if(action)
+  {
+    action.fnc(map,action.args);
+  }
+  return marker;
 }
-function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-  infoWindow.setPosition(pos);
-  infoWindow.setContent(browserHasGeolocation ?
-                        'ERROR: No encontramos su posicion' :
-                        'Error: Your browser doesn\'t support geolocation.');
-}*/
+
+function initialize()
+{
+  
+  var location = new google.maps.LatLng(19.3202176, -99.224016),
+      map = new google.maps.Map(document.getElementById('map'), {
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                center: location,
+                scrollwheel: false,
+                zoom: 15
+                });
+   infowindow = new google.maps.InfoWindow();
+   navigator.geolocation.getCurrentPosition(function(place)
+   {           
+      createMarker(
+                    new google.maps.LatLng(place.coords.latitude,
+                                          place.coords.longitude),
+                    map,
+                    null,
+                    'Posici&#243n actual.',
+                    true,
+                    {
+                     fnc:placeSearch,
+                     args:{
+                           radius: 5000,
+                           types: ['bank'],
+                           location:new google.maps.LatLng(place.coords.latitude,
+                                                           place.coords.longitude)
+                          }
+                   }
+                   );      
+   });
+}
