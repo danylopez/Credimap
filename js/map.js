@@ -13,6 +13,7 @@ function placeSearch(map,request)
                     var bounds=new google.maps.LatLngBounds();
                     for (var i = 0; i < results.length; ++i) 
                     { 
+                      localStorage.setItem(i, JSON.stringify(results[i].name));
                       service.getDetails({
                         placeId: results[i].place_id
                       }, function(place, status) {
@@ -25,8 +26,8 @@ function placeSearch(map,request)
                           google.maps.event.addListener(marker, 'click', function() {
                             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                               place.formatted_address + '<br>Tel&#233fono: ' +
-                              place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank"  href="' + 
-                              place.website + '">' + place.website + '</a></div>');
+                              place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank" style="color: blue;" href="' + 
+                              place.website + '">' + place.website + '</a> <br><button type="button" onclick="location.href=&#39#contact&#39;" class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>');
                             infowindow.open(map, this);
                           });
                         }
@@ -35,7 +36,7 @@ function placeSearch(map,request)
                       placemarkers.push(createMarker(results[i].geometry.location,
                                    map,
                                    'http://i.imgur.com/KWzGggP.png',
-                                   '<strong>'+results[i].name+'</strong></br>',
+                                   '<div><strong>'+results[i].name+'</strong></br></div><button type="button" onclick="location.href=&#39#contact&#39;" class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>',
                                    false,
                                    {
                                     fnc:function() 
