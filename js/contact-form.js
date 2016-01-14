@@ -10,7 +10,7 @@
       $('#feedbackForm .form-group').removeClass('has-error');
     },
     clearForm: function () {
-      $('#feedbackForm .glyphicon').removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
+      $('#feedbackForm input,textarea').removeClass('fa fa-circle').addClass('fa fa-circle-o').css({color: ''});
       $('#feedbackForm input,textarea').val("");
       grecaptcha.reset();
     },

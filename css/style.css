@@ -30,6 +30,13 @@ html {
         padding-right: 1px;
     }    
     
+    .btn-responsive {
+        padding:1px ;
+        font-size:90%;
+        line-height: 1;
+        border-radius:3px;
+      }
+    
 }
 
 @media (min-width: 400px) {
@@ -58,3 +65,9 @@ html {
     
 }
 
+.remarkText{
+    
+    font-size: 14px;
+    font-weight: bold;
+        
+}
