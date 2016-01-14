@@ -6,21 +6,25 @@
 	<meta name="viewport" content="width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<link rel="shortcut icon" href="img/logo.ico">
-	<link rel="stylesheet" href="css/bootstrap.css">
 	<link rel="stylesheet" href="css/scrolling-nav.css">
 	<link rel="stylesheet" href="css/rangeslider/rangeslider.css">	
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/optioncomp/jquery-labelauty.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/rangeslider/rangeslider.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/optioncomp/jquery-labelauty.css">
+  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/rangeslider/rangeslider.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/calculator.js"></script> 
-    <script src="js/optioncomp/jquery-labelauty.js"></script> 
+  <script src="js/contact-form.js"></script>
+  <script src="js/optioncomp/jquery-labelauty.js"></script> 
 	<script type="text/javascript" src="js/map.js"></script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
-    </script>    
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
+  </script> 
 </head>
 <body onload="initialize()" data-spy="scroll" data-target=".navbar" data-offset="10">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
@@ -43,74 +47,108 @@
 	</div>
 	</nav>
 	<div id="calculator" class="container-fluid containerStrech">
-	  <h1 style="font-family: Open Sans, sans-serif;">Calculadora Virtual</h1>
+	  <h1 style="font-family: Open Sans, sans-serif;">Calculadora Virtual
+             
+        </h1>
+    
 	  <br><br>
 	  <div class="container-fluid">        
 	       <div class="row">                 
                <div class="col-md-6 col-xs-6 ">
                    <div class="input-group">
                       <span id="pesosSymbolSpan" class="input-group-addon">$</span>
-                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" data-toggle="tooltip"  data-placement="top" maxlength="7"
-                             title="Ingresa la cantidad en pesos que deseas de prestamo.">    
+                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" 
+                             data-toggle="tooltip"  data-placement="top" maxlength="7"
+                             title="Ingresa la cantidad en pesos que deseas como préstamo.">    
                     </div>                   
                </div>              
                <div class="col-md-6 col-xs-6 ">
-                    <select class="form-control" id="termSelect">
+                    <select class="form-control" id="termSelect"   data-toggle="tooltip"  data-                                 placement="top" title="Ingresa el plazo en años o meses en el que deseas pagar.">
                       <option value="notSelected" disabled selected>Plazo</option>                    
                     </select>                 
                </div>
           </div>
           <br>
           <div class="row">
-              <div class="col-md-6 col-xs-6  ">
-                <input id="amountSlider" type="range" min="0" max="1000000" value="0" step="1000" data-rangeslider></input>  
+              <div class="col-md-6 col-xs-6">
+                <input id="amountSlider" type="range" min="0" max="1000000" value="0" step="1000" data-                     rangeslider  data-toggle="tooltip"  data-                                 placement="top" title="Ingresa el plazo en años o meses en el que deseas pagar.">                       </input>  
               </div>
                <div class="col-md-6 col-xs-6 ">
-                     <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años"                                      checked="checked" value="años"/>
-                    <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses"                                 value="meses"/>				
+                 <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años" checked="checked" value="años"/>
+                 <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses" value="meses"/>				
               </div>   
      	  </div>
+            <br>
+          <div class="row">
+              <div class="col-md-6 col-xs-6">
+                   <select class="form-control" id="pFrequencySelect"   data-toggle="tooltip"  data-                                 placement="bottom" title="Ingresa con qué frecuencia deseas pagar.">
+                      <option value="notSelected" disabled selected>Frecuencia de Pago</option>    
+                      <option value="semanal"  >Semanal</option>
+                      <option value="quincenal"  >Quincenal</option>
+                      <option value="mensual"  >Mensual</option>
+                      
+                    </select>   
+              </div>
+              <div class="col-md-6 col-xs-6">
+                   <select class="form-control" id="loanKind"   data-toggle="tooltip"  data-placement="bottom" title="Ingresa el tipo de prestamo que deseas">
+                      <option value="notSelected" disabled selected>Tipo de prestamo</option>
+                      <option value="individual"  >Individual</option>
+                      <option value="grupal"  >Grupal</option>
+                    </select>   
+              </div>              
+         </div>
+        <br>
+          <div class="row">
+                 <div class="col-md-1 col-xs-1">
+                    <button type="button" id="calculateBtn" class="btn btn-primary btn-                                    lg" onclick="calculate();">Calcular</button>
+                </div>  
+          </div>
           <br>
           <hr>
         <br>
         <div class="row">
             <div id="divBest" class="panel panel-success tableBest">         
-                <div class="panel-heading" style="text-align:left">
-                   
-                       
-                     <span id="bestEntityNameSpan"></span>     <button type="button" class="btn                             btn-default" aria-label="Left Align">
-                             <i class="fa fa-envelope"> Contactar</i>
-                            </button>
-                    
-                    <button type="button" class="btn                             btn-default" aria-label="Left Align">
-                             <i class="fa fa-map-marker"> Localizar</i>
-                            </button>
-                       
+                <div class="panel-heading col-md-12" style="text-align:left">          
+                    <span id="bestEntityNameSpan" ></span>        
                 </div>
                   <table class="table table-striped" style="text-align:left">            
                     <tbody>
                       <tr>
-                        <td>Pago Total de</td>
+                        <td>Pago <strong>Total</strong> de</td>
                         <td ><span id="totalPayment"></span></td>                      
                       </tr>
                       <tr>
-                        <td>Pago Mensual de</td>
-                        <td ><span id="montlyPayment"></span></td>                       
+                        <td>Pago <span id="frequencyPay" class="remarkText"></span> de</td>
+                        <td ><span id="payment"></span></td>                       
                       </tr>
                       <tr>
-                        <td><span id="totalTimeSpan"><strong>Intereses pagados en </strong></span></td>
+                          <td><span id="totalTimeSpan"></span><span id="frequencyPay2" class="remarkText"> </span></td>
                         <td ><span id="taxesPaid" ></span></td>                      
                       </tr>
                        <tr>      
-                        <td>Porcentaje de Interes</td>
+                        <td>Porcentaje de Interes <span id="percentageFreq" class="remarkText"></span></td>
                         <td ><span id="taxPercentage"></span></td>                    
                       </tr>
                     </tbody>
                 </table>
+                  <div class="panel-footer">
+                 <button type="button" class="btn btn-default " aria-label="Left Align"     onclick="location.href=&#39#contact&#39;" >
+                     <i class="fa fa-envelope"> Contactar</i>
+                </button>                    
+                <button type="button" class="btn btn-default " aria-label="Left Align"  >
+                    <i class="fa fa-map-marker"> Localizar</i>
+               </button> 
+              
+              <button type="button" class="btn btn-default " aria-label="Left Align"  >
+                    <i class="fa fa-table"> Todas las entidades</i>
+                </button> 
+                </div>
+                      
             </div>        
         </div>
     </div>
     </div>
+<br><br><br>
 	<div id="financial" class="container-fluid">
     <div id="map" class="container-fluid"></div>
 	</div>
@@ -119,12 +157,13 @@
       		<div id="contact_form" class="row">
         		<div class="col-md-9">
           			<h1 style="font-family: Open Sans, sans-serif;">Contacto</h1>
-          			<form action="./php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
-
+                <form action="/Github/pamiderc/php/send.php" method="POST">
+          			<form role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
             			<div class="form-group">
               				<div class="input-group">
                 				<input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre (Requerido)" required/>
-                				<span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
+                				<!--<span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>-->
+                        <span class="input-group-addon"><i class="fa fa-circle-o form-control-feedback"></i></span>
               				</div>
 						</div>
 
@@ -135,19 +174,20 @@
             			<div class="form-group">
               				<div class="input-group">
                 				<input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo electronico (Requerido)" required/>
-                				<span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
+                				<span class="input-group-addon"><i class="fa fa-circle-o form-control-feedback"></i></span>
               				</div>
             			</div>
 
             			<div class="form-group">
               				<div class="input-group">
                 				<textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Compartanos sus dudas y nosotros nos pondremos en contacto con usted" required></textarea>
-                				<span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
+                				<span class="input-group-addon"><i class="fa fa-circle-o form-control-feedback"></i></span>
               				</div>
             			</div>
 
             			<button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Enviando..." style="display: block; margin-top: 10px;">Enviar</button>
           			</form>
+                </form>
         		</div>
       		</div>
       		<hr>

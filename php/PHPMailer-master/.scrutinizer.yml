@@ -15,7 +15,7 @@ tools:
                 - 'examples/*'
                 - 'extras/*'
                 - 'test/*'
-                - 'vendor/*'
+                - 'dependencies/*'
 
     php_code_coverage:
         enabled:              false
@@ -25,7 +25,7 @@ tools:
                 - 'examples/*'
                 - 'extras/*'
                 - 'test/*'
-                - 'vendor/*'
+                - 'dependencies/*'
 
     php_code_sniffer:
         enabled:              true
@@ -41,7 +41,7 @@ tools:
                 - 'examples/*'
                 - 'extras/*'
                 - 'test/*'
-                - 'vendor/*'
+                - 'dependencies/*'
 
     # Copy/Paste Detector
     php_cpd:
@@ -51,7 +51,7 @@ tools:
             - examples
             - extras
             - test
-            - vendor
+            - dependencies
 
     # PHP CS Fixer (http://http://cs.sensiolabs.org/).
     php_cs_fixer:
@@ -64,7 +64,7 @@ tools:
                 - 'examples/*'
                 - 'extras/*'
                 - 'test/*'
-                - 'vendor/*'
+                - 'dependencies/*'
 
     # Analyzes the size and structure of a PHP project.
     php_loc:
@@ -74,7 +74,7 @@ tools:
             - examples
             - extras
             - test
-            - vendor
+            - dependencies
 
     # PHP Mess Detector (http://phpmd.org).
     php_mess_detector:
@@ -93,7 +93,7 @@ tools:
                 - 'examples/*'
                 - 'extras/*'
                 - 'test/*'
-                - 'vendor/*'
+                - 'dependencies/*'
 
     # Analyzes the size and structure of a PHP project.
     php_pdepend:
@@ -103,7 +103,7 @@ tools:
             - examples
             - extras
             - test
-            - vendor
+            - dependencies
 
     # Runs Scrutinizer's PHP Analyzer Tool
     # https://scrutinizer-ci.com/docs/tools/php/php-analyzer/config_reference
@@ -126,7 +126,7 @@ tools:
                 - 'examples/*'
                 - 'extras/*'
                 - 'test/*'
-                - 'vendor/*'
+                - 'dependencies/*'
 
     # Security Advisory Checker
     sensiolabs_security_checker: true
