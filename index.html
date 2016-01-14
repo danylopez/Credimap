@@ -17,7 +17,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="js/rangeslider/rangeslider.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js"></script>
 	<script src="js/calculator.js"></script> 
   <script src="./js/contact-form.js"></script>
@@ -47,7 +47,10 @@
 	</div>
 	</nav>
 	<div id="calculator" class="container-fluid containerStrech">
-	  <h1 style="font-family: Open Sans, sans-serif;">Calculadora Virtual</h1>
+	  <h1 style="font-family: Open Sans, sans-serif;">Calculadora Virtual
+             
+        </h1>
+    
 	  <br><br>
 	  <div class="container-fluid">        
 	       <div class="row">                 
@@ -78,7 +81,7 @@
             <br>
           <div class="row">
               <div class="col-md-6 col-xs-6">
-                   <select class="form-control" id="pFrecuencySelect"   data-toggle="tooltip"  data-                                 placement="bottom" title="Ingresa con qué frecuencia deseas pagar.">
+                   <select class="form-control" id="pFrequencySelect"   data-toggle="tooltip"  data-                                 placement="bottom" title="Ingresa con qué frecuencia deseas pagar.">
                       <option value="notSelected" disabled selected>Frecuencia de Pago</option>    
                       <option value="semanal"  >Semanal</option>
                       <option value="quincenal"  >Quincenal</option>
@@ -87,47 +90,49 @@
                     </select>   
               </div>
               <div class="col-md-6 col-xs-6">
-                   <select class="form-control" id="loanKind"   data-toggle="tooltip"  data-                                 placement="bottom" title="Ingresa el tipo de prestamo que deseas">
+                   <select class="form-control" id="loanKind"   data-toggle="tooltip"  data-placement="bottom" title="Ingresa el tipo de prestamo que deseas">
                       <option value="notSelected" disabled selected>Tipo de prestamo</option>
                       <option value="individual"  >Individual</option>
                       <option value="grupal"  >Grupal</option>
-                      <option value="solidario"  >Solidario</option>
                     </select>   
               </div>              
-         </div>      
+         </div>
+        <br>
+          <div class="row">
+                 <div class="col-md-1 col-xs-1">
+                    <button type="button" id="calculateBtn" class="btn btn-primary btn-                                    lg" onclick="calculate();">Calcular</button>
+                </div>  
+          </div>
           <br>
           <hr>
         <br>
         <div class="row">
             <div id="divBest" class="panel panel-success tableBest">         
                 <div class="panel-heading col-md-12" style="text-align:left">          
-                    <span id="bestEntityNameSpan" ></span>             
-                       
-             
-               
+                    <span id="bestEntityNameSpan" ></span>        
                 </div>
                   <table class="table table-striped" style="text-align:left">            
                     <tbody>
                       <tr>
-                        <td>Pago Total de</td>
+                        <td>Pago <strong>Total</strong> de</td>
                         <td ><span id="totalPayment"></span></td>                      
                       </tr>
                       <tr>
-                        <td>Pago Mensual de</td>
-                        <td ><span id="montlyPayment"></span></td>                       
+                        <td>Pago <span id="frequencyPay" class="remarkText"></span> de</td>
+                        <td ><span id="payment"></span></td>                       
                       </tr>
                       <tr>
-                        <td><span id="totalTimeSpan"><strong>Intereses pagados en </strong></span></td>
+                          <td><span id="totalTimeSpan"></span><span id="frequencyPay2" class="remarkText"> </span></td>
                         <td ><span id="taxesPaid" ></span></td>                      
                       </tr>
                        <tr>      
-                        <td>Porcentaje de Interes Mensual</td>
+                        <td>Porcentaje de Interes <span id="percentageFreq" class="remarkText"></span></td>
                         <td ><span id="taxPercentage"></span></td>                    
                       </tr>
                     </tbody>
                 </table>
                   <div class="panel-footer">
-                 <button type="button" class="btn btn-default " aria-label="Left Align" >
+                 <button type="button" class="btn btn-default " aria-label="Left Align"     onclick="location.href=&#39#contact&#39;" >
                      <i class="fa fa-envelope"> Contactar</i>
                 </button>                    
                 <button type="button" class="btn btn-default " aria-label="Left Align"  >
@@ -143,6 +148,7 @@
         </div>
     </div>
     </div>
+<br><br><br>
 	<div id="financial" class="container-fluid">
     <div id="map" class="container-fluid"></div>
 	</div>
