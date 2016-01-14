@@ -1,5 +1,6 @@
 var infowindow,
     placemarkers=[];
+    var finalEntities= [];
 
 function placeSearch(map,request)
 {
@@ -11,13 +12,24 @@ function placeSearch(map,request)
                   if (status == google.maps.places.PlacesServiceStatus.OK) 
                   {
                     var bounds=new google.maps.LatLngBounds();
+                    var j=0;
                     for (var i = 0; i < results.length; ++i) 
                     { 
-                      localStorage.setItem(i, JSON.stringify(results[i].name));
                       service.getDetails({
                         placeId: results[i].place_id
                       }, function(place, status) {
                         if (status === google.maps.places.PlacesServiceStatus.OK) {
+                          var fe={};
+                          fe.id = place.place_id;
+                          fe.name = place.name;
+                          fe.adress = place.formatted_address;
+                          fe.phone = place.formatted_phone_number;
+                          fe.web = place.website;
+                          finalEntities.push(fe);
+                          debugger;
+                          localStorage["Financial_entities"] = JSON.stringify(finalEntities);
+                          //localStorage.setItem('Financial_entities', JSON.stringify(finalEntities));
+                          fe=[];
                           var marker = new google.maps.Marker({
                             map: map,
                             icon: 'http://i.imgur.com/KWzGggP.png',
