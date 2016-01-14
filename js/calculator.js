@@ -1,9 +1,8 @@
 var financialEntJson;
 
-
-
 $(document).ready(function (){
     //fixing bug add-on currency size
+   $("#success-alert").hide();
     initRangeSliders();
     $(":radio").labelauty({  minimum_width: "50px"});
     allowJustNumbers();
@@ -16,44 +15,84 @@ $(document).ready(function (){
     $('#amountText').keyup(function() {
       var amount=$(this).val();
       if(amount!='' && amount!=undefined ){
-        $('#amountSlider').val($(this).val()).change();   
-         var term =  $('#termSelect').find(':selected').val();
-         if(term!='notSelected')
-          onAmauntChange();
+        $('#amountSlider').val(amount).change();   
+        if(validateNotEmptyFields()){
+            onAmauntChange();
+        }
       }
       else
         $('#amountSlider').val(0).change();
       
   });
    
-    $('#termSelect').change(function (){
+    $('select').change(function (){
         var amount= $('#amountText').val();
-        if(amount!=''){
+        if(amount!='' && validateNotEmptyFields()){
              onAmauntChange();
         }
-     
-        
     })
     
     $.getJSON("test.json", function(json) {
         financialEntJson = json;
     });
+    
+    $("#feedbackSubmit").click(function (){
+        jQuery.ajax({
+        type: "POST",
+        url: "./php/send.php",
+        data: { LUT:lut, 
+            Brightness: brightness,
+        Gamma: gamma,
+        Background: background}
+        }).done(function( result ){
+           alert('done');
+        });
+    });
+                               
    
 });
 
+
+function validateNotEmptyFields(){
+    
+     var term =  $('#termSelect').find(':selected').val();
+     var pFrequency  = $('#pFrequencySelect').find(':selected').val();
+     var loanKind = $('#loanKind').find(':selected').val();  
+     if(term!='notSelected' && pFrequency!='notSelected' && loanKind!='notSelected'){
+        return true;
+     }
+    
+    return false;
+}
+
+function getFrequencyPayment(pFrequencySelect){
+  
+    if(pFrequencySelect=="semanal") return "semanas";
+    if(pFrequencySelect=="quincenal") return "quincenas"; 
+    if(pFrequencySelect=="mensual") return "meses";
+}
+
+
 function drawBest(bestEntities){
     if(bestEntities.length>0){
+        var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
         $('#totalPayment').text( Math.round(bestEntities[0].totalPayment*100)/100 + " $");
-        $('#montlyPayment').text(Math.round(bestEntities[0].montlyPayment*100)/100 + " $");        
+        $('#payment').text(Math.round(bestEntities[0].payment*100)/100 + " $");        
         $('#taxesPaid').text(Math.round(bestEntities[0].taxes*100)/100 + " $");
         $('#taxPercentage').text(bestEntities[0].tax_rate + " %");     
-        var timeUnits = $('input[name=timeUnitsRadio]:checked').val();        
-        var term =  parseInt($('#termSelect').find(':selected').text());
-        $('#totalTimeSpan').text("Intereses pagados en " + term + " "+ timeUnits);
+        $('#frequencyPay').text(pFrequencySelect);
+        //var timeUnits = $('input[name=timeUnitsRadio]:checked').val();        
+        //var term =  parseInt($('#termSelect').find(':selected').text());
+        $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");                           $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
         $('#bestEntityNameSpan').text("La mejor opcion "  + bestEntities[0].name);
         $('#divBest').css('display','block');
+        saveBestLocalStorage( bestEntities[0].name);
     }
     
+}
+
+function saveBestLocalStorage(name){
+    localStorage.setItem("bestOne", name);
 }
 
 //make the calculation of the best
@@ -61,11 +100,20 @@ function onAmauntChange(){
  
     var productId=  1;
     var amount = parseInt($('#amountText').val());
-    var term =  parseInt($('#termSelect').find(':selected').text());
+    term =  parseInt($('#termSelect').find(':selected').text());
     var timeUnits = $('input[name=timeUnitsRadio]:checked').val();
+    var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
     var finalEntities= [];
+    var periodicity ,tax_factor;
     
     if(timeUnits=='años') term = term*12;
+    
+    tax_factor = getTaxFactor(pFrequencySelect);
+    if(pFrequencySelect=='semanal')
+        term = (term*30)/7;
+    else
+        term*=tax_factor;    
+    
     
     for(var i =0;i<financialEntJson.financial_entities.length;i++){
         var finEntity = financialEntJson.financial_entities[i];
@@ -73,15 +121,16 @@ function onAmauntChange(){
             var product= finEntity.products[z];
             if(product.id==productId){
                 var fe={};
-                var totalPayment =  amount + (amount * (product.tax_rate/100) * term);
-                var montlyPayment =  totalPayment/term;
-                var taxes = (amount * (product.tax_rate/100) * term);
+                var totalPayment =  amount + (amount * ((product.tax_rate/100)/tax_factor) * term);
+                var payment =  totalPayment/term;
+                var taxes = (amount * ((product.tax_rate/100)/tax_factor) * term);
                 fe.name = finEntity.name;
                 fe.address = finEntity.address;
                 fe.totalPayment= totalPayment;
-                fe.montlyPayment =  montlyPayment;
+                fe.payment =  payment;
                 fe.taxes = taxes;
-                fe.tax_rate  = product.tax_rate;
+                fe.tax_rate  = product.tax_rate/tax_factor;
+                fe.frequency=pFrequencySelect;
                 finalEntities.push(fe);
             }
         }
@@ -92,6 +141,24 @@ function onAmauntChange(){
     
 }
 
+function calculate(){
+    /*$("#success-alert").alert();
+    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+        //$("#success-alert").alert('close');
+         $("#success-alert").hide();
+    });   */
+    if(validateNotEmptyFields() && $('#amountText').val()!=''){
+        onAmauntChange();
+    }
+    
+}
+
+function getTaxFactor(pFrequencySelect){
+ 
+    if(pFrequencySelect=="semanal") return 4;
+    if(pFrequencySelect=="quincenal") return 2; 
+    if(pFrequencySelect=="mensual") return 1;
+}
 
 function sortFinalEntities(finalEntities){
     
@@ -122,42 +189,32 @@ function fillPeriodSelect(timeUnits){
 }
 
 function initRangeSliders(){
-    var amount = $('#amountSlider');
-    
+    var amount = $('#amountSlider');    
     //rangeslider initialization
-    amount.rangeslider({
-
-        // Deactivate the feature detection
+    amount.rangeslider({    
+        
         polyfill: false,
-
         // Callback function
-        onInit: function() {
-           // valueOutput(this.$element[0]);
-
-        },
-
-        // Callback function
-        onSlide: function(position, value) {
-            var term =  $('#termSelect').find(':selected').val();
-            if(value>0){          
-               $('#amountText').val(value);
-                if(term!='notSelected')
+        onSlide: function(position, value) {       
+            var amount = $('#amountText').val();
+            if(value=>0){                  
+                if( parseInt(amount)%1000==0)
+                 $('#amountText').val(value);
+                 
+                if(Math.abs(value-amount)>=1000)
+                     $('#amountText').val(value);
+                if(validateNotEmptyFields())
                  onAmauntChange();
             }
-        },
-        // Callback function
-        onSlideEnd: function(position, value) {
-
-        }
-    });    
-   
+        },      
+    });
 }
 
 function allowJustNumbers(){
 
     $('#amountText').keydown(function (e){
     
-         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
+        if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
              // Allow: Ctrl+A
             (e.keyCode == 65 && e.ctrlKey === true) ||
              // Allow: Ctrl+C
@@ -170,10 +227,10 @@ function allowJustNumbers(){
                  return;
         }
         // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105))      {        
-            e.preventDefault();
-            }     
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105))                e.preventDefault();       
         
     });
-
 }
+
+
+

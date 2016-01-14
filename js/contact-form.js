@@ -10,7 +10,7 @@
       $('#feedbackForm .form-group').removeClass('has-error');
     },
     clearForm: function () {
-      $('#feedbackForm input,textarea').removeClass('fa fa-circle').addClass('fa fa-circle-o').css({color: ''});
+      $('#feedbackForm .glyphicon').removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
       $('#feedbackForm input,textarea').val("");
       grecaptcha.reset();
     },
@@ -84,11 +84,11 @@
       return false;
     });
     $('#feedbackForm input, #feedbackForm textarea').change(function () {
-      var checkBox = $(this).siblings('span.input-group-addon');
+      var checkBox = $(this).siblings('span.input-group-addon').children('.glyphicon');
       if ($(this).val()) {
-        checkBox.removeClass('fa fa-circle-o').addClass('fa fa-circle').css({color: 'green'});
+        checkBox.removeClass('glyphicon-unchecked').addClass('glyphicon-check').css({color: 'green'});
       } else {
-        checkBox.removeClass('fa fa-circle').addClass('fa fa-circle-o').css({color: ''});
+        checkBox.removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
       }
     });
   });
