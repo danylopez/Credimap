@@ -60,9 +60,9 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 
 //if(smtpmailer($to, $from, $from_name, $subject, $body)){
 if(smtpmailer($to, GUSER, $from_name, $subject, $body)){
-	echo "Mensaje enviado! <a href='../index.html'>Click Aqui</a> para regresar a la pagina principal";
-	//echo "<script type='text/javascript'>alert('Mensaje enviado!')</script>";
-	//header("Refresh:0 , url=../index.html");
+	//echo "Mensaje enviado! <a href='../index.html'>Click Aqui</a> para regresar a la pagina principal";
+	echo "<script type='text/javascript'>alert('Mensaje enviado!')</script>";
+	header("Refresh:0 , url=../index.html");
 }else{
 	echo "<script type='text/javascript'>alert('Hubo un error al enviar el mensaje, por favor intente denuevo!')</script>";
 }

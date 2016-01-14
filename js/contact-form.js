@@ -84,11 +84,11 @@
       return false;
     });
     $('#feedbackForm input, #feedbackForm textarea').change(function () {
-      var checkBox = $(this).siblings('span.input-group-addon').children('.glyphicon');
+      var checkBox = $(this).siblings('span.input-group-addon');
       if ($(this).val()) {
-        checkBox.removeClass('glyphicon-unchecked').addClass('glyphicon-check').css({color: 'green'});
+        checkBox.removeClass('fa fa-circle-o').addClass('fa fa-circle').css({color: 'green'});
       } else {
-        checkBox.removeClass('glyphicon-check').addClass('glyphicon-unchecked').css({color: ''});
+        checkBox.removeClass('fa fa-circle').addClass('fa fa-circle-o').css({color: ''});
       }
     });
   });
