@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A contact form using the Bootstrap 3 framework.">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+    <title>Bootstrap 3 Contact Form</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/vender/intl-tel-input/css/intlTelInput.css">
+    <style>
+      .container {
+        width: auto;
+        max-width: 800px;
+      }
+      .form-group {
+        margin-bottom: 8px;
+      }
+      #feedbackForm {
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="contact_form" class="row">
+        <div class="col-md-12">
+          <h2>Contacto</h2>
+          <form action="send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
+            <div class="form-group">
+
+              <label class="control-label" for="name">Nombre *</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre" required/>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="phone">Teléfono</label>
+              <input type="tel" class="form-control optional" id="phone" name="phone" placeholder="Ingrese su teléfono (Opcional)"/>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="email">Email *</label>
+              <div class="input-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo electrónico" required/>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="control-label" for="message">Mensaje *</label>
+              <div class="input-group">
+                <textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Compartanos sus dudas y nosotros nos pondremos en contacto con usted" required></textarea>
+                <span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
+              </div>
+            </div>
+
+            <button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Enviando..." style="display: block; margin-top: 10px;">Enviar</button>
+          </form>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="assets/vender/intl-tel-input/js/intlTelInput.min.js"></script>
+    <script src="assets/js/contact-form.js"></script>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+  </body>
+</html>
