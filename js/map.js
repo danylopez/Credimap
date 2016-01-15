@@ -85,7 +85,7 @@ function placeSearch(map,request)
                       });
                       bounds.extend(results[i].geometry.location);
                       finalEntities.push(fe);
-                      localStorage["Financial_entities"] = JSON.stringify(finalEntities);
+                      localStorage["financial_entities"] = JSON.stringify(finalEntities);
                       fe=[];
                     }
                     map.fitBounds(bounds);
