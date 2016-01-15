@@ -130,6 +130,7 @@ $(document).ready(function(){
 
 function initialize()
 {
+  
   var location = new google.maps.LatLng(19.3202176, -99.224016),
       map = new google.maps.Map(document.getElementById('map'), {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
