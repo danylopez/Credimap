@@ -13,8 +13,42 @@ function placeSearch(map,request)
                   {
                     var bounds=new google.maps.LatLngBounds();
                     var j=0;
+                    var best = localStorage.getItem('bestOne');
                     for (var i = 0; i < results.length; ++i) 
-                    { 
+                    {
+                      var fe={};
+                          fe.id = results[i].place_id;
+                          fe.name = results[i].name;
+                          fe.adress = results[i].vicinity;
+                          fe.phone = '';
+                          fe.web = '';
+                      if(('"'+results[i].place_id+'"') === best) {
+                        placemarkers.push(createMarker(results[i].geometry.location,
+                                   map,
+                                   'http://i.imgur.com/5JkDGgS.png',
+                                   '<div><strong>'+results[i].name+'</strong></br>'+ results[i].vicinity+'</div><button type="button" onclick="location.href=&#39#contact&#39;" class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>',
+                                   false,
+                                   {
+                                    fnc:function() 
+                                    {
+                                      infowindow.open();
+                                    }
+                      
+                                   }));
+                      } else {
+                        placemarkers.push(createMarker(results[i].geometry.location,
+                                   map,
+                                   'http://i.imgur.com/KWzGggP.png',
+                                   '<div><strong>'+results[i].name+'</strong></br>'+ results[i].vicinity+'</div><button type="button" onclick="location.href=&#39#contact&#39;" class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>',
+                                   false,
+                                   {
+                                    fnc:function() 
+                                    {
+                                      infowindow.open();
+                                    }
+                      
+                                   }));
+                      }
                       service.getDetails({
                         placeId: results[i].place_id
                       }, function(place, status) {
@@ -25,16 +59,21 @@ function placeSearch(map,request)
                           fe.adress = place.formatted_address;
                           fe.phone = place.formatted_phone_number;
                           fe.web = place.website;
-                          finalEntities.push(fe);
-                          debugger;
-                          localStorage["Financial_entities"] = JSON.stringify(finalEntities);
-                          //localStorage.setItem('Financial_entities', JSON.stringify(finalEntities));
-                          fe=[];
-                          var marker = new google.maps.Marker({
-                            map: map,
-                            icon: 'http://i.imgur.com/KWzGggP.png',
-                            position: place.geometry.location
-                          });
+                          if(('"'+place.place_id+'"') === best) {
+                            debugger;
+                            var marker = new google.maps.Marker({
+                              map: map,
+                              icon: 'http://i.imgur.com/5JkDGgS.png',
+                              position: place.geometry.location
+                            });
+                          } else {
+                            var marker = new google.maps.Marker({
+                              map: map,
+                              icon: 'http://i.imgur.com/KWzGggP.png',
+                              position: place.geometry.location
+                            });
+                          }
+                          
                           google.maps.event.addListener(marker, 'click', function() {
                             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
                               place.formatted_address + '<br>Tel&#233fono: ' +
@@ -45,18 +84,9 @@ function placeSearch(map,request)
                         }
                       });
                       bounds.extend(results[i].geometry.location);
-                      placemarkers.push(createMarker(results[i].geometry.location,
-                                   map,
-                                   'http://i.imgur.com/KWzGggP.png',
-                                   '<div><strong>'+results[i].name+'</strong></br></div><button type="button" onclick="location.href=&#39#contact&#39;" class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>',
-                                   false,
-                                   {
-                                    fnc:function() 
-                                    {
-                                      infowindow.open();
-                                    }
-                      
-                                   }));
+                      finalEntities.push(fe);
+                      localStorage["Financial_entities"] = JSON.stringify(finalEntities);
+                      fe=[];
                     }
                     map.fitBounds(bounds);
                   }
@@ -93,7 +123,6 @@ function createMarker(latlng,map,icon,content,center,action)
 
 function initialize()
 {
-  
   var location = new google.maps.LatLng(19.3202176, -99.224016),
       map = new google.maps.Map(document.getElementById('map'), {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
