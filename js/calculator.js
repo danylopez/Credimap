@@ -1,57 +1,66 @@
 var financialEntJson;
 
 $(document).ready(function (){
+    debugger;
     //fixing bug add-on currency size
-   $("#success-alert").hide();
+   // $("#success-alert").hide();
     initRangeSliders();
-    $(":radio").labelauty({  minimum_width: "50px"});
     allowJustNumbers();
-     $('[data-toggle="tooltip"]').tooltip(); 
     fillPeriodSelect('años');
-   $("input[name=timeUnitsRadio]:radio").change(function (){
-        onPeriodKindChange();       
-    });    
-    
-    $('#amountText').keyup(function() {
-      var amount=$(this).val();
-      if(amount!='' && amount!=undefined ){
-        $('#amountSlider').val(amount).change();   
-        if(validateNotEmptyFields()){
-            onAmauntChange();
-        }
-      }
-      else
-        $('#amountSlider').val(0).change();
-      
-  });
+    registerInputEvents();
+    $('[data-toggle="tooltip"]').tooltip(); 
+    $(":radio").labelauty({  minimum_width: "50px"});
    
-    $('select').change(function (){
-        var amount= $('#amountText').val();
-        if(amount!='' && validateNotEmptyFields()){
-             onAmauntChange();
-        }
-    })
+  
     
-    $.getJSON("test.json", function(json) {
+    /*$.getJSON("test.json", function(json) {
         financialEntJson = json;
-    });
-    
-    $("#feedbackSubmit").click(function (){
-        jQuery.ajax({
-        type: "POST",
-        url: "./php/send.php",
-        data: { LUT:lut, 
-            Brightness: brightness,
-        Gamma: gamma,
-        Background: background}
-        }).done(function( result ){
-           alert('done');
-        });
-    });
+    }); */   
                                
    
 });
 
+
+//json entities :  id,name,address,phone,website
+function getFinantialEntitiesJson(){
+    financialEntJson =   localStorage.getItem('financial_entities');
+    debugger;
+    for(int i=0;i<financialEntJson.length;i++){
+        var fe= financialEntJson[i];
+        var product {id:1,tax_rate:getRandomTaxRate()};
+        fe.product=product;       
+    }
+}
+
+function getRandomTaxRate(){
+       
+    return  (Math.random() * 10) + 1;
+}
+
+function registerInputEvents(){
+ 
+    $('#amountText').keyup(function() {
+        var amount=$(this).val();
+        if(amount!='' && amount!=undefined ){
+            $('#amountSlider').val(amount).change();   
+            if(validateNotEmptyFields())
+                onAmauntChange();        
+        }
+        else
+        $('#amountSlider').val(0).change();
+  });   
+    
+    $('select').change(function (){
+        var amount= $('#amountText').val();
+        if(amount!='' && validateNotEmptyFields()){
+            onAmauntChange();
+        }
+    });
+    
+    $("input[name=timeUnitsRadio]:radio").change(function (){
+        onPeriodKindChange();       
+    });   
+}
 
 function validateNotEmptyFields(){
     
@@ -71,7 +80,6 @@ function getFrequencyPayment(pFrequencySelect){
     if(pFrequencySelect=="quincenal") return "quincenas"; 
     if(pFrequencySelect=="mensual") return "meses";
 }
-
 
 function drawBest(bestEntities){
     if(bestEntities.length>0){

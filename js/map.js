@@ -14,7 +14,8 @@ function placeSearch(map,request)
                     var bounds=new google.maps.LatLngBounds();
                     var j=0;
                     for (var i = 0; i < results.length; ++i) 
-                    { 
+                    {  
+                        console.log(results[i].name + " " + results[i].website);
                       service.getDetails({
                         placeId: results[i].place_id
                       }, function(place, status) {
@@ -22,11 +23,12 @@ function placeSearch(map,request)
                           var fe={};
                           fe.id = place.place_id;
                           fe.name = place.name;
+                         //   console.log(place.name);
                           fe.adress = place.formatted_address;
                           fe.phone = place.formatted_phone_number;
                           fe.web = place.website;
                           finalEntities.push(fe);
-                          debugger;
+            
                           localStorage["Financial_entities"] = JSON.stringify(finalEntities);
                           //localStorage.setItem('Financial_entities', JSON.stringify(finalEntities));
                           fe=[];
@@ -91,9 +93,15 @@ function createMarker(latlng,map,icon,content,center,action)
   return marker;
 }
 
+
+$(document).ready(function(){
+    initialize();
+});
+
+
 function initialize()
 {
-  
+  debugger;
   var location = new google.maps.LatLng(19.3202176, -99.224016),
       map = new google.maps.Map(document.getElementById('map'), {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
