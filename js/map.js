@@ -60,7 +60,7 @@ function placeSearch(map,request)
                           fe.phone = place.formatted_phone_number;
                           fe.web = place.website;
                           if(('"'+place.place_id+'"') === best) {
-                            debugger;
+                         
                             var marker = new google.maps.Marker({
                               map: map,
                               icon: 'http://i.imgur.com/5JkDGgS.png',
@@ -90,7 +90,7 @@ function placeSearch(map,request)
                           fe.web = '';
                           finalEntities.push(fe);
                           fe={};
-                            debugger;
+                          
                           localStorage["financial_entities"] = JSON.stringify(finalEntities);
                         }
                       });

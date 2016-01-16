@@ -40,19 +40,19 @@
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    height: 100%;
+    max-height: 100%;
     padding-top: 150px;
     text-align: center;
     background-size:100% auto;
 }
 #financial {
-    background-color: rgb(219,228,245);
+    background-color:rgb(249,249,249);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     height: 100%;
-    padding-top: 100px;
+    padding-top: 10px;
     text-align: center;
     background-size:100% auto;
 }
@@ -69,6 +69,6 @@
 }
 #map
 {
-    width: 80%;
-    height: 90%;
+    width: 85%;
+    height: 80%;
 }
