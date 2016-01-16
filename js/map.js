@@ -12,10 +12,16 @@ function placeSearch(map,request)
                   if (status == google.maps.places.PlacesServiceStatus.OK) 
                   {
                     var bounds=new google.maps.LatLngBounds();
+                    var j=0;
                     var best = localStorage.getItem('bestOne');
-                    var fe={};
                     for (var i = 0; i < results.length; ++i) 
                     {
+                      var fe={};
+                          fe.id = results[i].place_id;
+                          fe.name = results[i].name;
+                          fe.adress = results[i].vicinity;
+                          fe.phone = '';
+                          fe.web = '';
                       if(('"'+results[i].place_id+'"') === best) {
                         placemarkers.push(createMarker(results[i].geometry.location,
                                    map,
@@ -50,13 +56,12 @@ function placeSearch(map,request)
                           var fe={};
                           fe.id = place.place_id;
                           fe.name = place.name;
+                         //   console.log(place.name);
                           fe.adress = place.formatted_address;
                           fe.phone = place.formatted_phone_number;
                           fe.web = place.website;
-                          finalEntities.push(fe);
-                          fe={};
-                          localStorage["financial_entities"] = JSON.stringify(finalEntities);
                           if(('"'+place.place_id+'"') === best) {
+                            debugger;
                             var marker = new google.maps.Marker({
                               map: map,
                               icon: 'http://i.imgur.com/5JkDGgS.png',
@@ -77,19 +82,11 @@ function placeSearch(map,request)
                               place.website + '">' + place.website + '</a> <br><button type="button" onclick="location.href=&#39#contact&#39;" class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>');
                             infowindow.open(map, this);
                           });
-                        } else {
-                          var fe={};
-                          fe.id = results[i].place_id;
-                          fe.name = results[i].name;
-                          fe.adress = results[i].vicinity;
-                          fe.phone = '';
-                          fe.web = '';
-                          finalEntities.push(fe);
-                          fe={};
-                          localStorage["financial_entities"] = JSON.stringify(finalEntities);
                         }
                       });
                       bounds.extend(results[i].geometry.location);
+                      finalEntities.push(fe);
+                      localStorage["financial_entities"] = JSON.stringify(finalEntities);
                       fe=[];
                     }
                     map.fitBounds(bounds);
@@ -124,6 +121,12 @@ function createMarker(latlng,map,icon,content,center,action)
   }
   return marker;
 }
+
+
+$(document).ready(function(){
+    initialize();
+});
+
 
 function initialize()
 {

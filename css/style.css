@@ -71,3 +71,13 @@ html {
     font-weight: bold;
         
 }
+
+.has-success .form-control-feedback:before {
+    content: "\e013";
+}
+.has-error .form-control-feedback:before {
+    content: "\e014";
+}
+.has-warning .form-control-feedback:before {
+    content: "\e017";
+}
