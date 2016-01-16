@@ -5,6 +5,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    	<script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script src="js/calculator.js"></script> 
+       <script type="text/javascript" src="js/map.js"></script>
+    
 	<link rel="shortcut icon" href="img/logo.ico">
 	<link rel="stylesheet" href="css/scrolling-nav.css">
 	<link rel="stylesheet" href="css/rangeslider/rangeslider.css">	
@@ -14,19 +19,20 @@
   <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
   <script src="js/rangeslider/rangeslider.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-	<script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script type="text/javascript" src="js/map.js"></script>
-	<script src="js/calculator.js"></script> 
+
+ 
+
   <script src="./js/contact-form.js"></script>
   <script src="js/optioncomp/jquery-labelauty.js"></script> 
 
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
   </script> 
+    	
 </head>
-<body  data-spy="scroll" data-target=".navbar" data-offset="10">
+<body  onload="initialize();" data-spy="scroll" data-target=".navbar" data-offset="10">
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 	   <div class="container-fluid">
 		<div class="navbar-header">
@@ -46,7 +52,7 @@
 	   	</div>
 	</div>
 	</nav>
-	<div id="calculator" class="container-fluid ">
+	<div id="calculator" class="container-fluid containerStrech ">
 	  <h2 >Calculadora Virtual</h2>    
 	  <br><br>
 	  <div class="container-fluid">        
@@ -132,7 +138,7 @@
                  <button type="button" class="btn btn-default " aria-label="Left Align"     onclick="location.href=&#39#contact&#39;" >
                      <i class="fa fa-envelope"> Contactar</i>
                 </button>                    
-                <button type="button" class="btn btn-default " aria-label="Left Align"  >
+                <button id="localizeBest" type="button" class="btn btn-default " aria-label="Left Align"   onclick="localize">
                     <i class="fa fa-map-marker"> Localizar</i>
                </button> 
               
@@ -145,6 +151,7 @@
         </div>
     </div>
     </div>
+    <hr>
     <br><br>
 	<div id="financial" class="container-fluid">
          <div class="container-fluid" style="max-width:20%;text-align:center">
@@ -155,6 +162,7 @@
             
         </div>
 	</div>
+   <hr>
     <br><br>
 	<div id="contact" class="container-fluid  ">
 		<div class="container-fluid">
@@ -195,5 +203,6 @@
       		<hr>
     	</div>
 	</div>
+
 </body>
 </html>

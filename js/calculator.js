@@ -1,10 +1,28 @@
 var financialEntJson={};
 
+/*
 $(document).ready(function (){
 
     //fixing bug add-on currency size
    // $("#success-alert").hide();
+  
     initRangeSliders();
+    allowJustNumbers();
+    fillPeriodSelect('años');
+    registerInputEvents();
+    getFinantialEntitiesJson();
+    $('[data-toggle="tooltip"]').tooltip(); 
+    $(":radio").labelauty({  minimum_width: "50px"});
+   
+  
+              
+   
+});
+*/
+
+function initCalculator(){
+    
+     initRangeSliders();
     allowJustNumbers();
     fillPeriodSelect('años');
     registerInputEvents();
@@ -18,12 +36,13 @@ $(document).ready(function (){
         financialEntJson = json;
     }); */   
                                
-   
-});
+    
+}
 
 
 //json entities :  id,name,address,phone,website
 function getFinantialEntitiesJson(){
+    //initialize();
     financialEntJson.financial_entities = {};        
     financialEntJson.financial_entities =  JSON.parse(localStorage.getItem('financial_entities'));
    
@@ -37,7 +56,7 @@ function getFinantialEntitiesJson(){
 
 function getRandomTaxRate(){
        
-    return  (Math.random() * 10) + 1;
+    return  (Math.random() * 10) + 5;
 }
 
 function registerInputEvents(){
@@ -65,10 +84,10 @@ function registerInputEvents(){
     });   
 }
 
-function showAllFE(){
-       
+function localizeBest(){
+    
+    initialize();
 }
-
 function validateNotEmptyFields(){
     
      var term =  $('#termSelect').find(':selected').val();
@@ -91,13 +110,11 @@ function getFrequencyPayment(pFrequencySelect){
 function drawBest(bestEntities){
     if(bestEntities.length>0){
         var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
-        $('#totalPayment').text( Math.round(bestEntities[0].totalPayment*100)/100 + " $");
-        $('#payment').text(Math.round(bestEntities[0].payment*100)/100 + " $");        
-        $('#taxesPaid').text(Math.round(bestEntities[0].taxes*100)/100 + " $");
+        $('#totalPayment').text(bestEntities[0].totalPayment + " $");
+        $('#payment').text(bestEntities[0].payment + " $");        
+        $('#taxesPaid').text(bestEntities[0].taxes + " $");
         $('#taxPercentage').text(bestEntities[0].tax_rate + " %");     
         $('#frequencyPay').text(pFrequencySelect);
-        //var timeUnits = $('input[name=timeUnitsRadio]:checked').val();        
-        //var term =  parseInt($('#termSelect').find(':selected').text());
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");                           $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
         $('#bestEntityNameSpan').text("La mejor opcion "  + bestEntities[0].name);
         $('#divBest').css('display','block');
@@ -146,14 +163,16 @@ function onAmauntChange(){
                 var taxes = (amount * ((product.tax_rate/100)/tax_factor) * term);
                 fe.name = finEntity.name;
                 fe.address = finEntity.address;
-                fe.phone = finEntity.phone;
-                fe.website= finEntity.website;
+                console.log(finEntity.address);
+                fe.phone = finEntity.phone;            
+                fe.website= finEntity.web;
                 fe.totalPayment= totalPayment;
                 fe.payment =  payment;
                 fe.taxes = taxes;
                 fe.tax_rate  = product.tax_rate/tax_factor;
                 fe.frequency=pFrequencySelect;
                 finalEntities.push(fe);
+                roundNumbers(fe);
             }
         }
     }
@@ -161,6 +180,14 @@ function onAmauntChange(){
     sortFinalEntities(finalEntities);
     drawBest(finalEntities);
     
+}
+
+function roundNumbers(fe){
+    
+    fe.totalPayment= Math.round(fe.totalPayment*100)/100;
+    fe.payment =  Math.round(fe.payment*100)/100;
+    fe.taxes = Math.round(fe.taxes*100)/100;
+    fe.tax_rate  = Math.round(fe.tax_rate*100)/100;
 }
 
 function calculate(){

@@ -50,7 +50,7 @@ function placeSearch(map,request)
                           var fe={};
                           fe.id = place.place_id;
                           fe.name = place.name;
-                          fe.adress = place.formatted_address;
+                          fe.address = place.formatted_address;
                           fe.phone = place.formatted_phone_number;
                           fe.web = place.website;
                           finalEntities.push(fe);
@@ -81,11 +81,12 @@ function placeSearch(map,request)
                           var fe={};
                           fe.id = results[i].place_id;
                           fe.name = results[i].name;
-                          fe.adress = results[i].vicinity;
+                          fe.address = results[i].vicinity;
                           fe.phone = '';
                           fe.web = '';
                           finalEntities.push(fe);
                           fe={};
+                            debugger;
                           localStorage["financial_entities"] = JSON.stringify(finalEntities);
                         }
                       });
@@ -94,8 +95,12 @@ function placeSearch(map,request)
                     }
                     map.fitBounds(bounds);
                   }
-                 }
+                    
+                   initCalculator();
+                   }
                  );
+    
+   
 
 }
 
@@ -124,6 +129,7 @@ function createMarker(latlng,map,icon,content,center,action)
   }
   return marker;
 }
+
 
 function initialize()
 {
