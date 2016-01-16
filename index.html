@@ -15,9 +15,9 @@
 	<link rel="stylesheet" href="css/rangeslider/rangeslider.css">	
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/optioncomp/jquery-labelauty.css">
-  <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/bootstrap.css">
 
   <script src="js/rangeslider/rangeslider.js"></script>
@@ -27,8 +27,8 @@
 
   <script src="./js/contact-form.js"></script>
   <script src="js/optioncomp/jquery-labelauty.js"></script> 
-
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places"></script>
+  <script type="text/javascript" src="js/contact.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=rue&libraries=places"></script>
   </script> 
     	
 </head>
@@ -169,40 +169,39 @@
       		<div id="contact_form" class="row">
         		<div class="col-md-9">
           			<h1 style="font-family: Open Sans, sans-serif;">Contacto</h1>
-          			<form action="./php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
-
-            			<div class="form-group">
-              				<div class="input-group">
-                				<input type="text" class="form-control" id="name" name="name" placeholder="Ingrese su nombre (Requerido)" required/>
-                				<span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
-              				</div>
-						</div>
-
-            			<div class="form-group">
-              				<input type="tel" class="form-control optional" id="phone" name="phone" placeholder="Ingrese su telefono"/>
-            			</div>
-
-            			<div class="form-group">
-              				<div class="input-group">
-                				<input type="email" class="form-control" id="email" name="email" placeholder="Ingrese su correo electronico (Requerido)" required/>
-                				<span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
-              				</div>
-            			</div>
-
-            			<div class="form-group">
-              				<div class="input-group">
-                				<textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Compartanos sus dudas y nosotros nos pondremos en contacto con usted" required></textarea>
-                				<span class="input-group-addon"><i class="glyphicon glyphicon-unchecked form-control-feedback"></i></span>
-              				</div>
-            			</div>
-
-            			<button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Enviando..." style="display: block; margin-top: 10px;">Enviar</button>
-          			</form>
-        		</div>
-      		</div>
-      		<hr>
-    	</div>
-	</div>
-
+          			<form class="form-horizontal" action="php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
+                    <div class="form-group has-feedback">
+                        <div class="col-md-6">
+                            <input type="text" name="name" id="name" 
+                                   class="form-control" placeholder="Ingrese su nombre (Requerido)" />
+                            <span class="glyphicon form-control-feedback"></span>
+                       </div>
+                    </div>  
+                    <div class="form-group has-feedback">
+                      <div class="col-md-6">
+                            <input type="text" name="phone" id="phone" 
+                                   class="form-control" placeholder="Telefono (10 Digitos)" />
+                            <span class="glyphicon form-control-feedback"></span>
+                       </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                      <div class="col-md-6">
+                            <input type="email" name="email" id="email" 
+                                   class="form-control" placeholder="Ingrese su correo electronico (Requerido)" />
+                            <span class="glyphicon form-control-feedback"></span>
+                       </div>
+                    </div>
+                    <div class="form-group has-feedback">
+                    <div class="col-md-6">
+                      <textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Compartanos sus dudas y nosotros nos pondremos en contacto con usted" required></textarea>
+                    </div>  
+                  </div>
+                    <button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Enviando..." style="display: block; margin-top: 10px;">Enviar</button>
+                </form>
+            </div>
+          </div>
+          <hr>
+      </div>
+  </div>
 </body>
 </html>
