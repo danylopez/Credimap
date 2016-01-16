@@ -49,6 +49,7 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	$mail->IsHTML(true);
 	$mail->Body = $body;
 	$mail->AddAddress($to);
+    $mail->AddCC('retos@campus-party.com.mx');
 	if($mail->send()){
 		$error = 'Message sent! \o/';
 		return true;
