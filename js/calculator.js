@@ -1,13 +1,14 @@
-var financialEntJson;
+var financialEntJson={};
 
 $(document).ready(function (){
-    debugger;
+
     //fixing bug add-on currency size
    // $("#success-alert").hide();
     initRangeSliders();
     allowJustNumbers();
     fillPeriodSelect('años');
     registerInputEvents();
+    getFinantialEntitiesJson();
     $('[data-toggle="tooltip"]').tooltip(); 
     $(":radio").labelauty({  minimum_width: "50px"});
    
@@ -23,12 +24,14 @@ $(document).ready(function (){
 
 //json entities :  id,name,address,phone,website
 function getFinantialEntitiesJson(){
-    financialEntJson =   localStorage.getItem('financial_entities');
-    debugger;
-    for(int i=0;i<financialEntJson.length;i++){
-        var fe= financialEntJson[i];
-        var product {id:1,tax_rate:getRandomTaxRate()};
-        fe.product=product;       
+    financialEntJson.financial_entities = {};        
+    financialEntJson.financial_entities =  JSON.parse(localStorage.getItem('financial_entities'));
+   
+    for(var i=0;i<financialEntJson.financial_entities.length;i++){
+        var fe= financialEntJson.financial_entities[i];
+        fe.products= [];
+        var product ={id:1,tax_rate:getRandomTaxRate()};
+        fe.products.push(product);       
     }
 }
 
@@ -60,6 +63,10 @@ function registerInputEvents(){
     $("input[name=timeUnitsRadio]:radio").change(function (){
         onPeriodKindChange();       
     });   
+}
+
+function showAllFE(){
+       
 }
 
 function validateNotEmptyFields(){
@@ -95,8 +102,13 @@ function drawBest(bestEntities){
         $('#bestEntityNameSpan').text("La mejor opcion "  + bestEntities[0].name);
         $('#divBest').css('display','block');
         saveBestLocalStorage( bestEntities[0].name);
+        saveAll(bestEntities);
     }
     
+}
+
+function saveAll(bestEntities){
+       localStorage.setItem('feProcessed',JSON.stringify(bestEntities));
 }
 
 function saveBestLocalStorage(name){
@@ -134,6 +146,8 @@ function onAmauntChange(){
                 var taxes = (amount * ((product.tax_rate/100)/tax_factor) * term);
                 fe.name = finEntity.name;
                 fe.address = finEntity.address;
+                fe.phone = finEntity.phone;
+                fe.website= finEntity.website;
                 fe.totalPayment= totalPayment;
                 fe.payment =  payment;
                 fe.taxes = taxes;
