@@ -4,7 +4,7 @@ var financialEntJson={};
 $(document).ready(function (){
 
   $('#myNavbar a').click(function (){
-      debugger;
+     
          var ariaExpanded = $('[aria-expanded = "true"]');
          if(ariaExpanded.length!=0)
             $('.navbar-toggle').click();
@@ -32,7 +32,6 @@ function getFinantialEntitiesJson(){
     
     financialEntJson.financial_entities = {};        
     financialEntJson.financial_entities =  JSON.parse(localStorage.getItem('financial_entities'));
-    debugger;
     for(var i=0;i<financialEntJson.financial_entities.length;i++){
         var fe= financialEntJson.financial_entities[i];
         fe.products= [];
