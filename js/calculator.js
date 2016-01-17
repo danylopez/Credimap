@@ -1,21 +1,17 @@
 var financialEntJson={};
 
-/*
+
 $(document).ready(function (){
 
-    //fixing bug add-on currency size
-   // $("#success-alert").hide();
-  
-    initRangeSliders();
-    allowJustNumbers();
-    fillPeriodSelect('años');
-    registerInputEvents();
-    getFinantialEntitiesJson();
-    $('[data-toggle="tooltip"]').tooltip(); 
-    $(":radio").labelauty({  minimum_width: "50px"});           
+  $('#myNavbar a').click(function (){
+      debugger;
+         var ariaExpanded = $('[aria-expanded = "true"]');
+         if(ariaExpanded.length!=0)
+            $('.navbar-toggle').click();
+  });
    
 });
-*/
+
 
 function initCalculator(){
     
@@ -24,7 +20,8 @@ function initCalculator(){
     fillPeriodSelect('años');
     registerInputEvents();
     getFinantialEntitiesJson();
-    $('[data-toggle="tooltip"]').tooltip(); 
+    $('[data-toggle="tooltip"]').tooltip();
+    //$('.tooltip').tooltip({trigger: 'hover'});
     $(":radio").labelauty({  minimum_width: "50px"});
    
   
