@@ -12,21 +12,14 @@ function drawOnTable(){
     for(var i=0;i<financialEntities.length;i++){
         var fe=financialEntities[i],newFeRow= '<tr>';    
         if(i==0)  newFeRow= '<tr class="success">';
-        if(i==financialEntities.length-1) newFeRow= '<tr class="danger">';     
-        
-        if(fe.address==="undefined"){
-            fe.address= '';
-        } 
-        
-        if(fe.website==="undefined"){
-            fe.website= '';
-        } 
-        
+        if(i==financialEntities.length-1) newFeRow= '<tr class="danger">';            
+        fe.website= '';
+        debugger;
         newFeRow  = $(newFeRow);
         newFeRow.append('<td>' +fe.name + '</td>' );
         newFeRow.append('<td>' +fe.address + '</td>' );
         newFeRow.append('<td>' +fe.phone + '</td>' );
-        newFeRow.append('<td>' +fe.website + '</td>' );
+        newFeRow.append('<td>' +''+ '</td>' );
         newFeRow.append('<td>' +fe.totalPayment + '</td>' );
         newFeRow.append('<td>' +fe.payment + '</td>' );
         newFeRow.append('<td>' +fe.taxes + '</td>' );

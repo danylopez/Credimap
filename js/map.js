@@ -2,6 +2,7 @@ var infowindow,
 placemarkers=[];
 var finalEntities= [];
 var refresh_onlyMap=0,bestMarker ;
+var mapFE = [];
 
 function placeSearch(map,request)
 {
@@ -22,7 +23,12 @@ function placeSearch(map,request)
                           fe.name = results[i].name;
                           fe.address = results[i].vicinity;
                           fe.phone = '';
-                          fe.web = '';
+                       
+                        if(! fe.id in mapFE){
+                            setEntityBasicInfo(fe);
+                           
+                        }
+                        
                      
                       if(results[i].place_id === best) {
                           
@@ -64,10 +70,22 @@ function placeSearch(map,request)
                           var fe={};
                           fe.id = place.place_id;
                           fe.name = place.name;
-                          fe.address = place.formatted_address;
+                          fe.address = place.formatted_address;                            
                           fe.phone = place.formatted_phone_number;
-                          fe.web = place.website;
-                          if(place.place_id === best) {
+                          fe.website = place.website;
+                           
+                          if(fe.id in mapFE){
+                             // setEntityBasicInfo(fe);
+                              setEntityInfo(fe);
+                           }
+                            else{
+                                 setEntityBasicInfo(fe);
+                                  setEntityInfo(fe);
+                            }
+                            
+                          
+                          
+                           if(place.place_id === best) {
                          
                             var marker = new google.maps.Marker({
                               map: map,
@@ -88,10 +106,7 @@ function placeSearch(map,request)
                           }
                           
                           google.maps.event.addListener(marker, 'click', function() {
-                            infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                              place.formatted_address + '<br>Tel&#233fono: ' +
-                              place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank" style="color: blue;" href="' + 
-                              place.website + '">' + place.website + '</a> <br><button type="button" onclick="location.href=&#39#contact&#39;" class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>');
+                            infowindow.setContent();
                             infowindow.open(map, this);
                           });
                         } else {
@@ -100,21 +115,25 @@ function placeSearch(map,request)
                           fe.name = results[i].name;
                           fe.address = results[i].vicinity;
                           fe.phone = '';
-                          fe.web = '';
-                          finalEntities.push(fe);
+                          fe.website = '';
+                         
+                           if(!(fe.id in mapFE)){
+                              setEntityBasicInfo(fe);
+                              //setEntityInfo(fe);
+                           }
                           fe={};
                           
-                          localStorage["financial_entities"] = JSON.stringify(finalEntities);
+                        
                         }
                       });
                       bounds.extend(results[i].geometry.location);
-                      finalEntities.push(fe);
-                      localStorage["financial_entities"] = JSON.stringify(finalEntities);
+                   
+                   
                       fe=[];
                     }
                     map.fitBounds(bounds);
                   }
-                    
+                   
                        if(refresh_onlyMap==0){
                             initCalculator();
                        }
@@ -124,19 +143,56 @@ function placeSearch(map,request)
                        }   
                    
                 }
-                    
+                      
                  );
     
-   
-
 }
 
-/*function triggerBest(marker){
-    new google.maps.event.trigger( marker, 'click' );
-}*/
+
+function setEntityBasicInfo(fe){
+    
+    mapFE[fe.id]={};
+    mapFE[fe.id].id =  fe.id;
+    mapFE[fe.id].name = fe.name;
+    mapFE[fe.id].address =  fe.address;    
+    writeInJson(fe);
+                          
+} 
+
+function writeInJson(fe){
+    
+    if(finalEntities.length==0){
+        finalEntities.push(fe);
+    }
+    else{
+        var found= 0;
+        for(var i=0;i<finalEntities.length;i++){
+            if(finalEntities[i].id==fe.id){
+                if(fe.website!='') finalEntities[i].website =  fe.website;
+                if(fe.phone!='') finalEntities[i].phone =  fe.phone; 
+                found=1;
+            }
+        }
+        
+        if(found==0){
+            finalEntities.push(fe);
+        }
+    }
+    
+    localStorage['financial_entities']= JSON.stringify(finalEntities);
+   
+}
+
+function setEntityInfo(fe){
+    debugger;
+    mapFE[fe.id].phone =  fe.phone;
+    mapFE[fe.id].website = fe.website;
+    writeInJson(fe);
+                      
+} 
 
 function zoomTobest(map,marker){
-    debugger;
+    
     map.setZoom(17);
     map.panTo(marker.position);
 }

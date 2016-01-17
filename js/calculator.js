@@ -22,24 +22,17 @@ function initCalculator(){
     getFinantialEntitiesJson();
     $('[data-toggle="tooltip"]').tooltip();
     //$('.tooltip').tooltip({trigger: 'hover'});
-    $(":radio").labelauty({  minimum_width: "50px"});
-   
-  
-    
-    /*$.getJSON("test.json", function(json) {
-        financialEntJson = json;
-    }); */   
-                               
+    $(":radio").labelauty({  minimum_width: "50px"});                          
     
 }
 
 
 //json entities :  id,name,address,phone,website
 function getFinantialEntitiesJson(){
-    //initialize();
+    
     financialEntJson.financial_entities = {};        
     financialEntJson.financial_entities =  JSON.parse(localStorage.getItem('financial_entities'));
-   
+    debugger;
     for(var i=0;i<financialEntJson.financial_entities.length;i++){
         var fe= financialEntJson.financial_entities[i];
         fe.products= [];
