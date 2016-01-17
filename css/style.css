@@ -1,6 +1,7 @@
 body {
     width: 100%;
     height: 100%;
+    position: relative; 
 }
 
 html {
@@ -8,10 +9,19 @@ html {
     height: 100%;
 }
 
+/*what is not needed in mobile like <br>*/
+.notInMobile{
+    
+    display: block;
+}
 
 .containerStrech{
     padding-top: 5% !important; 
     width: 70%;
+}
+
+.columSizeBest{
+    width: 60%;
 }
 
 .tableBest{
@@ -19,23 +29,45 @@ html {
     display:none  ;
 }
 
+.iconBest{
+    background-image: url('http://i.imgur.com/5JkDGgS.png');
+    background-repeat: no-repeat;
+    padding-left: 30px;  /* width of the image plus a little extra padding */
+    display: inline;
+    background-size: 15px 19px;
+    background-position: center;
+    
+}
+
 @media (max-width: 400px) {
     
     .containerStrech{
-       padding-top: 5% !important; 
+       padding-top: 10% !important; 
         width: 100%;
     }
     .col-xs-6{
-        padding-left: 1px;
-        padding-right: 1px;
+        padding-left: 1px !important;
+        padding-right: 1px !important;
     }    
-    
+    .col-xs-1{
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+    }    
     .btn-responsive {
         padding:1px ;
         font-size:90%;
         line-height: 1;
         border-radius:3px;
       }
+   .notInMobile{
+    
+        display: none;
+    }
+    
+    input.labelauty + label
+    {
+       font-size: 9px !important;
+    }
     
 }
 

@@ -1,7 +1,7 @@
 var financialEntities=[];
 
 $(document).ready(function (){
-
+    debugger;
     financialEntities = localStorage.getItem('feProcessed');
     drawOnTable();
 });

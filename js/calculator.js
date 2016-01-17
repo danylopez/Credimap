@@ -83,11 +83,8 @@ function registerInputEvents(){
 
 function localizeBest(){
     
-    initialize();
-    $("#goFinancial").click(function (){
-        
-    });
-
+    initialize(1);
+   
 }
 function validateNotEmptyFields(){
     
@@ -117,7 +114,7 @@ function drawBest(bestEntities){
         $('#taxPercentage').text(bestEntities[0].tax_rate + " %");     
         $('#frequencyPay').text(pFrequencySelect);
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");                           $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
-        $('#bestEntityNameSpan').text("La mejor opcion "  + bestEntities[0].name);
+        $('#bestEntityNameSpan').text("La mejor opcion es "  + bestEntities[0].name);
         $('#divBest').css('display','block');
         saveBestLocalStorage( bestEntities[0].id);
         saveAll(bestEntities);
@@ -249,6 +246,13 @@ function initRangeSliders(){
         
         polyfill: false,
         // Callback function
+        
+        onInit: function() {
+          this.$range[0].setAttribute('data-toggle', this.$element[0].getAttribute('data-toggle'));
+          this.$range[0].setAttribute('data-placement', this.$element[0].getAttribute('data-placement'));
+          this.$range[0].title = this.$element[0].title;
+          $('[data-toggle="tooltip"]').tooltip(); 
+        },        
         onSlide: function(position, value) {       
             var amount = $('#amountText').val();
             if(value=>0){                  
