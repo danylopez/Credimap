@@ -17,7 +17,7 @@ function initCalculator(){
     
      initRangeSliders();
     allowJustNumbers();
-    fillPeriodSelect('años');
+    fillPeriodSelect('anos');
     registerInputEvents();
     getFinantialEntitiesJson();
     $('[data-toggle="tooltip"]').tooltip();
@@ -131,7 +131,7 @@ function onAmauntChange(){
     var finalEntities= [];
     var periodicity ,tax_factor;
     
-    if(timeUnits=='años') term = term*12;
+    if(timeUnits=='anos') term = term*12;
     
     tax_factor = getTaxFactor(pFrequencySelect);
     if(pFrequencySelect=='semanal')
@@ -217,7 +217,7 @@ function fillPeriodSelect(timeUnits){
     var units;
     var months = [1,3,6,9,15,18,30];
     var years =[1,2,3,4,5,6,7,8,9,10,11,12,13,15,15];
-    if(timeUnits=='años'){units=years;}
+    if(timeUnits=='anos'){units=years;}
     if(timeUnits=='meses'){units=months;}
     
     for(var i=0;i<units.length;i++){
@@ -244,7 +244,7 @@ function initRangeSliders(){
         },        
         onSlide: function(position, value) {       
             var amount = $('#amountText').val();
-            if(value=>0){                  
+            if(value>=0){                  
                 if( parseInt(amount)%1000==0)
                  $('#amountText').val(value);
                  
