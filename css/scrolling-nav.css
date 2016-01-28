@@ -34,7 +34,7 @@
 .navbar .navbar-collapse {
   text-align: center;
 }
-#calculator {
+#calculadora {
     background-color: #FFFFFF;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -45,7 +45,7 @@
     text-align: center;
     background-size:100% auto;
 }
-#financial {
+#mapa {
     background-color:rgb(249,249,249);
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -56,7 +56,7 @@
     text-align: center;
     background-size:100% auto;
 }
-#contact {
+#contacto {
     background-color: #FFFFFF;
     background-repeat: no-repeat;
     -webkit-background-size: cover;
