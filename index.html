@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Credimap</title>
+  <title>Credimap</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +11,9 @@
     <script src="js/calculator.js"></script> 
        <script type="text/javascript" src="js/map.js"></script>
     
-	<link rel="shortcut icon" href="img/logo.ico">
-	<link rel="stylesheet" href="css/scrolling-nav.css">
-	<link rel="stylesheet" href="css/rangeslider/rangeslider.css">	
+  <link rel="shortcut icon" href="img/logo.ico">
+  <link rel="stylesheet" href="css/scrolling-nav.css">
+  <link rel="stylesheet" href="css/rangeslider/rangeslider.css">  
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/optioncomp/jquery-labelauty.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -27,30 +27,37 @@
   <script type="text/javascript" src="js/contact.js"></script>
 </head>
 <body  onload="loadMap();" data-spy="scroll" data-target=".navbar" data-offset="10">
-	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#337ab7">
-	   <div class="container-fluid">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#"><img src="img/logo.png" alt="Credimap" height="45" border="0"></a>
-		</div>
-		<div class="collapse navbar-collapse" id="myNavbar" style="background-color:#337ab7">
-		    <ul class="nav navbar-nav navbar-right">
-		      <li><a href="#calculator"><i class="fa fa-bar-chart"></i> Calculadora Virtual</a></li>
-		      <li><a href="#financial"><i class="fa fa-university"></i> Intermediarias Financieras</a></li>
-		      <li><a href="#contact"><i class="fa fa-envelope"></i> Contacto</a></li>
-		    </ul>
-	   	</div>
-	</div>
-	</nav>
-	<div id="calculator" class="container-fluid containerStrech ">
-	  <h2 >Calculadora Virtual</h2>    
-	  <br class="notInMobile"><br>
-	  <div class="container-fluid">        
-	       <div class="row">                 
+  <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:#337ab7">
+     <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Credimap" height="45" border="0"></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#337ab7">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#calculator"><i class="fa fa-bar-chart"></i> Calculadora Virtual</a></li>
+          <li><a href="#financial"><i class="fa fa-university"></i> Intermediarias Financieras</a></li>
+          <li><a href="#contact"><i class="fa fa-envelope"></i> Contacto</a></li>
+        </ul>
+      </div>
+  </div>
+  </nav>
+  <div id="calculator" class="container-fluid containerStrech ">
+    <div class="row">
+      <div class="alert alert-warning col-md-4 col-xs-8 col-md-offset-6 col-xs-offset-2" id="warning-alert" style="position: fixed; ">
+          <button type="button" class="close" data-dismiss="alert">x</button>
+          <strong>Carambolas! </strong>
+          Parece que no has llenado todos los campos.
+      </div>
+    </div>
+    <h2 >Calculadora Virtual</h2> 
+    <br class="notInMobile"><br>
+    <div class="container-fluid">        
+         <div class="row">                 
                <div class="col-md-6 col-xs-6 ">
                    <div class="input-group">
                       <span id="pesosSymbolSpan" class="input-group-addon">$</span>
@@ -75,9 +82,9 @@
               </div>
                <div class="col-md-6 col-xs-6 ">
                  <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años" checked="checked" value="anos"/>
-                 <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses" value="meses"/>				
+                 <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses" value="meses"/>        
               </div>   
-     	  </div>
+        </div>
             <br>
           <div class="row">
               <div class="col-md-6 col-xs-6">
@@ -156,21 +163,21 @@
     </div>
     </div>   
     <br><br> <br><hr>
-	<div id="financial" class="container-fluid">
+  <div id="financial" class="container-fluid">
          <div class="container-fluid" >
              <h2 >Intermediarias Financieras</h2>
         </div>
         <div id="map" class="container-fluid ">            
         </div>
-	</div>
+  </div>
     <hr>
     <br><br>
-	<div id="contact" class="container-fluid  ">
-		<div class="container-fluid">
+  <div id="contact" class="container-fluid  ">
+    <div class="container-fluid">
           <h1 style="font-family: Open Sans, sans-serif;">Contacto</h1><br>
-      		<div id="contact_form" class="row">
-        		<div class="col-md-9 col-md-offset-3">
-          			<form class="form-horizontal" action="php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
+          <div id="contact_form" class="row">
+            <div class="col-md-9 col-md-offset-3">
+                <form class="form-horizontal" action="php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
                     <div class="form-group has-feedback">
                         <div class="col-md-8">
                             <input type="text" name="name" id="name" 

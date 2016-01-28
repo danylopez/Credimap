@@ -39,6 +39,14 @@ html {
     
 }
 
+@media screen and (max-width: 769px) {
+    .alert-warning {
+        padding: 10;
+       left: 0 !important;
+       z-index: 1000000;
+    }
+}
+
 @media (max-width: 400px) {
     
     .containerStrech{

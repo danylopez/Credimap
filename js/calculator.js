@@ -188,10 +188,21 @@ function calculate(){
         onAmauntChange();
     }
     else{
-        alert('Es necesario llenar todos los campos.');      
+        $(document).ready (function(){
+            $("#calculateBtn").click(function showAlert() {
+                $("#warning-alert").alert();
+                $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
+                });   
+            });
+         });   
     }
     
 }
+
+$(document).ready (function(){
+    $("#warning-alert").hide();
+ });
+
 
 function getTaxFactor(pFrequencySelect){
  

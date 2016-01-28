@@ -44,7 +44,10 @@ $(document).ready(function(){
     });
 });
 
-function isValidName(name){
-
-
-}
+jQuery.extend(jQuery.validator.messages, {
+	email: "Por favor escriba un e-mail v&#225lido.",
+    required: "Necesita llenar este campo.",
+    number: "Por favor solo escriba n&#250meros.",
+    maxlength: jQuery.validator.format("Por favor no escriba m&#225s de {0} caracteres."),
+    minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
+});
