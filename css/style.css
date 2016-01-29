@@ -15,10 +15,15 @@ html {
     display: block;
 }
 
-.containerStrech{
+.containerStre{
     padding-top: 5% !important; 
     width: 70%;
 }
+
+.divCalc{
+    padding-top: 5% !important;
+}
+
 
 .columSizeBest{
     width: 60%;
@@ -29,6 +34,9 @@ html {
     display:none  ;
 }
 
+.headerCustom{
+    max-width: 50%;
+}
 .iconBest{
     background-image: url('http://i.imgur.com/5JkDGgS.png');
     background-repeat: no-repeat;
@@ -40,7 +48,10 @@ html {
 }
 
 @media (max-width: 400px) {
-    
+
+    .headerCustom{
+        max-width: 100%;
+    }
     .containerStrech{
        padding-top: 10% !important; 
         width: 100%;

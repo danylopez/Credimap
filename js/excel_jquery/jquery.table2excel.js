@@ -103,7 +103,7 @@
                     var blob1 = new Blob(fullTemplate, { type: "text/html" });
                     window.navigator.msSaveBlob(blob1, getFileName(e.settings) );
                 } else {
-                    //otherwise use the iframe and save
+                    //otherwise use the iframe and saveEntitiesToLS
                     //requires a blank iframe on page called txtArea1
                     txtArea1.document.open("text/html", "replace");
                     txtArea1.document.write(e.format(fullTemplate, e.ctx));
