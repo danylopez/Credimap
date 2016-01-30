@@ -23,7 +23,7 @@ function initCalculator(){
     allowJustNumbers();
     fillPeriodSelect('anos');
     registerInputEvents();
-    getFinantialEntitiesJson();
+    getFinancialEntitiesJson();
     $('[data-toggle="tooltip"]').tooltip();
     //$('.tooltip').tooltip({trigger: 'hover'});
     $(":radio").labelauty({  minimum_width: "50px"});                          
@@ -32,7 +32,7 @@ function initCalculator(){
 
 
 //json entities :  id,name,address,phone,website
-function getFinantialEntitiesJson(){
+function getFinancialEntitiesJson(){
     
     financialEntJson.financial_entities = {};        
     financialEntJson.financial_entities =  JSON.parse(localStorage.getItem('financial_entities'));
@@ -101,12 +101,13 @@ function getFrequencyPayment(pFrequencySelect){
 function drawBest(bestEntities){
     if(bestEntities.length>0){
         var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
-        $('#totalPayment').text(bestEntities[0].totalPayment + " $");
-        $('#payment').text(bestEntities[0].payment + " $");        
-        $('#taxesPaid').text(bestEntities[0].taxes + " $");
-        $('#taxPercentage').text(bestEntities[0].tax_rate + " %");     
+        $('#totalPayment').text(bestEntities[0].financial.totalPayment + " $");
+        $('#payment').text(bestEntities[0].financial.payment + " $");
+        $('#taxesPaid').text(bestEntities[0].financial.taxes + " $");
+        $('#taxPercentage').text(bestEntities[0].financial.tax_rate + " %");
         $('#frequencyPay').text(pFrequencySelect);
-        $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");                           $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
+        $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");
+        $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
         $('#bestEntityNameSpan').text("La mejor opcion es "  + bestEntities[0].name);
         $('#divBest').css('display','block');
         saveBestLocalStorage( bestEntities[0].id);
@@ -117,11 +118,26 @@ function drawBest(bestEntities){
 }
 
 function saveAll(bestEntities){
-       localStorage.setItem('feProcessed',JSON.stringify(bestEntities));
+      localStorage.setItem('feProcessed',JSON.stringify(bestEntities));
 }
 
 function saveBestLocalStorage(id){
     localStorage.setItem("bestOne", id);
+}
+
+//when the asyncronous method of google maps getting places info (website,phone) ends
+function writeExtraInfoPlaces(){
+
+    var auxFe =  JSON.parse(localStorage.getItem('financial_entities'));
+    for(var i=0;i<financialEntJson.financial_entities.length;i++){
+        var fe = financialEntJson.financial_entities[i];
+        fe.info = {};
+        fe.info.name = auxFe[i].name;
+        fe.info.website= auxFe[i].website;
+        fe.info.phone= auxFe[i].phone;
+        fe.info.address = auxFe[i].address;
+    }
+    saveAll(financialEntJson.financial_entities);
 }
 
 //make the calculation of the best
@@ -132,8 +148,7 @@ function onAmauntChange(){
     term =  parseInt($('#termSelect').find(':selected').text());
     var timeUnits = $('input[name=timeUnitsRadio]:checked').val();
     var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
-    var finalEntities= [];
-    var periodicity ,tax_factor;
+    var tax_factor;
     
     if(timeUnits=='anos') term = term*12;
     
@@ -149,28 +164,22 @@ function onAmauntChange(){
         for(var z=0;z<finEntity.products.length;z++ ) {
             var product= finEntity.products[z];
             if(product.id==productId){
-                var fe={};
+                finEntity.financial={};
                 var totalPayment =  amount + (amount * ((product.tax_rate/100)/tax_factor) * term);
                 var payment =  totalPayment/term;
                 var taxes = (amount * ((product.tax_rate/100)/tax_factor) * term);
-                fe.id = finEntity.id;
-                fe.name = finEntity.name;
-                fe.address = finEntity.address;
-                fe.phone = finEntity.phone;            
-                fe.website= finEntity.web;
-                fe.totalPayment= totalPayment;
-                fe.payment =  payment;
-                fe.taxes = taxes;
-                fe.tax_rate  = product.tax_rate/tax_factor;
-                fe.frequency=pFrequencySelect;
-                finalEntities.push(fe);
-                roundNumbers(fe);
+                finEntity.financial.totalPayment= totalPayment;
+                finEntity.financial.payment =  payment;
+                finEntity.financial.taxes = taxes;
+                finEntity.financial.tax_rate  = product.tax_rate/tax_factor;
+                finEntity.financial.frequency=pFrequencySelect;
+                roundNumbers(finEntity.financial);
             }
         }
     }
     
-    sortFinalEntities(finalEntities);
-    drawBest(finalEntities);
+    sortFinalEntities(financialEntJson.financial_entities);
+    drawBest(financialEntJson.financial_entities);
     
 }
 
@@ -183,11 +192,7 @@ function roundNumbers(fe){
 }
 
 function calculate(){
-    /*$("#success-alert").alert();
-    $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
-        //$("#success-alert").alert('close');
-         $("#success-alert").hide();
-    });   */
+
     if(validateNotEmptyFields() && $('#amountText').val()!=''){
         onAmauntChange();
     }
@@ -211,7 +216,7 @@ function getTaxFactor(pFrequencySelect){
 function sortFinalEntities(finalEntities){
     
     finalEntities.sort(function (a,b){
-        return a.totalPayment - b.totalPayment;
+        return a.financial.totalPayment - b.financial.totalPayment;
     });
 }
 

@@ -105,6 +105,7 @@ function getPlaceInfo(place){
             countPlaces++;
             if(countPlaces==resultsLimit ){
                 saveEntitiesToLS();
+                writeExtraInfoPlaces();
                 countPlaces=0;
             }
         }
@@ -122,7 +123,7 @@ function saveResult(result){
     fe.id = result.place_id;
     fe.name = result.name;
     fe.address = result.formatted_address;
-    fe.phone= result.formatted_phone;
+    fe.phone= result.formatted_phone_number;
     fe.website = result.website;
     mapEntities[result.place_id]=fe;
 }
