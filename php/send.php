@@ -14,6 +14,7 @@ $name = (isset($_POST['name']) ? $_POST['name'] : '');
 $phone = (empty($_POST['phone']) ? '(vacio)' : $_POST['phone']);
 $email = (isset($_POST['email']) ? $_POST['email'] : '');
 $message = (empty($_POST['message']) ? '(vacio)' : $_POST['message']);
+$finan = (isset($_POST['financiera']) ? $_POST['financiera'] : '(vacio)');
 $body = "
 <html>
 <body>
@@ -27,6 +28,8 @@ Nombre: $name<br/>
 Email: $email<br/>
 Teléfono: $phone<br/>
 </p>
+<hr/>
+$finan
 </body>
 </html>
 ";
@@ -51,7 +54,7 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	$mail->AddAddress($to);
     $mail->AddCC('retos@campus-party.com.mx');
 	if($mail->send()){
-		$error = 'Message sent! \o/';
+		$error = 'Message sent';
 		return true;
 	} else{
 		$error = 'Mail error fkt: '.$mail->ErrorInfo;
