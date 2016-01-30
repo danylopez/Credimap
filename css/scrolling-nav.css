@@ -69,6 +69,8 @@
 }
 #map
 {
-    width: 85%;
-    height: 80%;
+
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
 }

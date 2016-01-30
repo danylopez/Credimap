@@ -20,7 +20,7 @@ html {
     width: 70%;
 }
 
-.divCalc{
+.divPadding{
     padding-top: 5% !important;
 }
 
@@ -35,7 +35,8 @@ html {
 }
 
 .headerCustom{
-    max-width: 50%;
+   /* max-width: 50%;*/
+    padding-bottom: 5%;
 }
 .iconBest{
     background-image: url('http://i.imgur.com/5JkDGgS.png');
@@ -46,6 +47,7 @@ html {
     background-position: center;
     
 }
+
 
 @media (max-width: 400px) {
 

@@ -9,6 +9,10 @@ $(document).ready(function (){
          if(ariaExpanded.length!=0)
             $('.navbar-toggle').click();
   });
+
+
+  $('#map').height($('#calculatorDiv').width());
+  $('#map').width($('#calculatorDiv').width());
    
 });
 
