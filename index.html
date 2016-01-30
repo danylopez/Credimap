@@ -46,7 +46,7 @@
       </div>
   </div>
   </nav>
-  <div id="calculadora" class="container-fluid containerStrech ">
+  <div id="calculadora" class="container-fluid divPadding ">
     <div class="row">
       <div class="alert alert-warning col-md-4 col-xs-8 col-md-offset-6 col-xs-offset-2" id="warning-alert" style="position: fixed; ">
           <button type="button" class="close" data-dismiss="alert">x</button>
@@ -54,58 +54,8 @@
           Parece que no has llenado todos los campos.
       </div>
     </div>
-    <h2 >Calculadora Virtual</h2> 
-    <br class="notInMobile"><br>
-    <div class="container-fluid">        
-         <div class="row">                 
-               <div class="col-md-6 col-xs-6 ">
-                   <div class="input-group">
-                      <span id="pesosSymbolSpan" class="input-group-addon">$</span>
-                      <input id="amountText" type="text" class="form-control"  placeholder="Importe" 
-                             data-toggle="tooltip"   data-placement="top" maxlength="7"
-                             title="Ingresa la cantidad en pesos que deseas como préstamo.">    
-                    </div>                   
-               </div>              
-               <div class="col-md-6 col-xs-6 ">
-                    <select class="form-control" id="termSelect"   data-toggle="tooltip"  data-placement="top" 
-                            title="Ingresa el plazo en años o meses en el que deseas pagar.">
-                      <option value="notSelected" disabled selected>Plazo</option>                    
-                    </select>                 
-               </div>
-          </div>
-          <br>
-          <div class="row">
-              <div class="col-md-6 col-xs-6">
-                <input id="amountSlider" type="range" min="0" max="1000000" value="0" step="1000" data-rangeslider  data-toggle="tooltip"  
-                       data-placement="left" title="Ingresa la cantidad moviendo la barra.">
-               </input>  
-              </div>
-               <div class="col-md-6 col-xs-6 ">
-                 <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años" checked="checked" value="anos"/>
-                 <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses" value="meses"/>        
-              </div>   
-        </div>
-            <br>
-          <div class="row">
-              <div class="col-md-6 col-xs-6">
-                <select class="form-control" id="pFrequencySelect"   data-toggle="tooltip"  
-                        data-placement="bottom" title="Ingresa con qué frecuencia deseas pagar.">
-                      <option value="notSelected" disabled selected>Frecuencia de Pago</option>    
-                      <option value="semanal"  >Semanal</option>
-                      <option value="quincenal"  >Quincenal</option>
-                      <option value="mensual"  >Mensual</option>                      
-                </select>   
-              </div>
-              <div class="col-md-6 col-xs-6">
-                   <select class="form-control" id="loanKind"   data-toggle="tooltip"  
-                           data-placement="bottom" title="Ingresa el tipo de prestamo que deseas">
-                      <option value="notSelected" disabled selected>Tipo de prestamo</option>
-                      <option value="individual"  >Individual</option>
-                      <option value="grupal"  >Grupal</option>
-                    </select>   
-              </div>              
-         </div>
-           <br>
+      <div class="container-fluid">
+
           <div class="row">
            <div id="calculatorDiv" class="col-md-6 col-xs-12 ">
                <h3 class="headerCustom">Calculadora Virtual</h3>
@@ -224,9 +174,8 @@
 
     </div>
     </div>
-    <br><br> <br><hr>
+    <br><br> <br>
     <hr>
-    <br><br>
   <div id="contacto" class="container-fluid  ">
     <div class="container-fluid">
           <h1 style="font-family: Open Sans, sans-serif;">Contacto</h1><br>
@@ -263,7 +212,6 @@
                 </form>
             </div>
           </div>
-          <hr>
       </div>
   </div>
 </body>
