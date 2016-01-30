@@ -57,5 +57,5 @@ function setEntity()
   window.location.href = "#contacto";
   var fin = "Financiera a Contactar: ";
   var x = document.getElementById("financiera");
-  x.value = fin.concat("holis");
+  x.value = fin.concat(finalEntities[0].name);
 }
