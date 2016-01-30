@@ -19,7 +19,7 @@ function drawOnTable(){
         newFeRow.append('<td>' +fe.name + '</td>' );
         newFeRow.append('<td>' +fe.address + '</td>' );
         newFeRow.append('<td>' +fe.phone + '</td>' );
-        newFeRow.append('<td>' +''+ '</td>' );
+        newFeRow.append('<td>' +fe.web+ '</td>' );
         newFeRow.append('<td>' +fe.totalPayment + '</td>' );
         newFeRow.append('<td>' +fe.payment + '</td>' );
         newFeRow.append('<td>' +fe.taxes + '</td>' );
