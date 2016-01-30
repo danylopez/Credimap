@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('form').validate({
+    $('#feedbackForm').validate({
         rules: {
             name: {
                 minlength: 3,
