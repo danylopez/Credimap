@@ -51,3 +51,11 @@ jQuery.extend(jQuery.validator.messages, {
     maxlength: jQuery.validator.format("Por favor no escriba m&#225s de {0} caracteres."),
     minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
 });
+
+function setEntity()
+{
+  window.location.href = "#contacto";
+  var fin = "Financiera a Contactar: ";
+  var x = document.getElementById("financiera");
+  x.value = fin.concat("holis");
+}
