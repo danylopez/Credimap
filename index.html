@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="css/scrolling-nav.css">
     <link rel="stylesheet" href="css/rangeslider/rangeslider.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/combobootstrap/bootstrap-combobox.css">
     <link rel="stylesheet" href="css/optioncomp/jquery-labelauty.css">
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -26,6 +27,7 @@
     <script src="js/rangeslider/rangeslider.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script src="js/optioncomp/jquery-labelauty.js"></script>
+    <script src="js/combobootstrap/bootstrap-combobox.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
 </head>
 <body  onload="loadMap();" data-spy="scroll" data-target=".navbar" data-offset="10">
@@ -117,32 +119,47 @@
                </div>
                <br>
                <hr>
-
                <div class="row divPadding" >
                    <div id="divBest" class="panel panel-default tableBest">
                        <div class="panel-heading col-md-12" style="text-align:left">
-                           <span id="bestEntityNameSpan" ></span> <span   data-toggle="tooltip"
-                                                                          data-placement="top"
-                                                                          title="Localiza este marcador en el mapa." class="iconBest" >
-                            </span>
+                           <div class="col-md-9">
+                               <span id="bestEntityNameSpan" ></span> <span   data-toggle="tooltip"
+                                                                              data-placement="top" title="Localiza este marcador en el mapa." class="iconBest" >
+                           </span>
+                           </div>
+                           <div class="col-md-3">
+                               <select id="comparingSelect" class="combobox form-control">
+
+                               </select>
+                           </div>
+
                        </div>
                        <table class="table table-striped" style="text-align:left">
                            <tbody>
                            <tr>
-                               <td class="columSizeBest">Pago <strong>Total</strong></td>
+                               <td class="columnSizeBest">Pago <strong>Total</strong></td>
                                <td ><span id="totalPayment"></span></td>
+                               <td class="columnSizeResult"><span id="totalPaymentComp"/></td>
                            </tr>
                            <tr>
-                               <td class="columSizeBest">Pago <span id="frequencyPay" class="remarkText"></span>    </td>
+                               <td class="columnSizeBest">Pago <span id="frequencyPay" class="remarkText"></span>    </td>
                                <td ><span id="payment"></span></td>
+                               <td class="columnSizeResult"><span id="paymentComp"/></td>
                            </tr>
                            <tr>
-                               <td class="columSizeBest"><span id="totalTimeSpan"></span><span id="frequencyPay2" class="remarkText"> </span></td>
+                               <td class="columnSizeBest"><span id="totalTimeSpan"></span><span id="frequencyPay2" class="remarkText"> </span></td>
                                <td ><span id="taxesPaid" ></span></td>
+                               <td class="columnSizeResult"><span id="taxesPaidComp"/></td>
                            </tr>
                            <tr>
-                               <td class="columSizeBest">Porcentaje de Interes <span id="percentageFreq" class="remarkText"></span></td>
+                               <td class="columnSizeBest">Porcentaje de Interes <span id="percentageFreq" class="remarkText"></span></td>
                                <td ><span id="taxPercentage"></span></td>
+                               <td class="columnSizeResult"><span id="taxPercentageComp"/></td>
+
+                           <tr>
+                               <td class="columnSizeBest">P/C 1000 $</td>
+                               <td ><span id="paymentEachT"></span></td>
+                               <td class="columnSizeResult"><span id="paymentEachTComp"/></td>
                            </tr>
                            </tbody>
                        </table>

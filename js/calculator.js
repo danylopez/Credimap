@@ -19,15 +19,25 @@ $(document).ready(function (){
 
 function initCalculator(){
     
-     initRangeSliders();
+    initRangeSliders();
     allowJustNumbers();
     fillPeriodSelect('anos');
     registerInputEvents();
     getFinancialEntitiesJson();
     $('[data-toggle="tooltip"]').tooltip();
-    //$('.tooltip').tooltip({trigger: 'hover'});
-    $(":radio").labelauty({  minimum_width: "50px"});                          
+    $(":radio").labelauty({  minimum_width: "50px"});
+    fillComparingCombo();
     
+}
+
+function fillComparingCombo(){
+    $.each(financialEntJson.financial_entities, function (i, item) {
+        $('#comparingSelect').append($('<option>', {
+            value: i,
+            text : item.name
+        }));
+    });
+    $('#comparingSelect').combobox();
 }
 
 
@@ -106,6 +116,7 @@ function drawBest(bestEntities){
         $('#taxesPaid').text(bestEntities[0].financial.taxes + " $");
         $('#taxPercentage').text(bestEntities[0].financial.tax_rate + " %");
         $('#frequencyPay').text(pFrequencySelect);
+        $('#paymentEachT').text(bestEntities[0].financial.paymentEachT + " $");
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");
         $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
         $('#bestEntityNameSpan').text("La mejor opcion es "  + bestEntities[0].name);
@@ -173,6 +184,7 @@ function onAmauntChange(){
                 finEntity.financial.taxes = taxes;
                 finEntity.financial.tax_rate  = product.tax_rate/tax_factor;
                 finEntity.financial.frequency=pFrequencySelect;
+                finEntity.financial.paymentEachT= (amount!=0) ? (1000*totalPayment)/amount  : 0;
                 roundNumbers(finEntity.financial);
             }
         }
@@ -189,6 +201,7 @@ function roundNumbers(fe){
     fe.payment =  Math.round(fe.payment*100)/100;
     fe.taxes = Math.round(fe.taxes*100)/100;
     fe.tax_rate  = Math.round(fe.tax_rate*100)/100;
+    fe.paymentEachT = Math.round(fe.paymentEachT*100)/100;
 }
 
 function calculate(){
@@ -229,7 +242,7 @@ function onPeriodKindChange(){
 function fillPeriodSelect(timeUnits){
     var units;
     var months = [1,3,6,9,15,18,30];
-    var years =[1,2,3,4,5,6,7,8,9,10,11,12,13,15,15];
+    var years =[1,2,3,4,5,6,7,8,9,10];
     if(timeUnits=='anos'){units=years;}
     if(timeUnits=='meses'){units=months;}
     
@@ -266,7 +279,7 @@ function initRangeSliders(){
                 if(validateNotEmptyFields())
                  onAmauntChange();
             }
-        },      
+        }
     });
 }
 
