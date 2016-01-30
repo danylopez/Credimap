@@ -32,6 +32,9 @@ html {
 .tableBest{
     border-style:none;
     display:none  ;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-style: none !important;
 }
 
 .headerCustom{
