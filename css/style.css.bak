@@ -48,6 +48,8 @@ html {
     
 }
 
+<<<<<<< HEAD
+=======
 @media screen and (max-width: 769px) {
     .alert-warning {
         padding: 10;
@@ -55,6 +57,7 @@ html {
        z-index: 1000000;
     }
 }
+>>>>>>> eef95df603fd09749feee8b32a1229719af04f24
 
 @media (max-width: 400px) {
 

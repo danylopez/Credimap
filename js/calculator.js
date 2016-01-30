@@ -1,8 +1,8 @@
 var financialEntJson={};
 
-
 $(document).ready(function (){
 
+  $("#warning-alert").hide();
   $('#myNavbar a').click(function (){
      
          var ariaExpanded = $('[aria-expanded = "true"]');
@@ -192,7 +192,11 @@ function calculate(){
         onAmauntChange();
     }
     else{
-        alert('Es necesario llenar todos los campos.');      
+        $(document).ready (function showAlert(){
+            $("#warning-alert").alert();
+            $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
+            });   
+         });   
     }
     
 }

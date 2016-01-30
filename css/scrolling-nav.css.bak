@@ -62,11 +62,14 @@
 }
 #map
 {
-    width: 85%;
-    height: 80%;
+<<<<<<< HEAD
+
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
+=======
+    width: 85%;
+    height: 80%;
 }
 #financieras 
 {
@@ -80,4 +83,5 @@
 .modal-body{
     max-height: calc(100vh - 210px);
     overflow-y: auto;
+>>>>>>> eef95df603fd09749feee8b32a1229719af04f24
 }
