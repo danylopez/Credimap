@@ -216,5 +216,36 @@
           </div>
       </div>
   </div>
+  <div class="modal fade" id="financieras" role="dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Entidades Financieras</h4>
+      </div>
+      <div class="modal-body">
+        <p>Todas las entidades financieras y la información respecto al préstamo.</p>
+        <p>Descargar a excel </p><button type="button" class="btn btn-success" onclick="downloadExcel();">Descargar</button>
+        <table id="feProcessedTable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Direccion</th>
+              <th>Telefono</th>
+              <th>Sitio Web</th>
+              <th>Pago Total</th>
+              <th>Pago</th>
+              <th>Intereses Pagados</th>
+              <th>% de Interes</th>         
+            </tr>
+          </thead>
+          <tbody>      
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
