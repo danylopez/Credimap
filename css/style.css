@@ -48,6 +48,9 @@ html {
 .headerCustom{
    /* max-width: 50%;*/
     padding-bottom: 5%;
+    font-family: centuryGothic;
+    color: rgb(158,57,35);
+    font-weight: bold;
 }
 .iconBest{
     background-image: url('http://imgur.com/unLktSj.png');
@@ -67,6 +70,11 @@ html {
     display: inline;
     background-position: center;
 
+}
+
+@font-face {
+    font-family: centuryGothic;
+    src: url(../font/centuryGotic.ttf);
 }
 
 @media screen and (max-width: 769px) {
