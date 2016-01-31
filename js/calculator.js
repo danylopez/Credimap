@@ -26,18 +26,21 @@ function initCalculator(){
     getFinancialEntitiesJson();
     $('[data-toggle="tooltip"]').tooltip();
     $(":radio").labelauty({  minimum_width: "50px"});
-    fillComparingCombo();
+
     
 }
 
 function fillComparingCombo(){
     $.each(financialEntJson.financial_entities, function (i, item) {
         $('#comparingSelect').append($('<option>', {
-            value: i,
+            value: item.id,
             text : item.name
         }));
     });
     $('#comparingSelect').combobox();
+    //$('.combobox-container').removeClass('combobox-selected');
+    //$('.combobox-container').children()[0].css('value','');
+    //$('.combobox').css('text-align','center');
 }
 
 
@@ -57,6 +60,11 @@ function getFinancialEntitiesJson(){
 function getRandomTaxRate(){
        
     return  (Math.random() * 10) + 5;
+}
+
+function localizeBest(){
+
+    zoomMarker(bestId);
 }
 
 function registerInputEvents(){
@@ -81,14 +89,29 @@ function registerInputEvents(){
     
     $("input[name=timeUnitsRadio]:radio").change(function (){
         onPeriodKindChange();       
-    });   
+    });
+    $('#comparingSelect').change(function (){
+        var idFe = $(this).find(':selected').val();
+        for(var i=0;i<financialEntJson.financial_entities.length;i++){
+            var fe = financialEntJson.financial_entities[i];
+            if(fe.id==idFe){
+                writeValuesComp(fe);
+                break;
+            }
+        }
+    });
 }
 
-function localizeBest(){
-    
-    initialize(1);
-   
+
+
+function writeValuesComp(fe){
+    $('#totalPaymentComp').text(fe.financial.totalPayment + " $");
+    $('#paymentComp').text(fe.financial.payment + " $");
+    $('#taxesPaidComp').text(fe.financial.taxes + " $");
+    $('#taxPercentageComp').text(fe.financial.tax_rate + " %");
+    $('#paymentEachTComp').text(fe.financial.paymentEachT + " $");
 }
+
 function validateNotEmptyFields(){
     
      var term =  $('#termSelect').find(':selected').val();
@@ -122,10 +145,12 @@ function drawBest(bestEntities){
         $('#bestEntityNameSpan').text("La mejor opcion es "  + bestEntities[0].name);
         $('#divBest').css('display','block');
         saveBestLocalStorage( bestEntities[0].id);
+        bestId = bestEntities[0].id;
         saveAll(bestEntities);
         $('#separatorCalc').css('display','block');
     }
-    
+
+    changeBest(bestId);
 }
 
 function saveAll(bestEntities){
@@ -139,6 +164,7 @@ function saveBestLocalStorage(id){
 //when the asyncronous method of google maps getting places info (website,phone) ends
 function writeExtraInfoPlaces(){
 
+    fillComparingCombo();
     var auxFe =  JSON.parse(localStorage.getItem('financial_entities'));
     for(var i=0;i<financialEntJson.financial_entities.length;i++){
         var fe = financialEntJson.financial_entities[i];

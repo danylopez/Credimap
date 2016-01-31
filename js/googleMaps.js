@@ -10,17 +10,22 @@ var resultsLimit;
 var countPlaces=0;
 var mapEntities = {};
 
-function zoomTobest(map,marker){
-    
-    map.setZoom(17);
-    map.panTo(marker.position);
+
+
+
+function changeBest(id){
+
+    markers[id].setMap(null);
+    markers[id].icon = {url: 'http://imgur.com/unLktSj.png'};
+    markers[id].setMap(map);
 }
 
+function zoomMarker(id){
 
-function localizeBest(){
-    
-    refresh_onlyMap  =  1;    
-    initialize();
+    map.setZoom(17);
+    map.panTo( markers[id].position);
+    new google.maps.event.trigger( markers[id], 'click' );
+
 }
 
 function loadMap(){
@@ -153,9 +158,7 @@ function addMarker(place) {
     map: map,
     position: place.geometry.location,
     icon: {
-      url: 'http://i.imgur.com/KWzGggP.png',
-      anchor: new google.maps.Point(10, 10),
-      scaledSize: new google.maps.Size(15, 15)
+      url: 'http://imgur.com/m1oQR3K.png'
     }
   });
   

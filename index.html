@@ -39,7 +39,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Credimap" height="45" border="0"></a>
+      <a class="navbar-brand" href="#"><img src="img/logo.png" alt="Credimap" height="40" border="0" style="padding-top:8px "></a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar" style="background-color:#337ab7">
         <ul class="nav navbar-nav navbar-right">
@@ -122,14 +122,14 @@
                <div class="row divPadding" >
                    <div id="divBest" class="panel panel-default tableBest">
                        <div class="panel-heading col-md-12" style="text-align:left">
-                           <div class="col-md-9">
-                               <span id="bestEntityNameSpan" ></span> <span   data-toggle="tooltip"
-                                                                              data-placement="top" title="Localiza este marcador en el mapa." class="iconBest" >
-                           </span>
-                           </div>
-                           <div class="col-md-3">
-                               <select id="comparingSelect" class="combobox form-control">
+                           <div class="col-md-8">
+                               <span id="bestEntityNameSpan" style="display: none"> </span>
+                                <span id="barBest" class="barBest"></span>
+                                <span   data-toggle="tooltip" data-placement="top" title="Localiza este marcador en el mapa." class="iconBest" > </span>
 
+                           </div>
+                           <div class="col-md-4">
+                                   <select id="comparingSelect" class="combobox form-control comboComparing" placeholder="Entidad Financiera">
                                </select>
                            </div>
 
