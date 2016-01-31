@@ -32,7 +32,11 @@ html {
 .columnSizeResult{
     width: 25%;
 }
+.comboComparing{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
 
+}
 .tableBest{
     border-style:none;
     display:none  ;
@@ -46,13 +50,23 @@ html {
     padding-bottom: 5%;
 }
 .iconBest{
-    background-image: url('http://i.imgur.com/5JkDGgS.png');
+    background-image: url('http://imgur.com/unLktSj.png');
     background-repeat: no-repeat;
     padding-left: 30px;  /* width of the image plus a little extra padding */
     display: inline;
-    background-size: 15px 19px;
+    background-size: 23px 29px;
     background-position: center;
     
+}
+
+
+.barBest{
+    background-image: url('http://imgur.com/fwasJDp.png') ;
+    background-repeat: no-repeat;
+    background-size: 23px 29px;
+    display: inline;
+    background-position: center;
+
 }
 
 @media screen and (max-width: 769px) {

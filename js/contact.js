@@ -52,7 +52,7 @@ jQuery.extend(jQuery.validator.messages, {
     minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
 });
 
-function setEntity()
+function setEntity(name, address)
 {
   window.location.href = "#contacto";
   var fin = "Financiera a Contactar: ";
