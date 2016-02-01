@@ -77,7 +77,7 @@
                    <div class="col-md-6 col-xs-6 ">
                        <select class="form-control" id="termSelect"   data-toggle="tooltip"  data-placement="top"
                                title="Ingresa el plazo en años o meses en el que deseas pagar">
-                           <option value="1"  selected>Plazo</option>
+                           <option value="notSelected" disabled selected>Plazo</option>
                        </select>
                    </div>
                </div>
@@ -127,15 +127,15 @@
                <div class="row divPadding" >
                    <div id="divBest" class="panel panel-default tableBest">
                        <div class="panel-heading col-md-12 tableHeader" >
-                           <div class="col-md-7 headerBest">
-                               <span>Mejor opción</span>
-                               <span id="bestEntityNameSpan" style="font-size: 18px;font-weight: bold;display: inline-block; width: 15%; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"> </span>
-                               <img src="http://imgur.com/unLktSj.png" style="padding-left: 10px" data-toggle="tooltip" data-placement="top" title="Marcador que indica la mejor opcion.">
-                               <img src="img/arrow.png" style="float: right; height: 45px;" >
+                           <div class="col-md-8 headerBest">
+                               <div class="col-md-3 noPaddingLR"><span>Mejor opción</span></div>
+                               <div class="col-md-7 textOverflow" style="padding-left: 3px;padding-right: 0px"><span id="bestEntityNameSpan" style="font-size: 18px;font-weight: bold;"> </span></div>
+                               <div class="col-md-1 noPaddingLR"> <img src="http://imgur.com/unLktSj.png" style="padding-left: 10px" data-toggle="tooltip" data-placement="top" title="Marcador que indica la mejor opcion.">
+                               </div>
+                               <div class="col-md-1 noPaddingLR" style="float: right;"><img src="img/arrow.png" style="float: right; height: 45px;" ></div>
                            </div>
-
                            <div class="col-md-4 headerComp ">
-                                   <select id="comparingSelect" class="combobox form-control comboComparing">
+                                   <select id="comparingSelect" class="combobox form-control noPaddingLR">
                                    </select>
                            </div>
                        </div>
@@ -313,7 +313,7 @@
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-
+ <!--
   <div id="tutorial" class="modal fade">
       <div class="modal-dialog">
           <div class="modal-content">
@@ -332,5 +332,6 @@
           </div>
       </div>
   </div>
+  -->
 </body>
 </html>

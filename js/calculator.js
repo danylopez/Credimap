@@ -91,7 +91,8 @@ function registerInputEvents(){
     });
     
     $("input[name=timeUnitsRadio]:radio").change(function (){
-        onPeriodKindChange();       
+        onPeriodKindChange();
+        onAmauntChange();
     });
     $('#comparingSelect').change(function (){
         var idFe = $(this).find(':selected').val();

@@ -34,7 +34,7 @@ html {
 .columnSizeResult{
     width: 25%;
 }
-.comboComparing{
+.noPaddingLR {
     padding-left: 0px !important;
     padding-right: 0px !important;
 
@@ -79,6 +79,12 @@ html {
 
 .btnColorBlue{
     background-color: #337ab7 !important;
+}
+
+.textOverflow{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .iconBest{
