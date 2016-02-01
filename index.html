@@ -29,6 +29,7 @@
     <script src="js/optioncomp/jquery-labelauty.js"></script>
     <script src="js/combobootstrap/bootstrap-combobox.js"></script>
     <script type="text/javascript" src="js/contact.js"></script>
+    <script type="text/javascript" src="js/tutorial.js"></script>
 </head>
 <body  onload="loadMap();" data-spy="scroll" data-target=".navbar" data-offset="10">
   <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color:white">
@@ -45,7 +46,7 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="#calculadora"><i class="fa fa-bar-chart"></i> Calculadora Virtual</a></li>
           <li><a href="#contacto"><i class="fa fa-envelope"></i> Contacto</a></li>
-          <li><a href="#tutorial"><i class="fa fa-play"></i> Tutorial </a></li>
+          <li><a data-toggle="modal" data-target="#tutorial"><i class="fa fa-play"></i> Tutorial </a></li>
         </ul>
       </div>
   </div>
@@ -54,10 +55,11 @@
     <div class="row">
       <div class="alert alert-warning col-md-4 col-xs-8 col-md-offset-4 col-xs-offset-2" id="warning-alert" style="position: fixed; z-index: 10000;">
           <button type="button" class="close" data-dismiss="alert">x</button>
-          <strong>Carambolas! </strong>
-          Parece que no has llenado todos los campos.
+          <strong id="textAlert">¡Carambolas! </strong>
+          <span id="textAlertDesc">Parece que no has llenado todos los campos.</span>
+          
       </div>
-    </div>
+    </div>   
       <div class="container-fluid">
 
           <div class="row">
@@ -69,12 +71,12 @@
                            <span id="pesosSymbolSpan" class="input-group-addon">$</span>
                            <input id="amountText" type="text" class="form-control"  placeholder="Importe"
                                   data-toggle="tooltip"   data-placement="top" maxlength="7"
-                                  title="Ingresa la cantidad en pesos que deseas como préstamo.">
+                                  title="Ingresa la cantidad en pesos que deseas como préstamo">
                        </div>
                    </div>
                    <div class="col-md-6 col-xs-6 ">
                        <select class="form-control" id="termSelect"   data-toggle="tooltip"  data-placement="top"
-                               title="Ingresa el plazo en años o meses en el que deseas pagar.">
+                               title="Ingresa el plazo en años o meses en el que deseas pagar">
                            <option value="1"  selected>Plazo</option>
                        </select>
                    </div>
@@ -83,7 +85,7 @@
                <div class="row">
                    <div class="col-md-6 col-xs-6">
                        <input id="amountSlider" type="range" min="0" max="100000" value="0" step="1000" data-rangeslider  data-toggle="tooltip"
-                              data-placement="top" title="Ingresa la cantidad moviendo la barra.">
+                              data-placement="top" title="Ingresa la cantidad moviendo la barra">
                        </input>
                    </div>
                    <div class="col-md-6 col-xs-6 ">
@@ -95,7 +97,7 @@
                <div class="row">
                    <div class="col-md-6 col-xs-6">
                        <select class="form-control" id="pFrequencySelect"   data-toggle="tooltip"
-                               data-placement="bottom" title="Ingresa con qué frecuencia deseas pagar.">
+                               data-placement="bottom" title="Ingresa con qué frecuencia deseas pagar">
                            <option value="notSelected" disabled selected >Frecuencia de Pago</option>
                            <option value="semanal"  >Semanal</option>
                            <option value="quincenal"  >Quincenal</option>
@@ -104,7 +106,7 @@
                    </div>
                    <div class="col-md-6 col-xs-6">
                        <select class="form-control" id="loanKind"   data-toggle="tooltip"
-                               data-placement="bottom" title="Ingresa el tipo de prestamo que deseas">
+                               data-placement="bottom" title="Ingresa el tipo de préstamo que deseas">
                            <option value="notSelected"  selected>Tipo de prestamo</option>
                            <option value="individual"  >Individual</option>
                            <option value="grupal"  >Grupal</option>
@@ -155,7 +157,7 @@
                                <td class="columnSizeResult"><span id="taxesPaidComp"/></td>
                            </tr>
                            <tr>
-                               <td class="columnSizeBest">Porcentaje de Interes <span id="percentageFreq" class="remarkText"></span></td>
+                               <td class="columnSizeBest">Porcentaje de Interés <span id="percentageFreq" class="remarkText"></span></td>
                                <td ><span id="taxPercentage"></span></td>
                                <td class="columnSizeResult"><span id="taxPercentageComp"/></td>
 
@@ -168,7 +170,7 @@
                        </table>
                        <div class="panel-footer panel-default">
                            <button type="button" class="btn btn-default " aria-label="Left Align" onclick="contactBest()"
-                                   data-toggle="tooltip"  data-placement="bottom" title="¡Contáctanos y dinos en que te podemos ayudar!">
+                                   data-toggle="tooltip"  data-placement="bottom" title="¡Contáctanos y dinos en qué te podemos ayudar!">
                                <i class="fa fa-envelope"> Contactar</i>
                            </button>
                            <button id="localizeBest" type="button" class="btn btn-default" aria-label="Left Align"   onclick="localizeBest();"
@@ -181,7 +183,7 @@
                                <i class="fa fa-table"> Compara con todas</i>
                           </button>
                            <button id="showRequi" type="button" class="btn btn-default " aria-label="Left Align"   data-toggle="tooltip"   data-placement="bottom"
-                                   title="Conoce los requisitos del préstamo."  onclick="showRequirements();">
+                                   title="Conoce los requisitos del préstamo"  onclick="showRequirements();">
                                <i class="fa fa-list-ul"> Requisitos</i>
                            </button>
                        </div>
@@ -208,7 +210,7 @@
           <h3 class="headerCustom">Contacto</h3><br>
           <div id="contact_form" class="row">
             <div class="col-md-9 col-md-offset-3">
-                <form class="form-horizontal" action="php/send.php" method="POST" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
+                <form class="form-horizontal" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
                     <div class="form-group has-feedback">
                         <div class="col-md-8">
                             <input type="text" name="financiera" id="financiera" 
@@ -226,29 +228,31 @@
                     <div class="form-group has-feedback">
                       <div class="col-md-8">
                             <input type="text" name="phone" id="phone" 
-                                   class="form-control" placeholder="Telefono (10 Digitos)" />
+                                   class="form-control" placeholder="Teléfono (10 Digitos)" />
                             <span class="glyphicon form-control-feedback"></span>
                        </div>
                     </div>
                     <div class="form-group has-feedback">
                       <div class="col-md-8">
                             <input type="email" name="email" id="email" 
-                                   class="form-control" placeholder="Ingrese su correo electronico (Requerido)" />
+                                   class="form-control" placeholder="Ingrese su correo electrónico (Requerido)" />
                             <span class="glyphicon form-control-feedback"></span>
                        </div>
                     </div>
                     <div class="form-group has-feedback">
                     <div class="col-md-8">
-                      <textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Compartanos sus dudas y nosotros nos pondremos en contacto con usted" required></textarea>
+                      <textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Compartanos sus dudas y nosotros nos pondremos en contacto con usted." required></textarea>
                     </div>  
                   </div>
-                    <button type="submit" id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Enviando..." style="display: block; margin-top: 10px;">Enviar</button>
+                    
                 </form>
+                <button type="button"  id="feedbackSubmit" class="btn btn-primary btn-lg" data-loading-text="Enviando..." style="display: block; margin-top: 10px;">Enviar</button>
             </div>
           </div>
       </div>
   </div>
   <div class="modal fade" id="financieras" role="dialog">
+  
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -309,5 +313,24 @@
           </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
+
+  <div id="tutorial" class="modal fade">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                  <h4 class="modal-title">Tutorial</h4>
+              </div>
+              <div class="modal-body">
+                  <iframe id="video" width="560" height="315" 
+                    src="https://www.youtube.com/embed/oHg5SJYRHA0?rel=0&amp;controls=0&amp;showinfo=0"
+                    frameborder="0" allowfullscreen></iframe>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+              </div>
+          </div>
+      </div>
+  </div>
 </body>
 </html>
