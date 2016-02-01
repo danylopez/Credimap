@@ -183,6 +183,11 @@ html {
     
 }
 
+.modal-content iframe{
+    margin: 0 auto;
+    display: block;
+}
+
 .remarkText{
     
     font-size: 14px;
