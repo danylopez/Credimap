@@ -58,7 +58,7 @@ function appendActions(){
     var  actionsString;
     actionsString =
     '<button id="localizeBest" type="button" class="btn btn-default " aria-label="Left Align"'+
-        'onclick="localize(this);" data-toggle="tooltip" data-placement="bottom" title="Localiza en el mapa la entidad financiera según el préstamo consultado">'+
+        'onclick="localize(this);" data-toggle="tooltip" data-placement="bottom" title="Localiza en el mapa la entidad financiera.">'+
         '<i class="fa fa-map-marker"></i>'+
     '</button>'+
     '<button id="reqBank" type="button" class="btn btn-default " aria-label="Left Align"'+
@@ -66,7 +66,7 @@ function appendActions(){
     '    <i class="fa fa-list-ul"></i>'+
     '</button>'+
     '<button type="button" class="btn btn-default" aria-label="Left Align"'+
-    '    onclick="contact(this);" data-toggle="tooltip"  data-placement="bottom" title="Podemos ayudar!">'+
+    '    onclick="contact(this);" data-toggle="tooltip"  data-placement="bottom" title="Contacta a la entidad financiera.">'+
     '    <i class="fa fa-envelope"></i>'+
     '</button>';
     return actionsString;
