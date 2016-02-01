@@ -58,9 +58,13 @@ function initialize()
 
            var marker = new google.maps.Marker({
                map: map,
-               position: myLocation,
-               
+               position: myLocation
+           });
 
+           marker.addListener('click', function() {
+               new google.maps.InfoWindow({
+                   content: '¡Aquí te encuentras.!'
+               }).open(map,marker);
            });
            map.setZoom(13);
            map.panTo(myLocation);

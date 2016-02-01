@@ -10,11 +10,8 @@ $(document).ready(function (){
             $('.navbar-toggle').click();
   });
 
-
   $('#map').height($('#calculatorDiv').width());
   $('#map').width($('#calculatorDiv').width());
-
-
    
 });
 
@@ -158,10 +155,21 @@ function drawBest(bestEntities){
         bestName = bestEntities[0].name; //also this
         saveAll(bestEntities);
         $('#separatorCalc').css('display','block');
+
+        //change this later , not optimized
+        var idFe = $('#comparingSelect').find(':selected').val();
+        for(var i=0;i<financialEntJson.financial_entities.length;i++){
+            var fe = financialEntJson.financial_entities[i];
+            if(fe.id==idFe){
+                writeValuesComp(fe);
+                break;
+            }
+        }
     }
 
-    changeBest(bestId);
+
     if(showedBest==0) {
+        changeBest(bestId);
         $('[data-toggle="tooltip"]').tooltip('hide');
         $('input.combobox').focus();
         showComparingAlert();
@@ -216,8 +224,9 @@ function onAmauntChange(){
     if(pFrequencySelect=='semanal')
         term = (term*30)/7;
     else
-        term*=tax_factor;    
-    
+        term*=tax_factor;
+
+    var idFeComp = $(this).find(':selected').val();
     
     for(var i =0;i<financialEntJson.financial_entities.length;i++){
         var finEntity = financialEntJson.financial_entities[i];
