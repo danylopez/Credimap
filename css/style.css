@@ -49,11 +49,16 @@ html {
 
 .headerCustom{
    /* max-width: 50%;*/
-    padding-bottom: 5%;
+    padding-bottom: 2%;
     font-family: centuryGothic;
     color: rgb(158,57,35);
     font-weight: bold;
 }
+
+.btnColorBlue{
+    background-color: #337ab7 !important;
+}
+
 .iconBest{
     background-image: url('http://imgur.com/unLktSj.png');
     background-repeat: no-repeat;
