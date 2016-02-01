@@ -52,10 +52,14 @@ jQuery.extend(jQuery.validator.messages, {
     minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
 });
 
-function setEntity(name, address)
+function setEntity(name)
 {
+    debugger;
   window.location.href = "#contacto";
-  var fin = "Financiera a Contactar: ";
-  var x = document.getElementById("financiera");
-  x.value = fin.concat(finalEntities[0].name);
+  var header = "Financiera a Contactar: ";
+  var inputFinanciera = $('#financiera') ;
+  inputFinanciera.val(header.concat(name))
+  $('#name').focus();
+  //var x = document.getElementById("financiera");
+  // fin.concat(finalEntities[0].name);
 }

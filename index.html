@@ -62,27 +62,27 @@
 
           <div class="row">
            <div id="calculatorDiv" class="col-md-6 col-xs-12 ">
-               <h2 class="headerCustom">Calculadora Virtual</h2>
+               <h3 class="headerCustom">Calculadora Virtual</h3>
                <div class="row">
                    <div class="col-md-6 col-xs-6 ">
                        <div class="input-group">
                            <span id="pesosSymbolSpan" class="input-group-addon">$</span>
                            <input id="amountText" type="text" class="form-control"  placeholder="Importe"
-                                  data-toggle="tooltip"   data-placement="top" maxlength="7"
+                                  data-toggle="tooltip"   data-placement="top" maxlength="7" value="1000"
                                   title="Ingresa la cantidad en pesos que deseas como préstamo.">
                        </div>
                    </div>
                    <div class="col-md-6 col-xs-6 ">
                        <select class="form-control" id="termSelect"   data-toggle="tooltip"  data-placement="top"
                                title="Ingresa el plazo en años o meses en el que deseas pagar.">
-                           <option value="notSelected" disabled selected>Plazo</option>
+                           <option value="1"  selected>Plazo</option>
                        </select>
                    </div>
                </div>
                <br>
                <div class="row">
                    <div class="col-md-6 col-xs-6">
-                       <input id="amountSlider" type="range" min="0" max="100000" value="0" step="1000" data-rangeslider  data-toggle="tooltip"
+                       <input id="amountSlider" type="range" min="0" max="100000" value="1000" step="1000" data-rangeslider  data-toggle="tooltip"
                               data-placement="left" title="Ingresa la cantidad moviendo la barra.">
                        </input>
                    </div>
@@ -96,17 +96,17 @@
                    <div class="col-md-6 col-xs-6">
                        <select class="form-control" id="pFrequencySelect"   data-toggle="tooltip"
                                data-placement="bottom" title="Ingresa con qué frecuencia deseas pagar.">
-                           <option value="notSelected" disabled selected>Frecuencia de Pago</option>
+                           <option value="notSelected" disabled >Frecuencia de Pago</option>
                            <option value="semanal"  >Semanal</option>
                            <option value="quincenal"  >Quincenal</option>
-                           <option value="mensual"  >Mensual</option>
+                           <option value="mensual"  selected>Mensual</option>
                        </select>
                    </div>
                    <div class="col-md-6 col-xs-6">
                        <select class="form-control" id="loanKind"   data-toggle="tooltip"
                                data-placement="bottom" title="Ingresa el tipo de prestamo que deseas">
-                           <option value="notSelected" disabled selected>Tipo de prestamo</option>
-                           <option value="individual"  >Individual</option>
+                           <option value="notSelected"  selected>Tipo de prestamo</option>
+                           <option value="individual"  selected>Individual</option>
                            <option value="grupal"  >Grupal</option>
                        </select>
                    </div>
@@ -128,9 +128,12 @@
                                 <span   data-toggle="tooltip" data-placement="top" title="Localiza este marcador en el mapa." class="iconBest" > </span>
 
                            </div>
-                           <div class="col-md-4">
-                                   <select id="comparingSelect" class="combobox form-control comboComparing" placeholder="Entidad Financiera">
-                               </select>
+                           <div class="col-md-4" style="padding-left: 2px !important;padding-right: 2px !important;text-align: center">
+                                   <select id="comparingSelect" class="combobox form-control comboComparing">
+
+                                   </select>
+
+
                            </div>
 
                        </div>
@@ -164,7 +167,7 @@
                            </tbody>
                        </table>
                        <div class="panel-footer">
-                           <button type="button" class="btn btn-default " aria-label="Left Align" onclick="setEntity()"
+                           <button type="button" class="btn btn-default " aria-label="Left Align" onclick="contactBest()"
                                    data-toggle="tooltip"  data-placement="bottom" title="¡Contáctanos y dinos en que te podemos ayudar!">
                                <i class="fa fa-envelope"> Contactar</i>
                            </button>
@@ -182,7 +185,7 @@
                </div>
            </div>
            <div class="col-md-6 col-xs-12" >
-               <h2 class="headerCustom">Intermediarias Financieras</h2>
+               <h3 class="headerCustom">Intermediarias Financieras</h3>
                <div id="map" class="container-fluid">
                </div>
            </div>
@@ -258,6 +261,7 @@
         <table id="feProcessedTable" class="table table-striped">
           <thead>
             <tr>
+              <th style="display: none" >Id</th>
               <th class="col-md-1">Nombre</th>
               <th class="col-md-3">Direccion</th>
               <th class="col-md-1">Telefono</th>
@@ -278,5 +282,28 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" tabindex="-1" role="dialog" id="requirementsModal">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Requisitos</h4>
+              </div>
+              <div class="modal-body">
+                  <p id="pRequirements">
+                  1. Tener un buen historial crediticio.<br/>
+                  2. Vivir en D.F. o área metropolitana.<br/>
+                  3. Credencial de elector vigente.<br/>
+                  4. Comprobante de domicilio e ingresos.
+                  </p>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                 <!-- <button type="button" class="btn btn-primary" onclick="copyToClipboard('#pRequirements');">Copiar</button>-->
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </body>
 </html>

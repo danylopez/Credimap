@@ -258,6 +258,11 @@
         }
       }
     }
+  },
+  removeInitial : function (){
+      this.clearTarget();
+      this.triggerChange();
+      this.clearElement();
   }
 
   , scrollSafety: function(e) {

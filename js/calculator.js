@@ -13,6 +13,8 @@ $(document).ready(function (){
 
   $('#map').height($('#calculatorDiv').width());
   $('#map').width($('#calculatorDiv').width());
+
+
    
 });
 
@@ -26,21 +28,28 @@ function initCalculator(){
     getFinancialEntitiesJson();
     $('[data-toggle="tooltip"]').tooltip();
     $(":radio").labelauty({  minimum_width: "50px"});
+    fillComparingCombo();
+    $('input.combobox').css('text-align','center');
+    $('input.combobox').popover({content:'! Compara con otra de las entidades financieras !','placement':'top',trigger:'manual'});
 
-    
+
+
 }
 
 function fillComparingCombo(){
-    $.each(financialEntJson.financial_entities, function (i, item) {
-        $('#comparingSelect').append($('<option>', {
-            value: item.id,
-            text : item.name
+    var comparingSelect=    $('#comparingSelect');
+    for(var i=0;i<financialEntJson.financial_entities.length;i++) {
+        var fe = financialEntJson.financial_entities[i];
+        comparingSelect.append($('<option>', {
+            value: fe.id,
+            text : fe.name
         }));
-    });
+    }
     $('#comparingSelect').combobox();
-    //$('.combobox-container').removeClass('combobox-selected');
-    //$('.combobox-container').children()[0].css('value','');
-    //$('.combobox').css('text-align','center');
+    $('#comparingSelect').data('combobox').clearTarget();
+    $('#comparingSelect').data('combobox').clearElement();
+
+
 }
 
 
@@ -145,12 +154,22 @@ function drawBest(bestEntities){
         $('#bestEntityNameSpan').text("La mejor opcion es "  + bestEntities[0].name);
         $('#divBest').css('display','block');
         saveBestLocalStorage( bestEntities[0].id);
-        bestId = bestEntities[0].id;
+        bestId = bestEntities[0].id; //change this to o hashmap structure
+        bestName = bestEntities[0].name; //also this
         saveAll(bestEntities);
         $('#separatorCalc').css('display','block');
     }
 
     changeBest(bestId);
+    showComparingAlert();
+}
+
+function showComparingAlert(){
+     $('input.combobox').popover('show');
+}
+
+function contactBest(){
+    setEntity(bestName);
 }
 
 function saveAll(bestEntities){
@@ -164,7 +183,6 @@ function saveBestLocalStorage(id){
 //when the asyncronous method of google maps getting places info (website,phone) ends
 function writeExtraInfoPlaces(){
 
-    fillComparingCombo();
     var auxFe =  JSON.parse(localStorage.getItem('financial_entities'));
     for(var i=0;i<financialEntJson.financial_entities.length;i++){
         var fe = financialEntJson.financial_entities[i];

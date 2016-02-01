@@ -40,8 +40,15 @@ function initialize()
   map = new google.maps.Map(document.getElementById('map'), {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: location,
-                scrollwheel: false,
-                zoom: 15
+                zoom: 15,
+                  scrollwheel        : true,
+                  mapTypeControl     : false,
+                  overviewMapControl : false,
+                  scaleControl       : false,
+                  panControl         : false,
+                  rotateControl      : false,
+                  streetViewControl  : false,
+                  zoomControl        : false
                 });
    infoWindow = new google.maps.InfoWindow();
    if(navigator.geolocation) {
@@ -62,6 +69,8 @@ function initialize()
     else{
        //code when user does not accept location access
    }
+
+    //createCustomIcon();
 }
 
 function performSearch() {
@@ -99,6 +108,7 @@ function callback(results, status) {
         if (i == resultsLimit) break;
     }
 }
+
 
 function getPlaceInfo(place){
 
@@ -148,10 +158,25 @@ function getFormatedContent(place){
     var content ='<div><strong>' + place.name + '</strong><br>' +
                   place.formatted_address + '<br>Tel&#233fono: ' +
                   place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank" style="color: blue;" href="' + 
-                  place.website + '">' + place.website + '</a> <br><button type="button" onclick="location.href=&#39#contact&#39;"                              class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>'
+                  place.website + '">' + place.website + '</a> <br><button type="button" onclick="setEntity(placeName)"                              class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button></div>'
     
     return content;
 }
+
+
+function createCustomIcon(){
+    var controlDiv = document.createElement('div');
+    var iconZoom = document.createElement('input');
+    iconZoom.type='image';
+    iconZoom.src = 'http://imgur.com/NDXnXJS.png';
+    iconZoom.style.alt= '';
+    iconZoom.style.height='35px';
+    iconZoom.style.width='35px';
+    controlDiv.appendChild(iconZoom);
+    map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlDiv);
+
+}
+
 
 function addMarker(place) {
   var marker = new google.maps.Marker({
@@ -170,6 +195,7 @@ function addMarker(place) {
         console.error(status);
         return;
       }
+      placeName= result.name;
       infoWindow.setContent(getFormatedContent(result));
       infoWindow.open(map, marker);
          

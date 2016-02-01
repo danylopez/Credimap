@@ -15,6 +15,8 @@ html {
     display: block;
 }
 
+
+
 .containerStrech{
     padding-top: 5% !important;
     width: 70%;
@@ -79,7 +81,7 @@ html {
 
 @media screen and (max-width: 769px) {
     .alert-warning {
-        padding: 10;
+        padding: 10px;
        left: 0 !important;
        z-index: 1000000;
     }
