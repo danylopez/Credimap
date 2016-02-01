@@ -67,7 +67,7 @@ function sendMail(data){
          $("#feedbackSubmit").button('reset');
        },
        error: function(xhr, textStatus, errorThrown){
-      
+          //agregar error mail no enviado
        }
     });
 }
