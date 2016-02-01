@@ -269,6 +269,9 @@ function calculate(){
     }
     else{
         $(document).ready (function showAlert(){
+            $('#warning-alert').removeClass('alert-danger').removeClass('alert-success').addClass('alert-warning');
+            $('#textAlert').text('¡Carambolas! ');
+            $('#textAlertDesc').text('Parece que no has llenado todos los campos.'); 
             $("#warning-alert").alert();
             $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
             });   

@@ -24,7 +24,6 @@ $(document).ready(function(){
                       .addClass('has-error');    
         },
         unhighlight: function(element) {
-
             $(element).closest('.form-group')
                       .removeClass('has-error')
                       .addClass('has-success');     
@@ -50,7 +49,7 @@ $("#feedbackSubmit").click(function() {
       email: $('#email').val(),
       message: $('#message').val(),
       phone : $('#phone').val(),
-      financiera : $('#financiera').val()
+      financiera: $('#financiera').val()
     };
      sendMail(data);
      $(this).button('loading');
@@ -58,25 +57,42 @@ $("#feedbackSubmit").click(function() {
 });
 
 function sendMail(data){
-   $.ajax({
-       url: 'php/send.php',
-       type:'POST',
-       data:data,
-       success: function (response) {
-         showAlertSentMail();
-         $("#feedbackSubmit").button('reset');
-       },
-       error: function(xhr, textStatus, errorThrown){
-          //agregar error mail no enviado
-       }
-    });
+  $.ajax({
+     url: 'php/send.php',
+     type:'POST',
+     data:data,
+     success: function (response) {
+       window.location.href = "#calculadora";
+       showAlertSentMail();
+       clearFields();
+       $("#feedbackSubmit").button('reset');
+       
+     },
+     error: function(xhr, textStatus, errorThrown){
+       showAlertErrorMail();
+        //agregar error mail no enviado
+     }
+  });
 }
-
+function clearFields() {
+  $('#financiera').val("Financiera a Contactar: ");
+  $('#name').val("");
+  $('#email').val("");
+  $('#message').val("");
+  $('#phone').val("");
+}
 function showAlertSentMail(){
-
-    $('#warning-alert').removeClass('alert-warning').addClass('alert-success');
+    $('#warning-alert').removeClass('alert-danger').removeClass('alert-warning').addClass('alert-success');
     $('#textAlert').text('¡Mensaje enviado!');
     $('#textAlertDesc').text(' La paloma mensajera ha llegado a su destino.');    
+    $('#warning-alert').alert();
+    $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
+    }); 
+}
+function showAlertErrorMail(){
+    $('#warning-alert').removeClass('alert-success').removeClass('alert-warning').addClass('alert-danger');
+    $('#textAlert').text('¡ERROR! ');
+    $('#textAlertDesc').text(' La paloma mensajera no ha llegado a su destino.');
     $('#warning-alert').alert();
     $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
     }); 
@@ -84,10 +100,10 @@ function showAlertSentMail(){
 
 jQuery.extend(jQuery.validator.messages, {
 	email: "Por favor escriba un e-mail v&#225lido.",
-    required: "Necesita llenar este campo.",
-    number: "Por favor solo escriba n&#250meros.",
-    maxlength: jQuery.validator.format("Por favor no escriba m&#225s de {0} caracteres."),
-    minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
+  required: "Necesita llenar este campo.",
+  number: "Por favor solo escriba n&#250meros.",
+  maxlength: jQuery.validator.format("Por favor no escriba m&#225s de {0} caracteres."),
+  minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
 });
 
 function setEntity(name)
