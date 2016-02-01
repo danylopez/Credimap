@@ -183,3 +183,103 @@ html {
 .has-warning .form-control-feedback:before {
     content: "\e017";
 }
+
+/*
+COLORES EN NAVBAR
+*/
+.navbar-inverse {
+  background-color: #f5f5f5; /*Color Barra de Navegación*/
+  border-color: #f5f5f5; /*Color Borde Barra*/
+}
+.navbar-inverse .navbar-brand {
+  color: #63666a; /*Color en caso que no cargue logo*/
+}
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus {
+  color: #f5f5f5;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-text {
+  color: #63666a; /*Color de texto*/
+}
+.navbar-inverse .navbar-nav > li > a {
+  color: #63666a; /*Color de texto*/
+}
+.navbar-inverse .navbar-nav > li > a:hover,
+.navbar-inverse .navbar-nav > li > a:focus {
+  color: #63666a; /*Color de texto cuando pasas mouse*/
+  background-color: transparent;
+}
+.navbar-inverse .navbar-nav > .active > a,
+.navbar-inverse .navbar-nav > .active > a:hover,
+.navbar-inverse .navbar-nav > .active > a:focus {
+  color: #63666a; /*Color de texto cuando esta señalado*/
+  background-color: #f5f5f5; /*Color cuando esta señalado*/
+}
+.navbar-inverse .navbar-nav > .disabled > a,
+.navbar-inverse .navbar-nav > .disabled > a:hover,
+.navbar-inverse .navbar-nav > .disabled > a:focus {
+  color: #f5f5f5;
+  background-color: transparent;
+}
+.navbar-inverse .navbar-toggle {
+  border-color: #f5f5f5; /*Color borde de menu en móvil*/
+}
+.navbar-inverse .navbar-toggle:hover,
+.navbar-inverse .navbar-toggle:focus {
+  background-color: #f5f5f5; /*Color dentro del menu en móvil cuando pasas mouse*/
+}
+.navbar-inverse .navbar-toggle .icon-bar {
+  background-color: #63666a; /*Color de las 3 lineas del menu en móvil*/
+}
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+  border-color: #e7e7e7;
+}
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #63666a;
+  background-color: #f5f5f5;
+}
+@media (max-width: 767px) {
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+    color: #63666a;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #63666a;
+    background-color: transparent;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #63666a;
+    background-color: #f5f5f5;
+  }
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #f5f5f5;
+    background-color: transparent;
+  }
+}
+.navbar-inverse .navbar-link {
+  color: #63666a;
+}
+.navbar-inverse .navbar-link:hover {
+  color: #63666a;
+}
+.navbar-inverse .btn-link {
+  color: #63666a;
+}
+.navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link:focus {
+  color: #63666a;
+}
+.navbar-inverse .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-inverse .btn-link:hover,
+.navbar-inverse .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-inverse .btn-link:focus {
+  color: #f5f5f5;
+}
