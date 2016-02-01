@@ -143,12 +143,12 @@ function getFrequencyPayment(pFrequencySelect){
 function drawBest(bestEntities){
     if(bestEntities.length>0){
         var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
-        $('#totalPayment').text(bestEntities[0].financial.totalPayment + " $");
-        $('#payment').text(bestEntities[0].financial.payment + " $");
-        $('#taxesPaid').text(bestEntities[0].financial.taxes + " $");
+        $('#totalPayment').text("$ "+bestEntities[0].financial.totalPayment);
+        $('#payment').text("$ "+bestEntities[0].financial.payment);
+        $('#taxesPaid').text("$ "+bestEntities[0].financial.taxes );
         $('#taxPercentage').text(bestEntities[0].financial.tax_rate + " %");
         $('#frequencyPay').text(pFrequencySelect);
-        $('#paymentEachT').text(bestEntities[0].financial.paymentEachT + " $");
+        $('#paymentEachT').text("$ "+bestEntities[0].financial.paymentEachT );
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");
         $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
         $('#bestEntityNameSpan').text(bestEntities[0].name);

@@ -128,11 +128,10 @@
                            <div class="col-md-8 headerBest">
                                <span>Mejor opción</span>
                                <span id="bestEntityNameSpan" style="font-size: 18px;font-weight: bold"> </span>
-                               <img src="img/arrow.png" style="float: right;" >
-                               <span data-toggle="tooltip" data-placement="top" title="Marcador que indica la mejor opcion." class="iconBest" > </span>
-
+                               <img src="http://imgur.com/unLktSj.png" style="padding-left: 10px" data-toggle="tooltip" data-placement="top" title="Marcador que indica la mejor opcion.">
+                               <img src="img/arrow.png" style="float: right; height: 45px;" >
                            </div>
-                           <div class="col-md-4 headerComp">
+                           <div class="col-md-4 headerComp ">
                                    <select id="comparingSelect" class="combobox form-control comboComparing">
                                    </select>
                            </div>
@@ -160,27 +159,27 @@
                                <td class="columnSizeResult"><span id="taxPercentageComp"/></td>
 
                            <tr>
-                               <td class="columnSizeBest">P/C 1000 $</td>
+                               <td class="columnSizeBest">Pago por cada $ 1000 </td>
                                <td ><span id="paymentEachT"></span></td>
                                <td class="columnSizeResult"><span id="paymentEachTComp"/></td>
                            </tr>
                            </tbody>
                        </table>
-                       <div class="panel-footer" style="background-color: white">
-                           <button type="button" class="btn btn-primary btnColorBlue " aria-label="Left Align" onclick="contactBest()"
+                       <div class="panel-footer panel-default">
+                           <button type="button" class="btn btn-default " aria-label="Left Align" onclick="contactBest()"
                                    data-toggle="tooltip"  data-placement="bottom" title="¡Contáctanos y dinos en que te podemos ayudar!">
                                <i class="fa fa-envelope"> Contactar</i>
                            </button>
-                           <button id="localizeBest" type="button" class="btn btn-primary  btnColorBlue" aria-label="Left Align"   onclick="localizeBest();"
+                           <button id="localizeBest" type="button" class="btn btn-default" aria-label="Left Align"   onclick="localizeBest();"
                                    data-toggle="tooltip"  data-placement="bottom" title="Localiza en el mapa la mejor entidad financiera según el préstamo consultado">
                                <a id="goFinancial" href="#financial"></a>
                                <i class="fa fa-map-marker"> Localizar</i>
                            </button>
-                           <button id="showAllBtn" type="button" class="btn btn-primary btnColorBlue" aria-label="Left Align"   data-toggle="tooltip"   data-placement="bottom"
+                           <button id="showAllBtn" type="button" class="btn btn-default " aria-label="Left Align"   data-toggle="tooltip"   data-placement="bottom"
                                    title="Consulta la información de todas las entidades financieras según el préstamo consultado" onclick="processTable();">
                                <i class="fa fa-table"> Compara con todas</i>
                           </button>
-                           <button id="showRequi" type="button" class="btn btn-primary btnColorBlue" aria-label="Left Align"   data-toggle="tooltip"   data-placement="bottom"
+                           <button id="showRequi" type="button" class="btn btn-default " aria-label="Left Align"   data-toggle="tooltip"   data-placement="bottom"
                                    title="Conoce los requisitos del préstamo."  onclick="showRequirements();">
                                <i class="fa fa-list-ul"> Requisitos</i>
                            </button>
