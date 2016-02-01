@@ -39,6 +39,20 @@ html {
     padding-right: 0px !important;
 
 }
+
+.tableHeader{
+    padding-bottom: 0px !important;
+    padding-top: 0px !important;
+    text-align: left;
+    background-color: #ffffff !important;
+    height: 45px;
+}
+
+.headerBest{
+    height: 100%;
+    background-color: rgb(158,57,35);
+    color: #ffffff;
+}
 .tableBest{
     border-style:none;
     display:none  ;
