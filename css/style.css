@@ -60,6 +60,7 @@ html {
     background-color: rgb(158,57,35);
     color: #ffffff;
     line-height: 42px;
+    padding-right : 0px;
 }
 .tableBest{
     border-style:none;
