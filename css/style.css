@@ -59,6 +59,7 @@ html {
     color: #ffffff;
     line-height: 42px;
     padding-right : 0px;
+    background: -webkit-linear-gradient(left, #9e3923 99%,#f5f5f5 100%);
 }
 .tableBest{
     border-style:none;
