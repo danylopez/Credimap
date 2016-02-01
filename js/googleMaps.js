@@ -58,7 +58,8 @@ function initialize()
 
            var marker = new google.maps.Marker({
                map: map,
-               position: myLocation
+               position: myLocation,
+               
 
            });
            map.setZoom(13);
