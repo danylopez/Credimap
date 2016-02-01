@@ -62,8 +62,8 @@ function appendActions(){
         '<i class="fa fa-map-marker"></i>'+
     '</button>'+
     '<button id="reqBank" type="button" class="btn btn-default " aria-label="Left Align"'+
-    '    onclick="showRequirements()" data-toggle="tooltip"  data-placement="bottom" title="Muestra los requerimientos del préstamo">'+
-    '    <i class="fa fa-book"></i>'+
+    '    onclick="showRequirements()" data-toggle="tooltip"  data-placement="bottom" title="Conoce los requisitos del préstamo.">'+
+    '    <i class="fa fa-list-ul"></i>'+
     '</button>'+
     '<button type="button" class="btn btn-default" aria-label="Left Align"'+
     '    onclick="contact(this);" data-toggle="tooltip"  data-placement="bottom" title="Podemos ayudar!">'+

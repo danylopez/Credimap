@@ -40,7 +40,7 @@ function initialize()
   map = new google.maps.Map(document.getElementById('map'), {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: location,
-                zoom: 15,
+                zoom: 14,
                   scrollwheel        : true,
                   mapTypeControl     : false,
                   overviewMapControl : false,
@@ -61,7 +61,7 @@ function initialize()
                position: myLocation
 
            });
-           map.setZoom(14);
+           map.setZoom(13);
            map.panTo(myLocation);
            google.maps.event.addListenerOnce(map, 'idle', performSearch);
        });

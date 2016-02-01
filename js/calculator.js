@@ -1,5 +1,5 @@
 var financialEntJson={};
-
+var showedBest = 0;
 $(document).ready(function (){
 
   $("#warning-alert").hide();
@@ -30,7 +30,7 @@ function initCalculator(){
     $(":radio").labelauty({  minimum_width: "50px"});
     fillComparingCombo();
     $('input.combobox').css('text-align','center');
-    $('input.combobox').popover({content:'! Compara con otra de las entidades financieras !','placement':'top',trigger:'manual'});
+    $('input.combobox').tooltip({title:'! Compara con otra de las entidades financieras !','placement':'top',trigger:'focus'});
 
 
 
@@ -151,7 +151,7 @@ function drawBest(bestEntities){
         $('#paymentEachT').text(bestEntities[0].financial.paymentEachT + " $");
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");
         $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
-        $('#bestEntityNameSpan').text("La mejor opcion es "  + bestEntities[0].name);
+        $('#bestEntityNameSpan').text(bestEntities[0].name);
         $('#divBest').css('display','block');
         saveBestLocalStorage( bestEntities[0].id);
         bestId = bestEntities[0].id; //change this to o hashmap structure
@@ -161,11 +161,16 @@ function drawBest(bestEntities){
     }
 
     changeBest(bestId);
-    showComparingAlert();
+    if(showedBest==0) {
+        $('[data-toggle="tooltip"]').tooltip('hide');
+        $('input.combobox').focus();
+        showComparingAlert();
+        showedBest=1;
+    }
 }
 
 function showComparingAlert(){
-     $('input.combobox').popover('show');
+     $('input.combobox').tooltip('show');
 }
 
 function contactBest(){

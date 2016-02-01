@@ -83,7 +83,7 @@
                <div class="row">
                    <div class="col-md-6 col-xs-6">
                        <input id="amountSlider" type="range" min="0" max="100000" value="0" step="1000" data-rangeslider  data-toggle="tooltip"
-                              data-placement="left" title="Ingresa la cantidad moviendo la barra.">
+                              data-placement="top" title="Ingresa la cantidad moviendo la barra.">
                        </input>
                    </div>
                    <div class="col-md-6 col-xs-6 ">
@@ -123,19 +123,16 @@
                    <div id="divBest" class="panel panel-default tableBest">
                        <div class="panel-heading col-md-12 tableHeader"   >
                            <div class="col-md-8 headerBest">
-                               <span id="bestEntityNameSpan"> </span>
-                                <span id="barBest" class="barBest"></span>
+                               <span>Mejor opción</span>
+                               <span id="bestEntityNameSpan" style="font-size: 18px;font-weight: bold"> </span>
+                               <span class="arrow" ></span>
                                 <!--<span   data-toggle="tooltip" data-placement="top" title="Localiza este marcador en el mapa." class="iconBest" > </span>-->
 
                            </div>
-                           <div class="col-md-4" style="padding-left: 2px !important;padding-right: 2px !important;text-align: center">
+                           <div class="col-md-4 headerComp">
                                    <select id="comparingSelect" class="combobox form-control comboComparing">
-
                                    </select>
-
-
                            </div>
-
                        </div>
                        <table class="table" style="text-align:left">
                            <tbody>
@@ -173,13 +170,17 @@
                            </button>
                            <button id="localizeBest" type="button" class="btn btn-primary  btnColorBlue" aria-label="Left Align"   onclick="localizeBest();"
                                    data-toggle="tooltip"  data-placement="bottom" title="Localiza en el mapa la mejor entidad financiera según el préstamo consultado">
-                               <a id="goFinancial" href="#financial" style="display:hidden"></a>
+                               <a id="goFinancial" href="#financial"></a>
                                <i class="fa fa-map-marker"> Localizar</i>
                            </button>
-                           <button id="showAllBtn" type="button" class="btn btn-primary btnColorBlue" aria-label="Left Align" data-toggle="modal"  data-placement="bottom"
+                           <button id="showAllBtn" type="button" class="btn btn-primary btnColorBlue" aria-label="Left Align"   data-toggle="tooltip"   data-placement="bottom"
                                    title="Consulta la información de todas las entidades financieras según el préstamo consultado" onclick="processTable();">
-                               <i class="fa fa-table"> Comppara con todas</i>
+                               <i class="fa fa-table"> Compara con todas</i>
                           </button>
+                           <button id="showRequi" type="button" class="btn btn-primary btnColorBlue" aria-label="Left Align"   data-toggle="tooltip"   data-placement="bottom"
+                                   title="Conoce los requisitos del préstamo."  onclick="showRequirements();">
+                               <i class="fa fa-list-ul"> Requisitos</i>
+                           </button>
                        </div>
                    </div>
                </div>
