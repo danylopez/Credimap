@@ -6,7 +6,7 @@ require './PHPMailer-master/vendor/autoload.php';
 const GUSER = 'micredimap@gmail.com'; 
 const GPWD = 'credimap1234';
 
-$to = 'alanh.lhp@gmail.com';
+$to = 'octavian.diaz@gmail.com';
 $from = GUSER;
 $from_name = 'Credi Map';
 $subject = 'Interesado en Credito';
@@ -52,7 +52,7 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	$mail->IsHTML(true);
 	$mail->Body = $body;
 	$mail->AddAddress($to);
-    $mail->AddCC('retos@campus-party.com.mx');
+    //$mail->AddCC('retos@campus-party.com.mx');
 	if($mail->send()){
 		$error = 'Message sent';
 		return true;
@@ -64,11 +64,9 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 
 //if(smtpmailer($to, $from, $from_name, $subject, $body)){
 if(smtpmailer($to, GUSER, $from_name, $subject, $body)){
-	//echo "Mensaje enviado! <a href='../index.html'>Click Aqui</a> para regresar a la pagina principal";
-	echo "<script type='text/javascript'>alert('Mensaje enviado!')</script>";
-	header("Refresh:0 , url=../index.html");
+	
 }else{
-	echo "<script type='text/javascript'>alert('Hubo un error al enviar el mensaje, por favor intente denuevo!')</script>";
+	
 }
 
 ?>

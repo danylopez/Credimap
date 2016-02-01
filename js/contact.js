@@ -42,7 +42,45 @@ $(document).ready(function(){
         
         }
     });
+    
+$("#feedbackSubmit").click(function() {
+
+  var data = {
+      name: $('#name').val(),
+      email: $('#email').val(),
+      message: $('#message').val(),
+      phone : $('#phone').val(),
+      financiera : $('#financiera').val()
+    };
+     sendMail(data);
+     $(this).button('loading');
+  });
 });
+
+function sendMail(data){
+   $.ajax({
+       url: 'php/send.php',
+       type:'POST',
+       data:data,
+       success: function (response) {
+         showAlertSentMail();
+         $("#feedbackSubmit").button('reset');
+       },
+       error: function(xhr, textStatus, errorThrown){
+      
+       }
+    });
+}
+
+function showAlertSentMail(){
+
+    $('#warning-alert').removeClass('alert-warning').addClass('alert-success');
+    $('#textAlert').text('¡Mensaje enviado!');
+    $('#textAlertDesc').text(' La paloma mensajera ha llegado a su destino.');    
+    $('#warning-alert').alert();
+    $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
+    }); 
+}
 
 jQuery.extend(jQuery.validator.messages, {
 	email: "Por favor escriba un e-mail v&#225lido.",
@@ -54,7 +92,6 @@ jQuery.extend(jQuery.validator.messages, {
 
 function setEntity(name)
 {
-    debugger;
   window.location.href = "#contacto";
   var header = "Financiera a Contactar: ";
   var inputFinanciera = $('#financiera') ;
@@ -63,3 +100,4 @@ function setEntity(name)
   //var x = document.getElementById("financiera");
   // fin.concat(finalEntities[0].name);
 }
+

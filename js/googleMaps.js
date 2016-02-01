@@ -58,7 +58,8 @@ function initialize()
 
            var marker = new google.maps.Marker({
                map: map,
-               position: myLocation
+               position: myLocation,
+               icon: {url: 'http://imgur.com/ybJJ8Za.png'}
            });
 
            marker.addListener('click', function() {
