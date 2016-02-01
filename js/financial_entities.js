@@ -22,7 +22,9 @@ function drawOnTable(){
         newFeRow.append('<td class="col-md-1">' +fe.name + '</td>' );
         newFeRow.append('<td class="col-md-3">' +fe.info.address + '</td>' );
         newFeRow.append('<td class="col-md-1">' +fe.info.phone + '</td>' );
-        newFeRow.append('<td class="col-md-1" style="max-width: 100px !important; word-wrap: break-word">' +fe.info.website+ '</td>' );
+        newFeRow.append('<td class="col-md-1" style="max-width: 100px !important; word-wrap: break-word">'
+        +'<a target="_blank" style="color: blue;" href="' +fe.info.website + '"><i class="fa fa-globe"></i> Sitio' 
+        + '</a>' + '</td>' );
         newFeRow.append('<td class="col-md-1">' +fe.financial.totalPayment + '</td>' );
         newFeRow.append('<td class="col-md-1">' +fe.financial.payment + '</td>' );
         newFeRow.append('<td class="col-md-1">' +fe.financial.taxes + '</td>' );
