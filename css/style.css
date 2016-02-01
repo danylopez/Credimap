@@ -225,6 +225,7 @@ COLORES EN NAVBAR
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #63666a; /*Color de texto cuando pasas mouse*/
   background-color: transparent;
+  text-decoration: underline;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
