@@ -38,17 +38,7 @@
     text-align: center;
     background-size:100% auto;
 }
-#mapa {
-    background-color:rgb(249,249,249);
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    height: 100%;
-    padding-top: 45px;
-    text-align: center;
-    background-size:100% auto;
-}
+
 #contacto {
     background-color: #FFFFFF;
     background-repeat: no-repeat;
@@ -62,12 +52,9 @@
 }
 #map
 {
-    width: 85%;
-    height: 80%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
     border-radius: 50%;
-    overflow: hidden;
 
 }
 #financieras 

@@ -37,6 +37,7 @@ function loadMap(){
 function initialize()
 {
   var location = new google.maps.LatLng(19.3202176, -99.224016);
+
   map = new google.maps.Map(document.getElementById('map'), {
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 center: location,
@@ -51,6 +52,9 @@ function initialize()
                   zoomControl        : false
                 });
    infoWindow = new google.maps.InfoWindow();
+    $('#map').height($('#calculatorDiv').width());
+    $('#map').width($('#map').height())com;
+
    if(navigator.geolocation) {
        navigator.geolocation.getCurrentPosition(function (place) {
            myLocation = new google.maps.LatLng(place.coords.latitude, place.coords.longitude);

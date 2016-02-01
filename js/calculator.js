@@ -10,9 +10,6 @@ $(document).ready(function (){
             $('.navbar-toggle').click();
   });
 
-  $('#map').height($('#calculatorDiv').width());
-  $('#map').width($('#calculatorDiv').width());
-   
 });
 
 
@@ -210,7 +207,7 @@ function writeExtraInfoPlaces(){
 
 //make the calculation of the best
 function onAmauntChange(){
- 
+
     var productId=  1;
     var amount = parseInt($('#amountText').val());
     term =  parseInt($('#termSelect').find(':selected').text());
@@ -247,7 +244,7 @@ function onAmauntChange(){
             }
         }
     }
-    
+
     sortFinalEntities(financialEntJson.financial_entities);
     drawBest(financialEntJson.financial_entities);
     
