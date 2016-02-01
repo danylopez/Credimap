@@ -195,14 +195,12 @@ COLORES EN NAVBAR
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #63666a; /*Color de texto cuando pasas mouse*/
   background-color: transparent;
-  font-style: underline;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #63666a; /*Color de texto cuando esta señalado*/
   background-color: #f5f5f5; /*Color cuando esta señalado*/
-  font-style: underline;
 }
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
@@ -229,7 +227,6 @@ COLORES EN NAVBAR
 .navbar-inverse .navbar-nav > .open > a:focus {
   color: #63666a;
   background-color: #f5f5f5;
-  font-style: underline;
 }
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
@@ -245,14 +242,12 @@ COLORES EN NAVBAR
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #63666a;
     background-color: #f5f5f5;
-    font-style: underline;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:focus {
     color: #f5f5f5;
     background-color: transparent;
-    font-style: underline;
   }
 }
 .navbar-inverse .navbar-link {
