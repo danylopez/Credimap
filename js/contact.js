@@ -1,13 +1,12 @@
-var validator;
 
 $(document).ready(function()
 {
-    validator=$('#feedbackForm').validate({
+    $('#feedbackForm').validate({
       rules: {
         name: {
             minlength: 3,
             maxlength: 20,
-            required: true,
+            required: true
         },
         phone: {
             minlength: 10,
@@ -44,6 +43,7 @@ $(document).ready(function()
       {
       }
   });
+
   $("#feedbackSubmit").click(function() {
     var data = {
       name: $('#name').val(),
@@ -76,17 +76,17 @@ function sendMail(data) {
 }
 function clearFields() {
   $('#financiera').val("Financiera a Contactar: ");
- /* $('#name').val("");
+  $('#name').val("");
   $('#email').val("");
   $('#message').val("");
   $('#phone').val("");
   $('.form-group').each(function () { $(this).removeClass('has-success'); });
   $('.form-group').each(function () { $(this).removeClass('has-error'); });
- // $('.form-group').each(function () { $(this).css(' -webkit-box-shadow','0 0 0px 1000px white inset');  });
+  $('.form-group').each(function () { $(this).css(' -webkit-box-shadow','0 0 0px 1000px white inset');  });
   $('.help-block').each(function () { $(this).remove(); });
   $('.form-control-feedback').each(function () { $(this).remove(); });
-  //$('.form-control').each(function () { $(this).css("background-color","white"); });*/
-    $('#feedbackForm').data('formValidation').resetField('#name',true);
+  $('.form-control').each(function () { $(this).css("background-color","white"); });
+
 }
 function showAlertSentMail() {
     $('#warning-alert').removeClass('alert-danger').removeClass('alert-warning').addClass('alert-success');
