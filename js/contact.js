@@ -1,63 +1,49 @@
 $(document).ready(function()
 {
-  $('#feedbackForm').validate(
-  {
-      rules: 
-      {
-        name: 
-        {
+  $('#feedbackForm').validate({
+      rules: {
+        name: {
             minlength: 3,
             maxlength: 20,
             required: true,
         },
-        phone: 
-        {
+        phone: {
             minlength: 10,
             maxlength: 10,
             number: true
         },
-        email: 
-        {
+        email: {
             required: true
         },
-        message: 
-        {
+        message: {
             required: false
         }
       },
-      highlight: function(element) 
-      {
+      highlight: function(element) {
           $(element).closest('.form-group')
                     .removeClass('has-success')
                     .addClass('has-error');    
       },
-      unhighlight: function(element) 
-      {
+      unhighlight: function(element) {
           $(element).closest('.form-group')
                     .removeClass('has-error')
                     .addClass('has-success');     
       },
       errorElement: 'span',
           errorClass: 'help-block',
-          errorPlacement: function(error, element) 
-          {
-              if(element.length) 
-              {
-                  error.insertAfter(element);
-              } else 
-              {
-              error.insertAfter(element);
+          errorPlacement: function(error, element) {
+              if(element.length) {
+                error.insertAfter(element);
+              } else {
+                error.insertAfter(element);
               }
           },
       isValidName: function (name) 
       {
-      
       }
   });
-  $("#feedbackSubmit").click(function() 
-  {
-    var data = 
-    {
+  $("#feedbackSubmit").click(function() {
+    var data = {
       name: $('#name').val(),
       email: $('#email').val(),
       message: $('#message').val(),
@@ -69,7 +55,7 @@ $(document).ready(function()
   });
 });
 
-function sendMail(data){
+function sendMail(data) {
   $.ajax({
      url: 'php/send.php',
      type:'POST',
@@ -80,7 +66,7 @@ function sendMail(data){
        clearFields();
        $("#feedbackSubmit").button('reset');
      },
-     error: function(xhr, textStatus, errorThrown){
+     error: function(xhr, textStatus, errorThrown) {
        showAlertErrorMail();
         //agregar error mail no enviado
      }
@@ -99,7 +85,7 @@ function clearFields() {
   $('.form-control-feedback').each(function () { $(this).remove(); });
   //$('.form-control').each(function () { $(this).css("background-color","white"); });
 }
-function showAlertSentMail(){
+function showAlertSentMail() {
     $('#warning-alert').removeClass('alert-danger').removeClass('alert-warning').addClass('alert-success');
     $('#textAlert').text('¡Mensaje enviado!');
     $('#textAlertDesc').text(' La paloma mensajera ha llegado a su destino.');    
@@ -107,7 +93,7 @@ function showAlertSentMail(){
     $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
     }); 
 }
-function showAlertErrorMail(){
+function showAlertErrorMail() {
     $('#warning-alert').removeClass('alert-success').removeClass('alert-warning').addClass('alert-danger');
     $('#textAlert').text('¡ERROR! ');
     $('#textAlertDesc').text(' La paloma mensajera no ha llegado a su destino.');
@@ -115,14 +101,6 @@ function showAlertErrorMail(){
     $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
     }); 
 }
-
-jQuery.extend(jQuery.validator.messages, {
-	email: "Por favor escriba un e-mail v&#225lido.",
-  required: "Necesita llenar este campo.",
-  number: "Por favor solo escriba n&#250meros.",
-  maxlength: jQuery.validator.format("Por favor no escriba m&#225s de {0} caracteres."),
-  minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
-});
 
 function setEntity(name)
 {
@@ -135,3 +113,10 @@ function setEntity(name)
   // fin.concat(finalEntities[0].name);
 }
 
+jQuery.extend(jQuery.validator.messages, {
+  email: "Por favor escriba un e-mail v&#225lido.",
+  required: "Necesita llenar este campo.",
+  number: "Por favor solo escriba n&#250meros.",
+  maxlength: jQuery.validator.format("Por favor no escriba m&#225s de {0} caracteres."),
+  minlength: jQuery.validator.format("Por favor escriba al menos {0} caracteres.")
+});
