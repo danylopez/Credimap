@@ -1,58 +1,71 @@
-$(document).ready(function(){
-    $('#feedbackForm').validate({
-        rules: {
-            name: {
-                minlength: 3,
-                maxlength: 20,
-                required: true,
-            },
-            phone: {
-                minlength: 10,
-                maxlength: 10,
-                number: true
-            },
-            email: {
-                required: true
-            },
-            message: {
-                required: false
-            }
+$(document).ready(function()
+{
+  $('#feedbackForm').validate(
+  {
+      rules: 
+      {
+        name: 
+        {
+            minlength: 3,
+            maxlength: 20,
+            required: true,
         },
-        highlight: function(element) {
-            $(element).closest('.form-group')
-                      .removeClass('has-success')
-                      .addClass('has-error');    
+        phone: 
+        {
+            minlength: 10,
+            maxlength: 10,
+            number: true
         },
-        unhighlight: function(element) {
-            $(element).closest('.form-group')
-                      .removeClass('has-error')
-                      .addClass('has-success');     
+        email: 
+        {
+            required: true
         },
-        errorElement: 'span',
-            errorClass: 'help-block',
-            errorPlacement: function(error, element) {
-                if(element.length) {
-                    error.insertAfter(element);
-                } else {
-                error.insertAfter(element);
-                }
-            },
-        isValidName: function (name) {
-        
+        message: 
+        {
+            required: false
         }
-    });
-    
-$("#feedbackSubmit").click(function() {
-
-  var data = {
+      },
+      highlight: function(element) 
+      {
+          $(element).closest('.form-group')
+                    .removeClass('has-success')
+                    .addClass('has-error');    
+      },
+      unhighlight: function(element) 
+      {
+          $(element).closest('.form-group')
+                    .removeClass('has-error')
+                    .addClass('has-success');     
+      },
+      errorElement: 'span',
+          errorClass: 'help-block',
+          errorPlacement: function(error, element) 
+          {
+              if(element.length) 
+              {
+                  error.insertAfter(element);
+              } else 
+              {
+              error.insertAfter(element);
+              }
+          },
+      isValidName: function (name) 
+      {
+      
+      }
+  });
+  $("#feedbackSubmit").click(function() 
+  {
+    var data = 
+    {
       name: $('#name').val(),
       email: $('#email').val(),
       message: $('#message').val(),
       phone : $('#phone').val(),
       financiera: $('#financiera').val()
     };
-     sendMail(data);
-     $(this).button('loading');
+    sendMail(data);
+    $(this).button('loading');
   });
 });
 
@@ -66,7 +79,6 @@ function sendMail(data){
        showAlertSentMail();
        clearFields();
        $("#feedbackSubmit").button('reset');
-       
      },
      error: function(xhr, textStatus, errorThrown){
        showAlertErrorMail();
@@ -80,6 +92,12 @@ function clearFields() {
   $('#email').val("");
   $('#message').val("");
   $('#phone').val("");
+  $('.form-group').each(function () { $(this).removeClass('has-success'); });
+  $('.form-group').each(function () { $(this).removeClass('has-error'); });
+  $('.form-group').each(function () { $(this).removeClass('has-feedback'); });
+  $('.help-block').each(function () { $(this).remove(); });
+  $('.form-control-feedback').each(function () { $(this).remove(); });
+  //$('.form-control').each(function () { $(this).css("background-color","white"); });
 }
 function showAlertSentMail(){
     $('#warning-alert').removeClass('alert-danger').removeClass('alert-warning').addClass('alert-success');
