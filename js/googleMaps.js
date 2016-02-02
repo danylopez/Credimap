@@ -67,10 +67,10 @@ function initialize()
 
             marker.addListener('click', function() {
                 new google.maps.InfoWindow({
-                    content: '¡Aquí te encuentras.!'
+                    content: '¡Aquí te encuentras!'
                 }).open(map,marker);
             });
-            map.setZoom(13);
+            map.setZoom(15);
             map.panTo(myLocation);
             new google.maps.event.trigger( marker, 'click' );
             google.maps.event.addListenerOnce(map, 'idle', performSearch);
@@ -220,6 +220,7 @@ function addMarker(place) {
     });
 }
 function handleError() {
+    $('#errorModal').modal({backdrop: 'static', keyboard: false});
     createStates();
     $('#errorModal').modal('show');
     $('#stateSelect').change(function(){
@@ -2737,7 +2738,36 @@ function createMuni() {
         }
     });
     $('#muniSelect').change(function(){
-        $('#errorModal').modal('hide');
-        /*Aquí llamas la funcion*/
+        $(muni).each(function (index, obj) {
+        if ($('#stateSelect').val() == obj.StateCode && $('#muniSelect').val() == obj.MunCode) {
+            $('#errorModal').modal('hide');
+            drawMap(obj.Latitude, obj.Longitude);
+        }
     });
+    });
+}
+
+function drawMap(latitude, longitude){
+    myLocation = new google.maps.LatLng(latitude, longitude);
+    service = new google.maps.places.PlacesService(map);
+
+    var marker = new google.maps.Marker({
+        map: map,
+        position: myLocation,
+        icon: { url: 'http://imgur.com/ybJJ8Za.png',
+                scaledSize :new google.maps.Size(35, 43),
+                origin: new google.maps.Point(0,0),
+                anchor: new google.maps.Point(0, 0)
+        }
+    });
+
+    marker.addListener('click', function() {
+        new google.maps.InfoWindow({
+            content: '¡Aquí te encuentras!'
+        }).open(map,marker);
+    });
+    map.setZoom(15);
+    map.panTo(myLocation);
+    new google.maps.event.trigger( marker, 'click' );
+    google.maps.event.addListenerOnce(map, 'idle', performSearch);
 }

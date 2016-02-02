@@ -2,10 +2,12 @@ $(document).ready(function(){
     $("#sitio").click(function(){
         $("#video").attr('src', '');
         $("#intro").hide();
+        window.location.href = "#calculadora";
     });
     $('#sitioaux').click(function() {
         $("#video").attr('src', '');
         $("#intro").hide();
+        window.location.href = "#calculadora";
     });
     
     /* Get iframe src attribute value i.e. YouTube video url
