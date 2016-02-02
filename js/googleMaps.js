@@ -76,11 +76,13 @@ function initialize()
             map.setZoom(13);
             map.panTo(myLocation);
             google.maps.event.addListenerOnce(map, 'idle', performSearch);
+        },
+        function (error){
+            if (error.code == error.PERMISSION_DENIED)
+                console.log("you denied me :-(");
         });
     }
-    else{
-        //code when user does not accept location access
-    }
+
 
     //createCustomIcon();
 }
