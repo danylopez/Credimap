@@ -63,10 +63,10 @@
       <div class="container-fluid">
 
           <div class="row">
-           <div id="calculatorDiv" class="col-md-6 col-xs-12 ">
+           <div id="calculatorDiv" class="col-md-6 col-sm-6 col-xs-12 ">
                <h3 class="headerCustom">Calculadora Virtual</h3>
                <div class="row">
-                   <div class="col-md-6 col-xs-6 ">
+                   <div class="col-md-6 col-sm-6  col-xs-6 ">
                        <div class="input-group">
                            <span id="pesosSymbolSpan" class="input-group-addon">$</span>
                            <input id="amountText" type="text" class="form-control"  placeholder="Importe"
@@ -74,7 +74,7 @@
                                   title="Ingresa la cantidad en pesos que deseas como préstamo">
                        </div>
                    </div>
-                   <div class="col-md-6 col-xs-6 ">
+                   <div class="col-md-6 col-sm-6  col-xs-6 ">
                        <select class="form-control" id="termSelect"   data-toggle="tooltip"  data-placement="top"
                                title="Ingresa el plazo en años o meses en el que deseas pagar">
                            <option value="notSelected" disabled selected>Plazo</option>
@@ -83,19 +83,19 @@
                </div>
                <br>
                <div class="row">
-                   <div class="col-md-6 col-xs-6">
+                   <div class="col-md-6 col-sm-6  col-xs-6">
                        <input id="amountSlider" type="range" min="0" max="100000" value="0" step="1000" data-rangeslider  data-toggle="tooltip"
                               data-placement="top" title="Ingresa la cantidad moviendo la barra">
                        </input>
                    </div>
-                   <div class="col-md-6 col-xs-6 ">
+                   <div class="col-md-6 col-sm-6  col-xs-6 ">
                        <input  type="radio"  name="timeUnitsRadio" data-labelauty="Años" checked="checked" value="anos"/>
                        <input  type="radio"   name="timeUnitsRadio" data-labelauty="Meses" value="meses"/>
                    </div>
                </div>
                <br>
                <div class="row">
-                   <div class="col-md-6 col-xs-6">
+                   <div class="col-md-6 col-sm-6  col-xs-6">
                        <select class="form-control" id="pFrequencySelect"   data-toggle="tooltip"
                                data-placement="bottom" title="Ingresa con qué frecuencia deseas pagar">
                            <option value="notSelected" disabled selected >Frecuencia de Pago</option>
@@ -104,7 +104,7 @@
                            <option value="mensual"  >Mensual</option>
                        </select>
                    </div>
-                   <div class="col-md-6 col-xs-6">
+                   <div class="col-md-6 col-sm-6  col-xs-6">
                        <select class="form-control" id="loanKind"   data-toggle="tooltip"
                                data-placement="bottom" title="Ingresa el tipo de préstamo que deseas">
                            <option value="notSelected"  selected>Tipo de prestamo</option>
@@ -115,7 +115,7 @@
                </div>
                <br>
                <div class="row">
-                   <div class="col-md-1 col-xs-1">
+                   <div class="col-md-1 col-sm-1  col-xs-1">
                        <button type="button" id="calculateBtn" class="btn btn-primary btn-md" onclick="calculate();">
                        <i class="fa fa-calculator"></i>
                        Calcular
@@ -126,15 +126,15 @@
                <hr>
                <div class="row divPadding" >
                    <div id="divBest" class="panel panel-default tableBest">
-                       <div class="panel-heading col-md-12 tableHeader" >
-                           <div class="col-md-8 headerBest">
-                               <div class="col-md-3 noPaddingLR"><span>Mejor opción :</span></div>
-                               <div class="col-md-7 textOverflow" style="padding-left: 3px;padding-right: 0px"><span id="bestEntityNameSpan" style="font-size: 18px;font-weight: bold;"> </span></div>
-                               <div class="col-md-1 noPaddingLR"> <img src="http://imgur.com/unLktSj.png" style="padding-left: 10px" data-toggle="tooltip" data-placement="top" title="Marcador que indica la mejor opcion.">
+                       <div class="panel-heading col-md-12 col-sm-12  tableHeader" >
+                           <div class="col-md-8   col-xs-8  headerBest">
+                               <div class="col-md-3 col-xs-3  noPaddingLR textOverflow"><span>Mejor opción :</span></div>
+                               <div class="col-md-7 col-xs-7  textOverflow" style="padding-left: 3px;padding-right: 0px"><span id="bestEntityNameSpan" style="font-size: 18px;font-weight: bold;"> </span></div>
+                               <div class="col-md-1 col-xs-1  noPaddingLR"> <img src="http://imgur.com/unLktSj.png"  class="iconBar" data-toggle="tooltip" data-placement="top" title="Marcador que indica la mejor opcion.">
                                </div>
-                               <div class="col-md-1 noPaddingLR" style="float: right;"><img src="img/arrow.png" style="float: right; height: 45px;" ></div>
+                               <div class="col-md-1 col-xs-1  noPaddingLR" style="float: right;"><img src="img/arrow.png" style="float: right; height: 45px;" ></div>
                            </div>
-                           <div class="col-md-4 headerComp ">
+                           <div class="col-md-4 col-xs-4  headerComp ">
                                    <select id="comparingSelect" class="combobox form-control noPaddingLR searchCombo1">
                                    </select>
                            </div>
@@ -190,7 +190,7 @@
                    </div>
                </div>
            </div>
-           <div class="col-md-6 col-xs-12" >
+           <div class="col-md-6 col-sm-6  col-xs-12" >
                <h3 class="headerCustom">Intermediarias Financieras</h3>
                <div id="map" >
                </div>
@@ -209,38 +209,38 @@
     <div class="container-fluid">
           <h3 class="headerCustom">Contacto</h3><br>
           <div id="contact_form" class="row">
-            <div class="col-md-9 col-md-offset-3">
+            <div class="col-md-9 col-sm-9   col-md-offset-3  col-sm-offset-3" >
                 <form class="form-horizontal" role="form" id="feedbackForm"  data-toggle="validator" data-disable="false">
                     <div class="form-group has-feedback">
-                        <div class="col-md-8">
+                        <div class="col-md-8 col-sm-8 "  >
                             <input type="text" name="financiera" id="financiera" 
                                    class="form-control" value="Financiera a contactar: " readonly="readonly" />
                             <span class="glyphicon form-control-feedback"></span>
                        </div>
                     </div>  
                     <div class="form-group has-feedback">
-                        <div class="col-md-8">
+                        <div class="col-md-8 col-sm-8 ">
                             <input type="text" name="name" id="name" 
                                    class="form-control" placeholder="Ingrese su nombre (Requerido)" />
                             <span class="glyphicon form-control-feedback"></span>
                        </div>
                     </div>  
                     <div class="form-group has-feedback">
-                      <div class="col-md-8">
+                      <div class="col-md-8 col-sm-8 ">
                             <input type="text" name="phone" id="phone" 
                                    class="form-control" placeholder="Teléfono (10 Digitos)" />
                             <span class="glyphicon form-control-feedback"></span>
                        </div>
                     </div>
                     <div class="form-group has-feedback">
-                      <div class="col-md-8">
+                      <div class="col-md-8 col-sm-8 ">
                             <input type="email" name="email" id="email" 
                                    class="form-control" placeholder="Ingrese su correo electrónico (Requerido)" />
                             <span class="glyphicon form-control-feedback"></span>
                        </div>
                     </div>
                     <div class="form-group has-feedback">
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-sm-8">
                       <textarea rows="5" cols="30" class="form-control" id="message" name="message" placeholder="Compartanos sus dudas y nosotros nos pondremos en contacto con usted." required></textarea>
                     </div>  
                   </div>

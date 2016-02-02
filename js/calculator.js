@@ -26,8 +26,13 @@ function initCalculator(){
     $('input.combobox').css('text-align','center');
     $('.searchCombo1').tooltip({title:'! Compara con otra de las entidades financieras !','placement':'top',trigger:'focus'});
     $('.searchCombo2').tooltip({title:'Busca alguna entidad financiera y localizala en azul.','placement':'top',trigger:'focus'});
+    $(window).resize(onResizeScreen);
 
+}
 
+function onResizeScreen(){
+    $('#map').height($('#calculatorDiv').width());
+    $('#map').width($('#calculatorDiv').width());
 }
 
 function fillComparingCombo(){
@@ -123,11 +128,11 @@ function registerInputEvents(){
 
 
 function writeValuesComp(fe){
-    $('#totalPaymentComp').text(fe.financial.totalPayment + " $");
-    $('#paymentComp').text(fe.financial.payment + " $");
-    $('#taxesPaidComp').text(fe.financial.taxes + " $");
-    $('#taxPercentageComp').text(fe.financial.tax_rate + " %");
-    $('#paymentEachTComp').text(fe.financial.paymentEachT + " $");
+    $('#totalPaymentComp').text('$'+fe.financial.totalPayment );
+    $('#paymentComp').text('$'+fe.financial.payment );
+    $('#taxesPaidComp').text('$'+fe.financial.taxes);
+    $('#taxPercentageComp').text('$'+fe.financial.tax_rate );
+    $('#paymentEachTComp').text('$'+fe.financial.paymentEachT );
 }
 
 function validateNotEmptyFields(){
@@ -152,12 +157,12 @@ function getFrequencyPayment(pFrequencySelect){
 function drawBest(bestEntities){
     if(bestEntities.length>0){
         var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
-        $('#totalPayment').text("$ "+bestEntities[0].financial.totalPayment);
-        $('#payment').text("$ "+bestEntities[0].financial.payment);
-        $('#taxesPaid').text("$ "+bestEntities[0].financial.taxes );
+        $('#totalPayment').text("$"+bestEntities[0].financial.totalPayment);
+        $('#payment').text("$"+bestEntities[0].financial.payment);
+        $('#taxesPaid').text("$"+bestEntities[0].financial.taxes );
         $('#taxPercentage').text(bestEntities[0].financial.tax_rate + " %");
         $('#frequencyPay').text(pFrequencySelect);
-        $('#paymentEachT').text("$ "+bestEntities[0].financial.paymentEachT );
+        $('#paymentEachT').text("$"+bestEntities[0].financial.paymentEachT );
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");
         $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
         $('#bestEntityNameSpan').text(bestEntities[0].name);

@@ -87,6 +87,10 @@ html {
     text-overflow: ellipsis;
 }
 
+.iconBar{
+    padding-left: 10px;
+}
+
 .iconBest{
     background-image: url('http://imgur.com/unLktSj.png');
     background-repeat: no-repeat;
@@ -128,10 +132,21 @@ html {
     }
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
+
+    .tableBest{
+        padding-left: 1px !important;
+        padding-right: 1px !important;
+    }
+
+    .iconBar{
+        margin-left: -10px;
+        padding-left: 0px;
+    }
 
     .headerCustom{
         max-width: 100%;
+        padding-top: 10px;
     }
     .containerStrech{
        padding-top: 10% !important; 
