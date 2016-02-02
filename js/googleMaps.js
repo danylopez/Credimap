@@ -67,10 +67,10 @@ function initialize()
 
             marker.addListener('click', function() {
                 new google.maps.InfoWindow({
-                    content: '¡Aquí te encuentras.!'
+                    content: '¡Aquí te encuentras!'
                 }).open(map,marker);
             });
-            map.setZoom(14);
+            map.setZoom(15);
             map.panTo(myLocation);
             new google.maps.event.trigger( marker, 'click' );
             google.maps.event.addListenerOnce(map, 'idle', performSearch);
@@ -220,6 +220,7 @@ function addMarker(place) {
     });
 }
 function handleError() {
+    $('#errorModal').modal({backdrop: 'static', keyboard: false});
     createStates();
     $('#errorModal').modal('show');
     $('#stateSelect').change(function(){
@@ -2762,10 +2763,10 @@ function drawMap(latitude, longitude){
 
     marker.addListener('click', function() {
         new google.maps.InfoWindow({
-            content: '¡Aquí te encuentras.!'
+            content: '¡Aquí te encuentras!'
         }).open(map,marker);
     });
-    map.setZoom(14);
+    map.setZoom(15);
     map.panTo(myLocation);
     new google.maps.event.trigger( marker, 'click' );
     google.maps.event.addListenerOnce(map, 'idle', performSearch);
