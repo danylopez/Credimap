@@ -6,7 +6,7 @@ require './PHPMailer-master/vendor/autoload.php';
 const GUSER = 'micredimap@gmail.com'; 
 const GPWD = 'credimap1234';
 
-$to = 'octavian.diaz@gmail.com';
+$to = 'alanh.lhp@gmail.com';
 $from = GUSER;
 $from_name = 'Credi Map';
 $subject = 'Interesado en Credito';
@@ -18,18 +18,32 @@ $finan = (isset($_POST['financiera']) ? $_POST['financiera'] : '(vacio)');
 $body = "
 <html>
 <body>
-<p>
-<h1>Mensaje</h1>
-$message
-</p>
-<p>
-<h1>Datos Personales</h1>
-Nombre: $name<br/>
-Email: $email<br/>
-Teléfono: $phone<br/>
-</p>
+<img src=\"cid:logopng\" align='center' style='width:250px;height:70px;'/>
+<p align='right'>$finan</p>
 <hr/>
-$finan
+
+<table>
+<tr>
+<td>
+	<table align='left' style='width:150%'>
+	<tr>
+		<th align='left' width='70%'>$name tiene algunos comentarios, ponte en contacto!</th>
+		<th align='left' width='30%'>Información de contacto</th>
+	</tr>
+	<tr>
+		<td><p>$message</p></td>
+		<td><p>
+			<b>Nombre:</b> $name<br/>
+			<b>Email:</b> $email<br/>
+			<b>Teléfono:</b> $phone<br/></p>
+		</td>
+	</tr>
+	</table>
+
+</td>
+</tr>
+</table>
+
 </body>
 </html>
 ";
@@ -53,6 +67,7 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	$mail->Body = $body;
 	$mail->AddAddress($to);
     //$mail->AddCC('retos@campus-party.com.mx');
+    $mail->AddEmbeddedImage('../img/logo.png', 'logopng', 'logo.png');
 	if($mail->send()){
 		$error = 'Message sent';
 		return true;
