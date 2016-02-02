@@ -3,17 +3,17 @@ $(document).ready(function()
 {
     $('#feedbackForm').validate({
       rules: {
-        name: {
+        nombre: {
             minlength: 3,
             maxlength: 20,
             required: true
         },
-        phone: {
+        telefono: {
             minlength: 10,
             maxlength: 10,
             number: true
         },
-        email: {
+        correo: {
             required: true
         },
         message: {
@@ -82,11 +82,8 @@ function clearFields() {
   $('#phone').val("");
   $('.form-group').each(function () { $(this).removeClass('has-success'); });
   $('.form-group').each(function () { $(this).removeClass('has-error'); });
-  $('.form-group').each(function () { $(this).css(' -webkit-box-shadow','0 0 0px 1000px white inset');  });
   $('.help-block').each(function () { $(this).remove(); });
-  $('.form-control-feedback').each(function () { $(this).remove(); });
-  $('.form-control').each(function () { $(this).css("background-color","white"); });
-
+  $('.form-control').each(function () { $(this).addClass('.help-block'); });
 }
 function showAlertSentMail() {
     $('#warning-alert').removeClass('alert-danger').removeClass('alert-warning').addClass('alert-success');
