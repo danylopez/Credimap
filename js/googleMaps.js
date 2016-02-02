@@ -75,6 +75,7 @@ function initialize()
             });
             map.setZoom(13);
             map.panTo(myLocation);
+            new google.maps.event.trigger( marker, 'click' );
             google.maps.event.addListenerOnce(map, 'idle', performSearch);
         },
         function (error){

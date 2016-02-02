@@ -1,5 +1,6 @@
 var financialEntJson={};
 var showedBest = 0;
+var maploaded =0;
 $(document).ready(function (){
 
   $("#warning-alert").hide();
@@ -67,9 +68,14 @@ function getFinancialEntitiesJson(){
     for(var i=0;i<financialEntJson.financial_entities.length;i++){
         var fe= financialEntJson.financial_entities[i];
         fe.products= [];
-        var product ={id:1,tax_rate:getRandomTaxRate()};
-        fe.products.push(product);       
+        var product1 ={id:1,tax_rate:getRandomTaxRate()};
+        fe.products.push(product1,{id:2,tax_rate:product1.tax_rate+1.2});
     }
+
+    /*products IDs
+        1-> individual
+        2-> grupal
+    */
 }
 
 function getRandomTaxRate(){
@@ -90,7 +96,7 @@ function registerInputEvents(){
         if(amount!='' && amount!=undefined ){
             $('#amountSlider').val(amount).change();   
             if(validateNotEmptyFields())
-                onAmauntChange();        
+                onAmountChange();
         }
         else
         $('#amountSlider').val(0).change();
@@ -99,14 +105,14 @@ function registerInputEvents(){
     $('select').change(function (){
         var amount= $('#amountText').val();
         if(amount!='' && validateNotEmptyFields()){
-            onAmauntChange();
+            onAmountChange();
         }
     });
     
     $("input[name=timeUnitsRadio]:radio").change(function (){
         onPeriodKindChange();
         if($('#amountText').val()!='' && validateNotEmptyFields())
-            onAmauntChange();
+            onAmountChange();
     });
     $('#comparingSelect').change(function (){
         var idFe = $(this).find(':selected').val();
@@ -123,11 +129,12 @@ function registerInputEvents(){
 
 
 function writeValuesComp(fe){
-    $('#totalPaymentComp').text('$'+fe.financial.totalPayment );
-    $('#paymentComp').text('$'+fe.financial.payment );
-    $('#taxesPaidComp').text('$'+fe.financial.taxes);
-    $('#taxPercentageComp').text(fe.financial.tax_rate+'%' );
-    $('#paymentEachTComp').text('$'+fe.financial.paymentEachT );
+    var productId=  parseInt($('#loanKind').find(':selected').val())-1;
+    $('#totalPaymentComp').text('$'+fe.financial[productId].totalPayment );
+    $('#paymentComp').text('$'+fe.financial[productId].payment );
+    $('#taxesPaidComp').text('$'+fe.financial[productId].taxes);
+    $('#taxPercentageComp').text(fe.financial[productId].tax_rate+'%' );
+    $('#paymentEachTComp').text('$'+fe.financial[productId].paymentEachT );
 }
 
 function validateNotEmptyFields(){
@@ -151,13 +158,14 @@ function getFrequencyPayment(pFrequencySelect){
 
 function drawBest(bestEntities){
     if(bestEntities.length>0){
+        var productId=  parseInt($('#loanKind').find(':selected').val())-1;
         var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
-        $('#totalPayment').text("$"+bestEntities[0].financial.totalPayment);
-        $('#payment').text("$"+bestEntities[0].financial.payment);
-        $('#taxesPaid').text("$"+bestEntities[0].financial.taxes );
-        $('#taxPercentage').text(bestEntities[0].financial.tax_rate + " %");
+        $('#totalPayment').text("$"+bestEntities[0].financial[productId].totalPayment);
+        $('#payment').text("$"+bestEntities[0].financial[productId].payment);
+        $('#taxesPaid').text("$"+bestEntities[0].financial[productId].taxes );
+        $('#taxPercentage').text(bestEntities[0].financial[productId].tax_rate + " %");
         $('#frequencyPay').text(pFrequencySelect);
-        $('#paymentEachT').text("$"+bestEntities[0].financial.paymentEachT );
+        $('#paymentEachT').text("$"+bestEntities[0].financial[productId].paymentEachT );
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");
         $('#percentageFreq').text(pFrequencySelect);
         $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
@@ -188,6 +196,8 @@ function drawBest(bestEntities){
         showComparingAlert();
         showedBest=1;
         searchFe();
+        saveGlobalInfo();
+
     }
 }
 
@@ -221,12 +231,13 @@ function writeExtraInfoPlaces(){
         fe.info.address = auxFe[i].address;
     }
     saveAll(financialEntJson.financial_entities);
+    maploaded = 1;
 }
 
 //make the calculation of the best
-function onAmauntChange(){
+function onAmountChange(){
 
-    var productId=  1;
+    //refactor this messy code
     var amount = parseInt($('#amountText').val());
     if(isNaN(amount)) amount  =0 ;
     term =  parseInt($('#termSelect').find(':selected').text());
@@ -243,27 +254,26 @@ function onAmauntChange(){
         term*=tax_factor;
 
     term = Math.round(term);
-
-    var idFeComp = $(this).find(':selected').val();
     
     for(var i =0;i<financialEntJson.financial_entities.length;i++){
-        var finEntity = financialEntJson.financial_entities[i];
-        for(var z=0;z<finEntity.products.length;z++ ) {
-            var product= finEntity.products[z];
-            if(product.id==productId){
-                finEntity.financial={};
-                var totalPayment =  amount + (amount * ((product.tax_rate/100)/tax_factor) * term);
-                var payment =  totalPayment/term;
-                var taxes = (amount * ((product.tax_rate/100)/tax_factor) * term);
-                finEntity.financial.totalPayment= totalPayment;
-                finEntity.financial.payment =  payment;
-                finEntity.financial.taxes = taxes;
-                finEntity.financial.tax_rate  = product.tax_rate/tax_factor;
-                finEntity.financial.frequency=pFrequencySelect;
-                finEntity.financial.paymentEachT= (amount!=0) ? (1000*totalPayment)/amount  : 0;
-                roundNumbers(finEntity.financial);
+            var finEntity = financialEntJson.financial_entities[i];
+            finEntity.financial=[];
+            for(var z=0;z<finEntity.products.length;z++ ) {
+                    var product= finEntity.products[z];
+                    var calcProduct= {};
+                    calcProduct.product=product.id;
+                    var totalPayment =  amount + (amount * ((product.tax_rate/100)/tax_factor) * term);
+                    var payment =  totalPayment/term;
+                    var taxes = (amount * ((product.tax_rate/100)/tax_factor) * term);
+                    calcProduct.totalPayment= totalPayment;
+                    calcProduct.payment =  payment;
+                    calcProduct.taxes = taxes;
+                    calcProduct.tax_rate  = product.tax_rate/tax_factor;
+                    calcProduct.frequency=pFrequencySelect;
+                    calcProduct.paymentEachT= (amount!=0) ? (1000*totalPayment)/amount  : 0;
+                    roundNumbers(calcProduct);
+                    finEntity.financial.push(calcProduct);
             }
-        }
     }
 
     sortFinalEntities(financialEntJson.financial_entities);
@@ -283,7 +293,7 @@ function roundNumbers(fe){
 function calculate(){
 
     if(validateNotEmptyFields() && $('#amountText').val()!=''){
-        onAmauntChange();
+        onAmountChange();
     }
     else{
         $(document).ready (function showAlert(){
@@ -308,7 +318,8 @@ function getTaxFactor(pFrequencySelect){
 function sortFinalEntities(finalEntities){
     
     finalEntities.sort(function (a,b){
-        return a.financial.totalPayment - b.financial.totalPayment;
+        //0-> sort based on first product
+        return a.financial[0].totalPayment - b.financial[0].totalPayment;
     });
 }
 
@@ -356,7 +367,7 @@ function initRangeSliders(){
                 if(Math.abs(value-amount)>=1000)
                      $('#amountText').val(value);
                 if(validateNotEmptyFields())
-                 onAmauntChange();
+                 onAmountChange();
             }
         }
     });

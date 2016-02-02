@@ -142,9 +142,9 @@
                    <div class="col-md-6 col-sm-6  col-xs-6">
                        <select class="form-control" id="loanKind"   data-toggle="tooltip"
                                data-placement="bottom" title="Ingresa el tipo de préstamo que deseas">
-                           <option value="notSelected"  selected>Tipo de prestamo</option>
-                           <option value="individual"  >Individual</option>
-                           <option value="grupal"  >Grupal</option>
+                           <option value="notSelected"  selected disabled>Tipo de prestamo</option>
+                           <option value="1"  >Individual</option>
+                           <option value="2"  >Grupal</option>
                        </select>
                    </div>
                </div>
@@ -305,10 +305,10 @@
                 <div class="col-md-3" style="padding-left: 0px;padding-right: 10px">
                     <select class="form-control" id="loanKind2"   data-toggle="tooltip"
                             data-placement="top" title="Esta opción te permite comparar entre todos los tipos de crédito según los datos que ingresaste en la calculadora.">
-                        <option value="notSelected"  selected>Tipo de prestamo</option>
-                        <option value="todos" >Todos</option>
-                        <option value="individual">Individual</option>
-                        <option value="grupal">Grupal</option>
+                        <option value="notSelected"  selected disabled>Tipo de prestamo</option>
+                        <option value="1">Individual</option>
+                        <option value="2">Grupal</option>
+                        <option value="3" >Todos</option>
                     </select>
                 </div>
                 <div class="col-md-3" style="padding-left: 0px;">
@@ -324,12 +324,12 @@
               <th style="display: none" >Id</th>
               <th class="col-md-1">Nombre</th>
               <th class="col-md-3">Dirección</th>
-              <th class="col-md-1">Teléfono</th>
-              <th class="col-md-1">Sitio Web</th>
-              <th class="col-md-1">Pago Total ($)</th>
-              <th class="col-md-1">Pago ($)</th>
-              <th class="col-md-1">Intereses Pagados ($)</th>
+              <th class="col-md-1">Credito</th>
+              <th class="col-md-1">Pago Total($)</th>
+              <th class="col-md-1">Pago($)</th>
+              <th class="col-md-1">Intereses Pagados($)</th>
               <th class="col-md-1">% de Interés</th>
+              <th class="col-md-1">Pago p/c 1000</th>
               <th class="col-md-2">Acciones</th>
             </tr>
           </thead>
