@@ -86,7 +86,7 @@ function initialize()
     }
 
 
-    //createCustomIcon();
+    createCustomIcon();
 }
 
 function performSearch() {

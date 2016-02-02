@@ -1,11 +1,12 @@
+
 $(document).ready(function()
 {
-  $('#feedbackForm').validate({
+    $('#feedbackForm').validate({
       rules: {
         name: {
             minlength: 3,
             maxlength: 20,
-            required: true,
+            required: true
         },
         phone: {
             minlength: 10,
@@ -42,6 +43,7 @@ $(document).ready(function()
       {
       }
   });
+
   $("#feedbackSubmit").click(function() {
     var data = {
       name: $('#name').val(),
@@ -80,10 +82,11 @@ function clearFields() {
   $('#phone').val("");
   $('.form-group').each(function () { $(this).removeClass('has-success'); });
   $('.form-group').each(function () { $(this).removeClass('has-error'); });
-  /*$('.form-group').each(function () { $(this).removeClass('has-feedback'); });
+  $('.form-group').each(function () { $(this).css(' -webkit-box-shadow','0 0 0px 1000px white inset');  });
   $('.help-block').each(function () { $(this).remove(); });
-  $('.form-control-feedback').each(function () { $(this).remove(); });*/
-  //$('.form-control').each(function () { $(this).css("background-color","white"); });
+  $('.form-control-feedback').each(function () { $(this).remove(); });
+  $('.form-control').each(function () { $(this).css("background-color","white"); });
+
 }
 function showAlertSentMail() {
     $('#warning-alert').removeClass('alert-danger').removeClass('alert-warning').addClass('alert-success');
@@ -109,8 +112,6 @@ function setEntity(name)
   var inputFinanciera = $('#financiera') ;
   inputFinanciera.val(header.concat(name))
   $('#name').focus();
-  //var x = document.getElementById("financiera");
-  // fin.concat(finalEntities[0].name);
 }
 
 jQuery.extend(jQuery.validator.messages, {
