@@ -1,9 +1,11 @@
 $(document).ready(function(){
     $("#sitio").click(function(){
         $("#intro").hide();
+        $("#video").attr('src', '');
     });
     $('#sitioaux').click(function() {
         $("#intro").hide();
+        $("#video").attr('src', '');
     });
     /* Get iframe src attribute value i.e. YouTube video url
     and store it in a variable */
