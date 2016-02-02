@@ -1,0 +1,37 @@
+.video {
+	z-index: 99999; 
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0;
+	background-image:url(../img/intro/1440-bg.jpg),
+	url(../img/intro/128-bg.jpg);
+	background-color:#999;
+	background-size:cover;
+	background-position:center bottom;
+	background-repeat:no-repeat
+}
+@media only screen and (-webkit-min-device-pixel-ratio:2),only screen and (min-resolution:192dpi),only screen and (min-resolution:2dppx) {
+	.video {
+		background-image:url(https://slack.global.ssl.fastly.net/5d547/img/videos/sandwichBGs/1440-bg-sandwich@2x.jpg),
+		url(https://slack.global.ssl.fastly.net/5d547/img/videos/sandwichBGs/128-bg-sandwich@2x.jpg)
+	}
+}
+@media only screen and (min-width:1440px) {
+	.video { 
+		background-image:url(https://slack.global.ssl.fastly.net/5d547/img/videos/sandwichBGs/1440-bg-sandwich@2x.jpg),
+		url(https://slack.global.ssl.fastly.net/5d547/img/videos/sandwichBGs/1440-bg-sandwich.jpg),
+		url(https://slack.global.ssl.fastly.net/5d547/img/videos/sandwichBGs/128-bg-sandwich.jpg)
+	}
+}
+@media only screen and (max-width:640px) {
+	.video {
+		background-image:url(https://slack.global.ssl.fastly.net/5d547/img/videos/sandwichBGs/bg-sandwich-mobile.jpg)
+	}
+}
+@media only screen and (-webkit-min-device-pixel-ratio:2) and only screen and (min-resolution:192dpi) and only screen and (min-resolution:2dppx) and only screen and (max-width:640px) { 
+	.video {
+		background-image:url(https://slack.global.ssl.fastly.net/5d547/img/videos/sandwichBGs/bg-sandwich-mobile@2x.jpg)
+	}
+}
