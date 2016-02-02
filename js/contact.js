@@ -80,9 +80,9 @@ function clearFields() {
   $('#phone').val("");
   $('.form-group').each(function () { $(this).removeClass('has-success'); });
   $('.form-group').each(function () { $(this).removeClass('has-error'); });
-  $('.form-group').each(function () { $(this).removeClass('has-feedback'); });
+  /*$('.form-group').each(function () { $(this).removeClass('has-feedback'); });
   $('.help-block').each(function () { $(this).remove(); });
-  $('.form-control-feedback').each(function () { $(this).remove(); });
+  $('.form-control-feedback').each(function () { $(this).remove(); });*/
   //$('.form-control').each(function () { $(this).css("background-color","white"); });
 }
 function showAlertSentMail() {
