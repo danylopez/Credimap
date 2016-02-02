@@ -1,3 +1,8 @@
+@font-face {
+    font-family: centuryGothic;
+    src: url(../font/centuryGotic.ttf);
+}
+
 .videodiv {
 	z-index: 99999; 
     width: 100%; 
@@ -43,7 +48,7 @@
 	padding-left: 1%
 }
 
-.banner {
+.descripcion {
 	width: 100%;
 	height: auto;
 }
@@ -52,7 +57,7 @@
   -webkit-border-radius: 8;
   -moz-border-radius: 8;
   border-radius: 8px;
-  font-family: ;
+  font-family: centuryGothic;
   color: #ffffff;
   font-size: 20px;
   background: #337ab7;
