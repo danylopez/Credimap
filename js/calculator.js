@@ -24,17 +24,22 @@ function initCalculator(){
     $(":radio").labelauty({  minimum_width: "50px"});
     fillComparingCombo();
     $('input.combobox').css('text-align','center');
-    $('input.combobox').tooltip({title:'! Compara con otra de las entidades financieras !','placement':'top',trigger:'focus'});
-
+    $('.searchCombo1').tooltip({title:'! Compara con otra de las entidades financieras !','placement':'top',trigger:'focus'});
+    $('.searchCombo2').tooltip({title:'Busca alguna entidad financiera y localizala en azul.','placement':'top',trigger:'focus'});
 
 
 }
 
 function fillComparingCombo(){
     var comparingSelect=    $('#comparingSelect');
+    var comparignSelectModal = $('#comparingSelectModal');
     for(var i=0;i<financialEntJson.financial_entities.length;i++) {
         var fe = financialEntJson.financial_entities[i];
         comparingSelect.append($('<option>', {
+            value: fe.id,
+            text : fe.name
+        }));
+        comparignSelectModal.append($('<option>', {
             value: fe.id,
             text : fe.name
         }));
@@ -42,6 +47,14 @@ function fillComparingCombo(){
     $('#comparingSelect').combobox();
     $('#comparingSelect').data('combobox').clearTarget();
     $('#comparingSelect').data('combobox').clearElement();
+
+    $('#comparingSelectModal').combobox();
+    $('#comparingSelectModal').data('combobox').clearTarget();
+    $('#comparingSelectModal').data('combobox').clearElement();
+    //var comparingSelect =  $('#comparingSelect').clone(true);
+    //$('#divFes').append(comparingSelect.html());
+
+
 
 
 }
@@ -92,7 +105,8 @@ function registerInputEvents(){
     
     $("input[name=timeUnitsRadio]:radio").change(function (){
         onPeriodKindChange();
-        onAmauntChange();
+        if($('#amountText').val()!='' && validateNotEmptyFields())
+            onAmauntChange();
     });
     $('#comparingSelect').change(function (){
         var idFe = $(this).find(':selected').val();
@@ -169,14 +183,15 @@ function drawBest(bestEntities){
     if(showedBest==0) {
         changeBest(bestId);
         $('[data-toggle="tooltip"]').tooltip('hide');
-        $('input.combobox').focus();
+        $('.searchCombo1').focus();
         showComparingAlert();
         showedBest=1;
+        searchFe();
     }
 }
 
 function showComparingAlert(){
-     $('input.combobox').tooltip('show');
+     $('.searchCombo1').tooltip('show');
 }
 
 function contactBest(){
@@ -184,6 +199,7 @@ function contactBest(){
 }
 
 function saveAll(bestEntities){
+      localStorage.removeItem('feProcessed');
       localStorage.setItem('feProcessed',JSON.stringify(bestEntities));
 }
 
@@ -223,6 +239,8 @@ function onAmauntChange(){
         term = (term*30)/7;
     else
         term*=tax_factor;
+
+    term = Math.round(term);
 
     var idFeComp = $(this).find(':selected').val();
     

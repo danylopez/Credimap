@@ -70,7 +70,7 @@
                        <div class="input-group">
                            <span id="pesosSymbolSpan" class="input-group-addon">$</span>
                            <input id="amountText" type="text" class="form-control"  placeholder="Importe"
-                                  data-toggle="tooltip"   data-placement="top" maxlength="7"
+                                  data-toggle="tooltip"   data-placement="top" maxlength="6"
                                   title="Ingresa la cantidad en pesos que deseas como préstamo">
                        </div>
                    </div>
@@ -128,14 +128,14 @@
                    <div id="divBest" class="panel panel-default tableBest">
                        <div class="panel-heading col-md-12 tableHeader" >
                            <div class="col-md-8 headerBest">
-                               <div class="col-md-3 noPaddingLR"><span>Mejor opción</span></div>
+                               <div class="col-md-3 noPaddingLR"><span>Mejor opción :</span></div>
                                <div class="col-md-7 textOverflow" style="padding-left: 3px;padding-right: 0px"><span id="bestEntityNameSpan" style="font-size: 18px;font-weight: bold;"> </span></div>
                                <div class="col-md-1 noPaddingLR"> <img src="http://imgur.com/unLktSj.png" style="padding-left: 10px" data-toggle="tooltip" data-placement="top" title="Marcador que indica la mejor opcion.">
                                </div>
                                <div class="col-md-1 noPaddingLR" style="float: right;"><img src="img/arrow.png" style="float: right; height: 45px;" ></div>
                            </div>
                            <div class="col-md-4 headerComp ">
-                                   <select id="comparingSelect" class="combobox form-control noPaddingLR">
+                                   <select id="comparingSelect" class="combobox form-control noPaddingLR searchCombo1">
                                    </select>
                            </div>
                        </div>
@@ -259,13 +259,30 @@
         <h4 class="modal-title">Entidades Financieras</h4>
       </div>
       <div class="modal-body">
-        <p>Todas las entidades financieras y la información respecto al préstamo.</p>
-        <p>Descargar a excel </p>
+        <p>Compara y verifica que te ofrecen las demás entidades financieras según el crédito solicitado.</p>
         <button type="button" class="btn btn-success" onclick="downloadExcel();">
           <i class="fa fa-download"></i>
           Descargar
           <i class="fa fa-file-excel-o"></i>
-        </button>
+        </button><br><br>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3" style="padding-left: 0px;padding-right: 10px">
+                    <select class="form-control" id="loanKind2"   data-toggle="tooltip"
+                            data-placement="top" title="Esta opción te permite comparar entre todos los tipos de crédito según los datos que ingresaste en la calculadora.">
+                        <option value="notSelected"  selected>Tipo de prestamo</option>
+                        <option value="todos" >Todos</option>
+                        <option value="individual">Individual</option>
+                        <option value="grupal">Grupal</option>
+                    </select>
+                </div>
+                <div class="col-md-3" style="padding-left: 0px;">
+                    <select id="comparingSelectModal" class="combobox form-control noPaddingLR searchCombo2">
+                    </select>
+                </div>
+            </div>
+
+        </div>
         <table id="feProcessedTable" class="table table-striped">
           <thead>
             <tr>
@@ -274,11 +291,11 @@
               <th class="col-md-3">Dirección</th>
               <th class="col-md-1">Teléfono</th>
               <th class="col-md-1">Sitio Web</th>
-              <th class="col-md-1">Pago Total</th>
-              <th class="col-md-1">Pago</th>
-              <th class="col-md-1">Intereses Pagados</th>
+              <th class="col-md-1">Pago Total ($)</th>
+              <th class="col-md-1">Pago ($)</th>
+              <th class="col-md-1">Intereses Pagados ($)</th>
               <th class="col-md-1">% de Interés</th>
-              <th class="col-md-2">Localizar Requisitos Contactar</th> 
+              <th class="col-md-2">Acciones</th>
             </tr>
           </thead>
           <tbody>      

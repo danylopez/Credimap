@@ -1,4 +1,8 @@
 var financialEntities=[];
+var perfomedSearch = 0;
+$(document).ready(function (){
+
+});
 
 function processTable() {
     financialEntities = localStorage.getItem('feProcessed');
@@ -9,9 +13,38 @@ function processTable() {
 function closeModal(){
     $('#financieras').modal('hide');
 }
+//change this later
+function cleanTable(){
+    $('#feProcessedTable tr').not(function(){if ($(this).has('th').length){return true}}).remove();
+}
+
+function searchFe(){
+    $('#comparingSelectModal').change(function (){
+
+        if(perfomedSearch==1){
+            $("#feProcessedTable tr").removeClass('info');
+            $('#feProcessedTable tr:last').addClass('danger');
+            $('#feProcessedTable tr').eq(1).addClass('success');
+        }
+
+        var idFe = $(this).find(':selected').val();
+        $("#feProcessedTable tr").each(function() {
+            var id = $(this).children().eq(0).text();
+            if(id==idFe){
+                $(this).addClass('info');
+                perfomedSearch=1;
+                var w = $('#financieras');
+                w.scrollTop($(this).offset().top - (w.height()/2) );
+
+                return ;
+            }
+
+        });
+    });
+}
 
 function drawOnTable(){
-
+    cleanTable();
     financialEntities = JSON.parse(financialEntities) ;
     for(var i=0;i<financialEntities.length;i++){
         var fe=financialEntities[i],newFeRow= '<tr>';    
