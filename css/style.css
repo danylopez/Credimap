@@ -134,11 +134,17 @@ html {
 
 @media (max-width: 500px) {
 
+    #contacto{
+        padding-top: 0px;
+    }
+
     .tableBest{
         padding-left: 1px !important;
         padding-right: 1px !important;
     }
-
+    .fontSize{
+        font-size: 14px;
+    }
     .iconBar{
         margin-left: -10px;
         padding-left: 0px;
@@ -146,7 +152,7 @@ html {
 
     .headerCustom{
         max-width: 100%;
-        padding-top: 10px;
+        padding-top: 15px;
     }
     .containerStrech{
        padding-top: 10% !important; 
@@ -178,6 +184,14 @@ html {
     
 }
 
+@media (min-width: 768px) {
+    .iconBar{
+        margin-left: -10px;
+        padding-left: 0px;
+    }
+
+}
+
 @media (min-width: 400px) {
     
     .containerStrech{
@@ -202,6 +216,10 @@ html {
         padding-right: 15px;
     }    
     
+}
+
+.fontSize{
+    font-size: 15px;
 }
 
 .modal-content iframe{

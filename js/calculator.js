@@ -56,12 +56,6 @@ function fillComparingCombo(){
     $('#comparingSelectModal').combobox();
     $('#comparingSelectModal').data('combobox').clearTarget();
     $('#comparingSelectModal').data('combobox').clearElement();
-    //var comparingSelect =  $('#comparingSelect').clone(true);
-    //$('#divFes').append(comparingSelect.html());
-
-
-
-
 }
 
 
@@ -90,7 +84,8 @@ function localizeBest(){
 
 function registerInputEvents(){
  
-    $('#amountText').keyup(function() {
+    $('#amountText').keyup(function(e) {
+
         var amount=$(this).val();
         if(amount!='' && amount!=undefined ){
             $('#amountSlider').val(amount).change();   
@@ -131,7 +126,7 @@ function writeValuesComp(fe){
     $('#totalPaymentComp').text('$'+fe.financial.totalPayment );
     $('#paymentComp').text('$'+fe.financial.payment );
     $('#taxesPaidComp').text('$'+fe.financial.taxes);
-    $('#taxPercentageComp').text('$'+fe.financial.tax_rate );
+    $('#taxPercentageComp').text(fe.financial.tax_rate+'%' );
     $('#paymentEachTComp').text('$'+fe.financial.paymentEachT );
 }
 
@@ -164,6 +159,7 @@ function drawBest(bestEntities){
         $('#frequencyPay').text(pFrequencySelect);
         $('#paymentEachT').text("$"+bestEntities[0].financial.paymentEachT );
         $('#totalTimeSpan').text("Intereses pagados en " + Math.round(term) + " ");
+        $('#percentageFreq').text(pFrequencySelect);
         $('#frequencyPay2').text(getFrequencyPayment(pFrequencySelect));
         $('#bestEntityNameSpan').text(bestEntities[0].name);
         $('#divBest').css('display','block');
@@ -232,6 +228,7 @@ function onAmauntChange(){
 
     var productId=  1;
     var amount = parseInt($('#amountText').val());
+    if(isNaN(amount)) amount  =0 ;
     term =  parseInt($('#termSelect').find(':selected').text());
     var timeUnits = $('input[name=timeUnitsRadio]:checked').val();
     var pFrequencySelect =  $('#pFrequencySelect').find(':selected').val();
@@ -383,7 +380,7 @@ function allowJustNumbers(){
         }
         // Ensure that it is a number and stop the keypress
         if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105))                e.preventDefault();       
-        
+
     });
 }
 
