@@ -111,7 +111,7 @@ function setEntity(name)
   $('#name').focus();
 }
 
-jQuery.extend(jQuery.validator.messages, {
+jQuery.extend(jQuery.validator.messages, { 
   email: "Por favor escriba un e-mail v&#225lido.",
   required: "Necesita llenar este campo.",
   number: "Por favor solo escriba n&#250meros.",

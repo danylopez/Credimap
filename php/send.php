@@ -19,31 +19,14 @@ $body = "
 <html>
 <body>
 <img src=\"cid:logopng\" align='center' style='width:250px;height:70px;'/>
-<p align='right'>$finan</p>
+<p align='left'>$finan</p>
 <hr/>
-
-<table>
-<tr>
-<td>
-	<table align='left' style='width:150%'>
-	<tr>
-		<th align='left' width='70%'>$name tiene algunos comentarios, ponte en contacto!</th>
-		<th align='left' width='30%'>Información de contacto</th>
-	</tr>
-	<tr>
-		<td><p>$message</p></td>
-		<td><p>
-			<b>Nombre:</b> $name<br/>
-			<b>Email:</b> $email<br/>
-			<b>Teléfono:</b> $phone<br/></p>
-		</td>
-	</tr>
-	</table>
-
-</td>
-</tr>
-</table>
-
+<p align='left'> <h3>$name tiene algunos comentarios, ponte en contacto!</h3><br/>
+$message</p><br/>
+<p align='left'><h4>Información de contacto</h4>
+	<b>Nombre:</b> $name<br/>
+	<b>Email:</b> $email<br/>
+	<b>Teléfono:</b> $phone<br/></p>
 </body>
 </html>
 ";

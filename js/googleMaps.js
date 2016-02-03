@@ -40,14 +40,21 @@ function initialize()
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         center: location,
         zoom: 15,
-        scrollwheel        : true,
-        mapTypeControl     : false,
+        scrollwheel        : false,
+        mapTypeControl     : true,
+        mapTypeControlOptions: {
+          style: google.maps.MapTypeControlStyle.DEFAULT,
+          position: google.maps.ControlPosition.BOTTOM_CENTER
+        },
         overviewMapControl : false,
         scaleControl       : false,
         panControl         : false,
         rotateControl      : false,
         streetViewControl  : false,
-        zoomControl        : false
+        zoomControl        : true,
+        zoomControlOptions: {
+            position: google.maps.ControlPosition.LEFT_CENTER
+        }
     });
     infoWindow = new google.maps.InfoWindow();
     if(navigator.geolocation) {
@@ -86,7 +93,7 @@ function initialize()
     }
 
 
-    createCustomIcon();
+    //createCustomIcon();
 }
 
 function performSearch() {
@@ -190,7 +197,7 @@ function createCustomIcon(){
     iconZoom.style.height='35px';
     iconZoom.style.width='35px';
     controlDiv.appendChild(iconZoom);
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(controlDiv);
+    map.controls[google.maps.ControlPosition.LEFT_CENTER].push(controlDiv);
 
 }
 
