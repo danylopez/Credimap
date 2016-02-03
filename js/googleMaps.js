@@ -181,9 +181,9 @@ function getFormatedContent(place){
     var content ='<div><strong>' + place.name + '</strong><br>' +
         place.formatted_address + '<br>Tel&#233fono: ' +
         place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank" style="color: blue;" href="' +
-        place.website + '">' + place.website + '<br/><button type="button" onclick="setEntity(placeName)" '+
+        place.website + '">' + place.website + '</a> <br/><button type="button" onclick="setEntity(placeName)" '+
         'class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button>' +
-        '<button align="left" type="button" class="btn  btn-default"><i class="fa fa-car"> Ruta</i></buttton>'
+        '<button align="left" type="button" class="btn  btn-default"><i class="fa fa-car"> Ruta</i></buttton></div>'
 
     return content;
 }
