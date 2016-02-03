@@ -9,6 +9,7 @@ $(document).ready(function(){
         $("#principal").addClass('col-xs-12');
     }
     $(window).on("orientationchange",function(){
+        debugger;
         if(window.orientation == 0) {
           if(window.innerHeight < window.innerWidth) {
                 $("#principal").removeClass('col-xs-12');
