@@ -132,7 +132,7 @@ function calculateAndDisplayRoute( ) {
             directionsDisplay.setDirections(response);
             infoWindow.close();
             map.setZoom(10);
-            map.panTo(homeMarker.position);
+            map.panTo(destinationMarker.position);
             routeResult ={'distance':response.routes[0].legs[0].distance.text,'time':response.routes[0].legs[0].duration.text};
         } else {
             window.alert('Directions request failed due to ' + status);
@@ -249,7 +249,7 @@ function createCustomIcon(){
     controlDiv =  $(controlDiv);
     controlDiv.click(function(){
             infoWindow.setContent('<div><strong>Distancia: </strong>'+routeResult.distance+'<br>'+
-            '<strong>Time: </strong>'+routeResult.time+
+            '<strong>Tiempo: </strong>'+routeResult.time+
             '</div>');
         infoWindow.open(map,destinationMarker);
     });
