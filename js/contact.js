@@ -3,17 +3,17 @@ $(document).ready(function()
 {
     $('#feedbackForm').validate({
       rules: {
-        nombre: {
+        name: {
             minlength: 3,
             maxlength: 20,
             required: true
         },
-        telefono: {
+        phone: {
             minlength: 10,
             maxlength: 10,
             number: true
         },
-        correo: {
+        email: {
             required: true
         },
         message: {
@@ -45,15 +45,26 @@ $(document).ready(function()
   });
 
   $("#feedbackSubmit").click(function() {
-    var data = {
-      name: $('#name').val(),
-      email: $('#email').val(),
-      message: $('#message').val(),
-      phone : $('#phone').val(),
-      financiera: $('#financiera').val()
-    };
-    sendMail(data);
-    $(this).button('loading');
+    if($('#name').val()=='' ||
+      $('#email').val()=='' ||
+      $('#message').val()=='') {
+        $('#warning-alert').removeClass('alert-danger').removeClass('alert-success').addClass('alert-warning');
+        $('#textAlert').text('¡Carambolas! ');
+        $('#textAlertDesc').text('Parece que no has llenado todos los campos.'); 
+        $("#warning-alert").alert();
+        $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
+        });
+    } else {
+      var data = {
+        name: $('#name').val(),
+        email: $('#email').val(),
+        message: $('#message').val(),
+        phone : $('#phone').val(),
+        financiera: $('#financiera').val()
+      };
+      sendMail(data);
+      $(this).button('loading');
+    }
   });
 });
 
@@ -76,13 +87,8 @@ function sendMail(data) {
 }
 function clearFields() {
   $('#financiera').val("Financiera a Contactar: ");
-  $('#name').val("");
-  $('#email').val("");
   $('#message').val("");
-  $('#phone').val("");
-  $('.form-group').each(function () { $(this).removeClass('has-success'); });
-  $('.form-group').each(function () { $(this).removeClass('has-error'); });
-  $('.help-block').each(function () { $(this).remove(); });
+  $('#message').removeClass('has-success').removeClass('has-error');
   $('.form-control').each(function () { $(this).addClass('.help-block'); });
 }
 function showAlertSentMail() {
