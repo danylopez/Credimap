@@ -385,8 +385,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 
 .btnstock {
-  -webkit-border-radius: 8;
-  -moz-border-radius: 8;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
   border-radius: 8px;
   font-family: centuryGothic;
   color: #ffffff;

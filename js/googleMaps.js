@@ -9,7 +9,7 @@ var done=0;
 var resultsLimit;
 var countPlaces=0;
 var mapEntities = {};
-var homeMarker,destinationMarker;
+var homeMarker,destinationMarker,routeResult;
 
 
 
@@ -41,22 +41,22 @@ function initialize()
         $('#map').height($('#calculatorDiv').width());
         $('#map').width($('#calculatorDiv').width());
         map = new google.maps.Map(document.getElementById('map'), {
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: location,
-        zoom: 14,
-        scrollwheel        : false,
-        mapTypeControl     : true,
-        mapTypeControlOptions: {
-            style: google.maps.MapTypeControlStyle.DEFAULT,
-            position: google.maps.ControlPosition.BOTTOM_CENTER
-        },
-        panControl         : false,
-        rotateControl      : false,
-        streetViewControl  : false,
-        zoomControl        : true,
-        zoomControlOptions: {
-            position: google.maps.ControlPosition.LEFT_CENTER
-        }
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            center: location,
+            zoom: 14,
+            scrollwheel        : false,
+            mapTypeControl     : true,
+            mapTypeControlOptions: {
+                style: google.maps.MapTypeControlStyle.DEFAULT,
+                position: google.maps.ControlPosition.BOTTOM_CENTER
+            },
+            panControl         : false,
+            rotateControl      : false,
+            streetViewControl  : false,
+            zoomControl        : true,
+            zoomControlOptions: {
+                position: google.maps.ControlPosition.LEFT_CENTER
+            }
     });
     infoWindow = new google.maps.InfoWindow();
     if(navigator.geolocation) {
@@ -65,7 +65,7 @@ function initialize()
             service = new google.maps.places.PlacesService(map);
             directionsService = new google.maps.DirectionsService;
             directionsDisplay = new google.maps.DirectionsRenderer;
-            directionsDisplay.setOptions({suppressMarkers: true})
+            directionsDisplay.setOptions({suppressMarkers: true,preserveViewport:true})
             directionsDisplay.setMap(map);
 
             homeMarker = new google.maps.Marker({
@@ -79,8 +79,10 @@ function initialize()
                     content: '¡Aquí te encuentras.!'
                 }).open(map,homeMarker);
             });
-            map.setZoom(13);
+            map.setCenter(myLocation);
+            map.setZoom(14);
             map.panTo(myLocation);
+
             new google.maps.event.trigger( homeMarker, 'click' );
             google.maps.event.addListenerOnce(map, 'idle', performSearch);
         },  function (error){
@@ -167,9 +169,14 @@ function calculateAndDisplayRoute( ) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             infoWindow.close();
-            map.setZoom(2);
-            map.panTo(destinationMarker.position);
+            map.setCenter(destinationMarker.position);
+            map.setZoom(14);
             routeResult ={'distance':response.routes[0].legs[0].distance.text,'time':response.routes[0].legs[0].duration.text};
+            infoWindow.setContent('<div><strong>Distancia: </strong>'+routeResult.distance+'<br>'+
+            '<strong>Tiempo: </strong>'+routeResult.time+
+            '</div>');
+            infoWindow.open(map,destinationMarker);
+            //new google.maps.event.trigger( controlDiv, 'click' );
         } else {
             window.alert('No fue posible obtener la ruta' + status);
         }
@@ -229,6 +236,7 @@ function createCustomIcon(){
         infoWindow.open(map,destinationMarker);
     });
 
+
 }
 
 
@@ -266,4 +274,79 @@ function handleError() {
     $('#stateSelect').change(function(){
         createMuni();
     });
+}
+
+function createStates() {
+    var states ;
+    $.getJSON( "./other/estados.json", function( data ) {
+        states=data;
+        states = $(states);
+    }).done(function() {
+        var $select = $('#stateSelect');
+        states.each(function (index, obj) {
+            var $option = $("<option/>").attr("value", obj.StateCode).text(obj.StateName);
+            $select.append($option);
+        });
+    });
+}
+
+function createMuni() {
+
+    var cities;
+      $.getJSON( "./other/municipios.json", function( data ) {
+            cities=data;
+            cities=$(cities);
+    }).done(function() {
+          var $select = $('#muniSelect');
+          $('#muniSelect')
+              .find('option')
+              .remove()
+              .end()
+              .append('<option value="notSelected" disabled>Seleccione el Estado</option>')
+              .val('notSelected');
+          cities.each(function (index, obj) {
+              if ($('#stateSelect').val() == obj.StateCode) {
+                  var $option = $("<option/>").attr("value", obj.MunCode).text(obj.MunName);
+                  $select.append($option);
+              }
+          });
+      });
+
+    $('#muniSelect').change(function(){
+        $(cities).each(function (index, obj) {
+            if ($('#stateSelect').val() == obj.StateCode && $('#muniSelect').val() == obj.MunCode) {
+                $('#errorModal').modal('hide');
+                drawMap(obj.Latitude, obj.Longitude);
+            }
+        });
+    });
+}
+
+function drawMap(latitude, longitude){
+    myLocation = new google.maps.LatLng(latitude, longitude);
+    service = new google.maps.places.PlacesService(map);
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsDisplay.setOptions({suppressMarkers: true,preserveViewport:true})
+    directionsDisplay.setMap(map);
+
+    homeMarker = new google.maps.Marker({
+        map: map,
+        position: myLocation,
+        icon: { url: 'http://imgur.com/ybJJ8Za.png',
+            scaledSize :new google.maps.Size(35, 43),
+            origin: new google.maps.Point(0,0),
+            anchor: new google.maps.Point(0, 0)
+        }
+    });
+
+    homeMarker.addListener('click', function() {
+        new google.maps.InfoWindow({
+            content: '¡Aquí te encuentras!'
+        }).open(map,homeMarker);
+    });
+    map.setZoom(15);
+    map.panTo(myLocation);
+    new google.maps.event.trigger( homeMarker, 'click' );
+    google.maps.event.addListenerOnce(map, 'idle', performSearch);
 }
