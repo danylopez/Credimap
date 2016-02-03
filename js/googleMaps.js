@@ -128,6 +128,8 @@ function calculateAndDisplayRoute( ) {
     }, function(response, status) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
+            infoWindow.close();
+            map.setZoom(15);
         } else {
             window.alert('Directions request failed due to ' + status);
         }

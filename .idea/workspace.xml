@@ -82,11 +82,21 @@
       <file leaf-file-name="googleMaps.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/googleMaps.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.0460405" vertical-offset="2352" max-vertical-offset="47685">
-              <caret line="73" column="46" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.7403315" vertical-offset="1825" max-vertical-offset="47702">
+              <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
               <folding>
-                <marker date="1454474918555" expanded="true" signature="6034:6046" placeholder="..." />
+                <marker date="1454475831720" expanded="true" signature="6094:6106" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tutorial.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/tutorial.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="368" max-vertical-offset="1292">
+              <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,8 +104,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.0" vertical-offset="4541" max-vertical-offset="7667">
-              <caret line="277" column="5" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+            <state vertical-scroll-proportion="-6.0" vertical-offset="4847" max-vertical-offset="7973">
+              <caret line="295" column="5" selection-start-line="295" selection-start-column="5" selection-end-line="295" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -377,7 +387,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3757">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1454474918555" expanded="true" signature="6034:6046" placeholder="..." />
+            <marker date="1454475831720" expanded="true" signature="6094:6106" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -458,7 +468,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="651" max-vertical-offset="3723">
           <caret line="55" column="39" selection-start-line="55" selection-start-column="39" selection-end-line="55" selection-end-column="39" />
           <folding>
-            <marker date="1454474918555" expanded="true" signature="6034:6046" placeholder="..." />
+            <marker date="1454475831720" expanded="true" signature="6094:6106" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -503,7 +513,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="3128">
           <caret line="18" column="58" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="58" />
           <folding>
-            <marker date="1454474918555" expanded="true" signature="6034:6046" placeholder="..." />
+            <marker date="1454475831720" expanded="true" signature="6094:6106" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -572,7 +582,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1735" max-vertical-offset="3060">
           <caret line="124" column="43" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
           <folding>
-            <marker date="1454474918555" expanded="true" signature="6034:6046" placeholder="..." />
+            <marker date="1454475831720" expanded="true" signature="6094:6106" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -713,8 +723,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.0" vertical-offset="4541" max-vertical-offset="7667">
-          <caret line="277" column="5" selection-start-line="277" selection-start-column="5" selection-end-line="277" selection-end-column="5" />
+        <state vertical-scroll-proportion="-6.0" vertical-offset="4847" max-vertical-offset="7973">
+          <caret line="295" column="5" selection-start-line="295" selection-start-column="5" selection-end-line="295" selection-end-column="5" />
           <folding />
         </state>
       </provider>
@@ -733,16 +743,6 @@
           <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
           <folding>
             <marker date="1454468530692" expanded="true" signature="1406:1659" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/financial_entities.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.678571" vertical-offset="0" max-vertical-offset="3366">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-          <folding>
-            <marker date="1454446674215" expanded="true" signature="3828:3842" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -774,12 +774,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/tutorial.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="368" max-vertical-offset="1292">
+          <caret line="50" column="27" selection-start-line="50" selection-start-column="27" selection-end-line="50" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/financial_entities.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.678571" vertical-offset="0" max-vertical-offset="3366">
+          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
+          <folding>
+            <marker date="1454446674215" expanded="true" signature="3828:3842" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/js/googleMaps.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.0460405" vertical-offset="2352" max-vertical-offset="47685">
-          <caret line="73" column="46" selection-start-line="73" selection-start-column="46" selection-end-line="73" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.7403315" vertical-offset="1825" max-vertical-offset="47702">
+          <caret line="131" column="26" selection-start-line="131" selection-start-column="26" selection-end-line="131" selection-end-column="26" />
           <folding>
-            <marker date="1454474918555" expanded="true" signature="6034:6046" placeholder="..." />
+            <marker date="1454475831720" expanded="true" signature="6094:6106" placeholder="..." />
           </folding>
         </state>
       </provider>
