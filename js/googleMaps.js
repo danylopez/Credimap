@@ -11,6 +11,7 @@ var countPlaces=0;
 var mapEntities = {};
 var homeMarker,destinationMarker;
 
+
 function changeBest(id){
 
     markers[id].setMap(null);
@@ -89,7 +90,7 @@ function createHomeMarker(){
 
 function initialize(latitude,longitude)
 {
-
+    if(done==1) return;
     createMap();
     createServices();
     infoWindow = new google.maps.InfoWindow();
@@ -97,6 +98,7 @@ function initialize(latitude,longitude)
         myLocation = new google.maps.LatLng(latitude, longitude);
         createHomeMarker();
         google.maps.event.addListenerOnce(map, 'idle', performSearch);
+        done=1;
     }
     else{
         if(navigator.geolocation) {
@@ -104,6 +106,7 @@ function initialize(latitude,longitude)
                     myLocation = new google.maps.LatLng(place.coords.latitude, place.coords.longitude);
                     createHomeMarker();
                     google.maps.event.addListenerOnce(map, 'idle', performSearch);
+                    done=1;
                 },
                 function (error){
                     if (error.code == error.PERMISSION_DENIED ||
@@ -115,8 +118,7 @@ function initialize(latitude,longitude)
                 });
         }
     }
-
-
+        createCustomIcon();
 }
 
 
@@ -129,7 +131,9 @@ function calculateAndDisplayRoute( ) {
         if (status === google.maps.DirectionsStatus.OK) {
             directionsDisplay.setDirections(response);
             infoWindow.close();
-            map.setZoom(15);
+            map.setZoom(10);
+            map.panTo(homeMarker.position);
+            routeResult ={'distance':response.routes[0].legs[0].distance.text,'time':response.routes[0].legs[0].duration.text};
         } else {
             window.alert('Directions request failed due to ' + status);
         }
@@ -224,7 +228,7 @@ function getFormatedContent(place){
         place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank" style="color: blue;" href="' +
         place.website + '">' + place.website + '</a> <br/><button type="button" onclick="setEntity(placeName)" '+
         'class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button>' +
-        '<button align="left" type="button" class="btn  btn-default"><i class="fa fa-car" onclick="calculateAndDisplayRoute();"> Ruta</i>' +
+        '<button align="left" type="button" class="btn  btn-default" onclick="calculateAndDisplayRoute()"><i class="fa fa-car" > Ruta</i>' +
         '</buttton>' +
         '</div>'
 
@@ -236,12 +240,19 @@ function createCustomIcon(){
     var controlDiv = document.createElement('div');
     var iconZoom = document.createElement('input');
     iconZoom.type='image';
-    iconZoom.src = 'http://imgur.com/NDXnXJS.png';
+    iconZoom.src = 'http://imgur.com/0C2rmAA.png';
     iconZoom.style.alt= '';
     iconZoom.style.height='35px';
     iconZoom.style.width='35px';
     controlDiv.appendChild(iconZoom);
-    map.controls[google.maps.ControlPosition.LEFT_CENTER].push(controlDiv);
+    map.controls[google.maps.ControlPosition.RIGHT_CENTER].push(controlDiv);
+    controlDiv =  $(controlDiv);
+    controlDiv.click(function(){
+            infoWindow.setContent('<div><strong>Distancia: </strong>'+routeResult.distance+'<br>'+
+            '<strong>Time: </strong>'+routeResult.time+
+            '</div>');
+        infoWindow.open(map,destinationMarker);
+    });
 
 }
 
