@@ -300,7 +300,7 @@
         </button><br><br>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3" style="padding-left: 0px;padding-right: 10px">
+                <div class="col-md-3 col-xs-6 col-sm-6" style="padding-left: 0px;padding-right: 10px">
                     <select class="form-control" id="loanKind2"   data-toggle="tooltip"
                             data-placement="top" title="Esta opción te permite comparar entre todos los tipos de crédito según los datos que ingresaste en la calculadora.">
                         <option value="notSelected"  selected disabled>Tipo de prestamo</option>
@@ -309,31 +309,35 @@
                         <option value="3" >Todos</option>
                     </select>
                 </div>
-                <div class="col-md-3" style="padding-left: 0px;">
+                <div class="col-md-3 col-xs-6 col-sm-6" style="padding-left: 0px;">
                     <select id="comparingSelectModal" class="combobox form-control noPaddingLR searchCombo2">
                     </select>
                 </div>
             </div>
 
-        </div>
-        <table id="feProcessedTable" class="table table-striped">
+            <div class="row">
+        <div class="table-responsive">
+        <table id="feProcessedTable" class="table table-striped ">
           <thead>
             <tr>
               <th style="display: none" >Id</th>
-              <th class="col-md-1 ">Nombre</th>
-              <th class="col-md-3">Dirección</th>
-              <th class="col-md-1">Crédito</th>
-              <th class="col-md-1">Pago Total($)</th>
-              <th class="col-md-1">Pago($)</th>
-              <th class="col-md-1">Intereses Pagados($)</th>
-              <th class="col-md-1">% de Interés</th>
-              <th class="col-md-1">Pago p/c 1000</th>
-              <th class="col-md-2">Acciones</th>
+              <th class="col-md-1 col-xs-1 col-sm-1 ">Nombre</th>
+              <th class="col-md-3 col-xs-3 col-sm-3">Dirección</th>
+              <th class="col-md-1 col-xs-1 col-sm-1">Crédito</th>
+              <th class="col-md-1 col-xs-1 col-sm-1">Pago Total($)</th>
+              <th class="col-md-1 col-xs-1 col-sm-1">Pago($)</th>
+              <th class="col-md-1 col-xs-1 col-sm-1">Intereses Pagados($)</th>
+              <th class="col-md-1 col-xs-1 col-sm-1">% de Interés</th>
+              <th class="col-md-1 col-xs-1 col-sm-1">Pago p/c 1000</th>
+              <th class="col-md-2 col-xs-2 col-sm-2">Acciones</th>
             </tr>
           </thead>
           <tbody>      
           </tbody>
         </table>
+            </div>
+                </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

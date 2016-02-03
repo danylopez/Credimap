@@ -118,15 +118,15 @@ function writeTable(list,product){
         if (i == list.length - 1) newFeRow = '<tr class="danger">';
         newFeRow = $(newFeRow);
         newFeRow.append('<td style="display: none;">' + info.id + '</td>');
-        newFeRow.append('<td class="col-md-1">' + info.name + '</td>');
-        newFeRow.append('<td class="col-md-3">' + info.address + '</td>');
-        newFeRow.append('<td class="col-md-1">' + info.loanKind + '</td>');
-        newFeRow.append('<td class="col-md-1">' + info.totalPayment + '</td>');
-        newFeRow.append('<td class="col-md-1">' + info.payment + '</td>');
-        newFeRow.append('<td class="col-md-1">' + info.taxes + '</td>');
-        newFeRow.append('<td class="col-md-1">' + info.tax_rate + '</td>');
-        newFeRow.append('<td class="col-md-1">' + info.paymentEachT + '</td>');
-        newFeRow.append('<td class="col-md-2">' + appendActions() + '</td>');
+        newFeRow.append('<td >' + info.name + '</td>');
+        newFeRow.append('<td >' + info.address + '</td>');
+        newFeRow.append('<td >' + info.loanKind + '</td>');
+        newFeRow.append('<td >' + info.totalPayment + '</td>');
+        newFeRow.append('<td >' + info.payment + '</td>');
+        newFeRow.append('<td >' + info.taxes + '</td>');
+        newFeRow.append('<td >' + info.tax_rate + '</td>');
+        newFeRow.append('<td >' + info.paymentEachT + '</td>');
+        newFeRow.append('<td >' + appendActions() + '</td>');
         newFeRow.append('</tr>');
         $('#feProcessedTable tr:last').after(newFeRow);
     }
