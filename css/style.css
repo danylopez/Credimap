@@ -440,24 +440,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   
 }
 
-}
-@media only screen and (-webkit-min-device-pixel-ratio:2) and only screen and (min-resolution:192dpi) and only screen and (min-resolution:2dppx) and only screen and (max-width:640px) { 
-  .video {
-    background-image:url(../img/intro/bg-mob2x.jpg)
-  }
-  .logovideo {
-    width: 30%;
-    height: auto;
-  }
-  .btnstock {
-    font-size: 10px;
-    padding: 7.5px 15px 7.5px 15px;
-  }
-  .descripcion {
-    padding-top: 0%;
-  }
-  
-}
+
 
 #centro {
   height: 70%;
