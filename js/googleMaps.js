@@ -3,12 +3,13 @@ var finalEntities= [];
 var refresh_onlyMap=0;
 var map,myLocation;
 var infoWindow;
-var service;
+var service,directionsService,directionsDisplay;
 var markers=[];
 var done=0;
 var resultsLimit;
 var countPlaces=0;
 var mapEntities = {};
+var homeMarker,destinationMarker;
 
 function changeBest(id){
 
@@ -31,20 +32,18 @@ function loadMap(){
 }
 
 
-function initialize()
-{
-    var location = new google.maps.LatLng(19.3202176, -99.224016);
+function createMap(){
+
     $('#map').height($('#calculatorDiv').width());
     $('#map').width($('#calculatorDiv').width());
     map = new google.maps.Map(document.getElementById('map'), {
         mapTypeId: google.maps.MapTypeId.ROADMAP,
-        center: location,
         zoom: 15,
         scrollwheel        : false,
         mapTypeControl     : true,
         mapTypeControlOptions: {
-          style: google.maps.MapTypeControlStyle.DEFAULT,
-          position: google.maps.ControlPosition.BOTTOM_CENTER
+            style: google.maps.MapTypeControlStyle.DEFAULT,
+            position: google.maps.ControlPosition.BOTTOM_CENTER
         },
         overviewMapControl : false,
         scaleControl       : false,
@@ -56,45 +55,86 @@ function initialize()
             position: google.maps.ControlPosition.LEFT_CENTER
         }
     });
+}
+
+function createServices(){
+    service = new google.maps.places.PlacesService(map);
+    directionsService = new google.maps.DirectionsService;
+    directionsDisplay = new google.maps.DirectionsRenderer;
+    directionsDisplay.setOptions({suppressMarkers: true})
+    directionsDisplay.setMap(map);
+}
+
+function createHomeMarker(){
+
+  homeMarker = new google.maps.Marker({
+        map: map,
+        position: myLocation,
+        icon: {
+            url: 'http://imgur.com/psSRrke.png'
+
+        }
+    });
+
+    homeMarker.addListener('click', function() {
+        new google.maps.InfoWindow({
+            content: '¡Aquí te encuentras!'
+        }).open(map,homeMarker);
+    });
+
+    map.setZoom(15);
+    map.panTo(myLocation);
+    new google.maps.event.trigger( homeMarker, 'click' );
+}
+
+function initialize(latitude,longitude)
+{
+
+    createMap();
+    createServices();
     infoWindow = new google.maps.InfoWindow();
-    if(navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function (place) {
-            myLocation = new google.maps.LatLng(place.coords.latitude, place.coords.longitude);
-            service = new google.maps.places.PlacesService(map);
-
-            var marker = new google.maps.Marker({
-                map: map,
-                position: myLocation,
-                icon: { url: 'http://imgur.com/ybJJ8Za.png',
-                        scaledSize :new google.maps.Size(35, 43),
-                        origin: new google.maps.Point(0,0),
-                        anchor: new google.maps.Point(0, 0)
-                }
-            });
-
-            marker.addListener('click', function() {
-                new google.maps.InfoWindow({
-                    content: '¡Aquí te encuentras!'
-                }).open(map,marker);
-            });
-            map.setZoom(15);
-            map.panTo(myLocation);
-            new google.maps.event.trigger( marker, 'click' );
-            google.maps.event.addListenerOnce(map, 'idle', performSearch);
-        },
-        function (error){
-            if (error.code == error.PERMISSION_DENIED ||
-                error.code == error.POSITION_UNAVAILABLE ||
-                error.code == error.TIMEOUT ||
-                error.code == error.UNKNOWN_ERROR) {
-                handleError();
-            }
-        });
+    if(latitude!=undefined && longitude!=undefined){
+        myLocation = new google.maps.LatLng(latitude, longitude);
+        createHomeMarker();
+        google.maps.event.addListenerOnce(map, 'idle', performSearch);
+    }
+    else{
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (place) {
+                    myLocation = new google.maps.LatLng(place.coords.latitude, place.coords.longitude);
+                    createHomeMarker();
+                    google.maps.event.addListenerOnce(map, 'idle', performSearch);
+                },
+                function (error){
+                    if (error.code == error.PERMISSION_DENIED ||
+                        error.code == error.POSITION_UNAVAILABLE ||
+                        error.code == error.TIMEOUT ||
+                        error.code == error.UNKNOWN_ERROR) {
+                        handleError();
+                    }
+                });
+        }
     }
 
 
-    //createCustomIcon();
 }
+
+
+function calculateAndDisplayRoute( ) {
+    directionsService.route({
+        origin: homeMarker.position,
+        destination:destinationMarker.position,
+        travelMode: google.maps.TravelMode.DRIVING
+    }, function(response, status) {
+        if (status === google.maps.DirectionsStatus.OK) {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+}
+
+
 
 function performSearch() {
     var request = {
@@ -183,7 +223,9 @@ function getFormatedContent(place){
         place.formatted_phone_number + '<br>P&#225gina Web: <a target="_blank" style="color: blue;" href="' +
         place.website + '">' + place.website + '</a> <br/><button type="button" onclick="setEntity(placeName)" '+
         'class="btn  btn-default" aria-label="Left Align"><i class="fa fa-envelope"> Contactar</i></button>' +
-        '<button align="left" type="button" class="btn  btn-default"><i class="fa fa-car"> Ruta</i></buttton></div>'
+        '<button align="left" type="button" class="btn  btn-default"><i class="fa fa-car" onclick="calculateAndDisplayRoute();"> Ruta</i>' +
+        '</buttton>' +
+        '</div>'
 
     return content;
 }
@@ -221,6 +263,7 @@ function addMarker(place) {
                 return;
             }
             placeName= result.name;
+            destinationMarker = markers[result.place_id];
             infoWindow.setContent(getFormatedContent(result));
             infoWindow.open(map, marker);
 
@@ -2749,33 +2792,8 @@ function createMuni() {
         $(muni).each(function (index, obj) {
         if ($('#stateSelect').val() == obj.StateCode && $('#muniSelect').val() == obj.MunCode) {
             $('#errorModal').modal('hide');
-            drawMap(obj.Latitude, obj.Longitude);
+            initialize(obj.Latitude, obj.Longitude);
         }
     });
     });
-}
-
-function drawMap(latitude, longitude){
-    myLocation = new google.maps.LatLng(latitude, longitude);
-    service = new google.maps.places.PlacesService(map);
-
-    var marker = new google.maps.Marker({
-        map: map,
-        position: myLocation,
-        icon: { url: 'http://imgur.com/ybJJ8Za.png',
-                scaledSize :new google.maps.Size(35, 43),
-                origin: new google.maps.Point(0,0),
-                anchor: new google.maps.Point(0, 0)
-        }
-    });
-
-    marker.addListener('click', function() {
-        new google.maps.InfoWindow({
-            content: '¡Aquí te encuentras!'
-        }).open(map,marker);
-    });
-    map.setZoom(15);
-    map.panTo(myLocation);
-    new google.maps.event.trigger( marker, 'click' );
-    google.maps.event.addListenerOnce(map, 'idle', performSearch);
 }
