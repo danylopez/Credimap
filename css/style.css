@@ -379,7 +379,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   right: 0; 
 }
 .descripcion {
-  padding-top: 7.5%;
+  padding-top: 4%;
   width: 100%;
   height: auto;
 }
@@ -433,4 +433,3 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 #centro {
   height: 70%;
 }
-
