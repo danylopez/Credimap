@@ -1,4 +1,15 @@
 $(document).ready(function(){
+
+    if (!localStorage.getItem("visited")) {
+        
+         $("#intro").show();       
+
+        localStorage.setItem("visited", "true");
+    }
+    else{
+        $("#intro").hide();
+    }
+
     $("#sitio").click(function(){
         $("#video").attr('src', '');
         $("#intro").hide();
