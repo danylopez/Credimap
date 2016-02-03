@@ -106,7 +106,6 @@ function performSearch() {
     service.nearbySearch(request, callback);
 }
 
-
 function callback(results, status) {
 
     if (status !== google.maps.places.PlacesServiceStatus.OK) {

@@ -22,7 +22,7 @@ $body = "
 <p align='left'>$finan</p>
 <hr/>
 <p align='left'> <h3>$name tiene algunos comentarios, ponte en contacto!</h3><br/>
-$message</p><br/>
+$message</p><br>
 <p align='left'><h4>Información de contacto</h4>
 	<b>Nombre:</b> $name<br/>
 	<b>Email:</b> $email<br/>
