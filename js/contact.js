@@ -88,7 +88,9 @@ function sendMail(data) {
 function clearFields() {
   $('#financiera').val("Financiera a Contactar: ");
   $('#message').val("");
-  $('#message').removeClass('has-success').removeClass('has-error');
+  $('.form-group').each(function () { $(this).removeClass('has-success'); });
+  $('.form-group').each(function () { $(this).removeClass('has-error'); });
+  $('.help-block').each(function () { $(this).remove(); });
   $('.form-control').each(function () { $(this).addClass('.help-block'); });
 }
 function showAlertSentMail() {
