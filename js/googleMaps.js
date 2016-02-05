@@ -302,7 +302,7 @@ function createMuni() {
               .find('option')
               .remove()
               .end()
-              .append('<option value="notSelected" disabled>Seleccione el Estado</option>')
+              .append('<option value="notSelected" disabled>Seleccione el Municipio</option>')
               .val('notSelected');
           cities.each(function (index, obj) {
               if ($('#stateSelect').val() == obj.StateCode) {

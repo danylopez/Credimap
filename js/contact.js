@@ -1,7 +1,8 @@
 
+var formFeedBack;
 $(document).ready(function()
 {
-    $('#feedbackForm').validate({
+   formFeedBack= $('#feedbackForm').validate({
       rules: {
         name: {
             minlength: 3,
@@ -17,7 +18,7 @@ $(document).ready(function()
             required: true
         },
         message: {
-            required: false
+            required: true
         }
       },
       highlight: function(element) {
@@ -45,12 +46,14 @@ $(document).ready(function()
   });
 
   $("#feedbackSubmit").click(function() {
+
+
     if($('#name').val()=='' ||
       $('#email').val()=='' ||
-      $('#message').val()=='') {
+      $('#message').val()=='' || formFeedBack.valid()==false) {
         $('#warning-alert').removeClass('alert-danger').removeClass('alert-success').addClass('alert-warning');
         $('#textAlert').text('¡Carambolas! ');
-        $('#textAlertDesc').text('Parece que no has llenado todos los campos.'); 
+        $('#textAlertDesc').text('Parece que no has llenado todos los campos correctamente.');
         $("#warning-alert").alert();
         $("#warning-alert").fadeTo(2000, 500).slideUp(1000, function(){
         });

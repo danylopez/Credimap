@@ -1,12 +1,17 @@
 <?php
 
-date_default_timezone_set('Etc/UTC');
+date_default_timezone_set('America/Mexico_City');
 require './PHPMailer-master/PHPMailerAutoload.php';
 require './PHPMailer-master/vendor/autoload.php';
 const GUSER = 'micredimap@gmail.com'; 
 const GPWD = 'credimap1234';
 
-$to = 'alanh.lhp@gmail.com';
+//set_include_path(dirname(dirname(__FILE__)).'/lib'.PATH_SEPARATOR.get_include_path());
+require('FirePHPCore/FirePHP.class.php4');
+$firephp =& FirePHP::getInstance(true);
+//$firephp->fb('Hello World'); /* Defaults to FirePHP::LOG */
+
+$to = 'octavian.diaz@gmail.com';
 $from = GUSER;
 $from_name = 'Credi Map';
 $subject = 'Interesado en Credito';
@@ -60,11 +65,14 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	}
 }
 
-//if(smtpmailer($to, $from, $from_name, $subject, $body)){
-if(smtpmailer($to, GUSER, $from_name, $subject, $body)){
-	
-}else{
-	
+$firephp->fb(time(),strtotime("2AM") );
+$firephp->fb(strtotime("5AM"));
+if (time()>=strtotime("2AM") ||  time()<=strtotime("5AM")){
+   if(smtpmailer($to, GUSER, $from_name, $subject, $body)){
+
+   }else{
+
+   }
 }
 
 ?>
