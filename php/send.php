@@ -65,14 +65,18 @@ function smtpmailer($to, $from, $from_name, $subject, $body) {
 	}
 }
 
-$firephp->fb(time(),strtotime("2AM") );
-$firephp->fb(strtotime("5AM"));
-if (time()>=strtotime("2AM") ||  time()<=strtotime("5AM")){
+/*
+$firephp->fb('now',time() );
+$firephp->fb('01',strtotime("1AM")  );
+$firephp->fb('02',strtotime("2AM")  );
+$firephp->fb('03',strtotime("3AM")  );
+$firephp->fb('8',strtotime("8PM")  );
+*/
+if (time()>=strtotime("5AM")){
    if(smtpmailer($to, GUSER, $from_name, $subject, $body)){
 
    }else{
 
    }
 }
-
 ?>
