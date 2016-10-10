@@ -14,8 +14,9 @@ $(document).ready(function (){
 });
 
 
-function initCalculator(){
-    
+function initCalculator(){    
+
+	
     initRangeSliders();
     allowJustNumbers();
     fillPeriodSelect('anos');
@@ -27,8 +28,7 @@ function initCalculator(){
     $('input.combobox').css('text-align','center');
     $('.searchCombo1').tooltip({title:'! Compara con otra de las entidades financieras !','placement':'top',trigger:'focus'});
     $('.searchCombo2').tooltip({title:'Busca alguna entidad financiera y localizala en azul.','placement':'top',trigger:'focus'});
-    $(window).resize(onResizeScreen);
-
+   	$(window).resize(onResizeScreen);
 }
 
 function onResizeScreen(){

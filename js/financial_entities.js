@@ -22,7 +22,6 @@ function processTable() {
     $('#financieras').modal('toggle');
     $('#loanKind2').change(function() {
         drawOnTable($(this).val());
-
     });
 
 }
@@ -73,23 +72,15 @@ function searchFe(){
         $("#feProcessedTable tr").each(function() {
             var id = $(this).children().eq(0).text();
             if(id==idFe){
-                $(this).removeClass('danger').addClass('info');
+                $(this).addClass('info');
                 perfomedSearch=1;
-                var rowpos = $(this).position();
-                var modalBodyTable = $('#financieras .modal-body');
-                modalBodyTable.scrollTop(rowpos.top);
+                var w = $('#financieras');
+                w.scrollTop($(this).offset().top - (w.height()/2) );
 
                 return ;
             }
 
         });
-
-       /* $('#financieras').animate({ scrollTop: -500 }, 'slow');
-        $('#financieras.modal-body').animate({ scrollTop: -500 }, 'slow');
-        $('#financieras').scrollTop(500);*/
-
-
-
     });
 }
 function localize($this){

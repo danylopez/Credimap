@@ -21,8 +21,14 @@ function changeBest(id){
     markers[id].setMap(map);
 }
 
-function zoomMarker(id){
+//remove this solution and find the bug
+function fixBugDivCircular(){
+	$("#map").children().children().css('border-radius','50%');
+	$("#map").children().children().children().css('border-radius','50%');
+}
 
+function zoomMarker(id){
+	fixBugDivCircular();
     map.setZoom(17);
     map.panTo( markers[id].position);
     new google.maps.event.trigger( markers[id], 'click' );
@@ -31,12 +37,14 @@ function zoomMarker(id){
 
 function loadMap(){
     refresh_onlyMap = 0;
+	
     initialize();
 }
 
 
 function initialize()
 {
+	
     var location = new google.maps.LatLng(19.3202176, -99.224016);
         $('#map').height($('#calculatorDiv').width());
         $('#map').width($('#calculatorDiv').width());
@@ -59,6 +67,7 @@ function initialize()
             }
     });
     infoWindow = new google.maps.InfoWindow();
+		
     if(navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (place) {
             myLocation = new google.maps.LatLng(place.coords.latitude, place.coords.longitude);
@@ -71,7 +80,7 @@ function initialize()
             homeMarker = new google.maps.Marker({
                 map: map,
                 position: myLocation,
-                icon: { url: 'http://imgur.com/psSRrke.png'}
+                icon: { url: 'http://i.imgur.com/w3liXa6.png'}
             });
 
             homeMarker.addListener('click', function() {
@@ -176,11 +185,13 @@ function calculateAndDisplayRoute( ) {
             '<strong>Tiempo: </strong>'+routeResult.time+
             '</div>');
             infoWindow.open(map,destinationMarker);
+			fixBugDivCircular();//remove this
             //new google.maps.event.trigger( controlDiv, 'click' );
         } else {
             window.alert('No fue posible obtener la ruta' + status);
         }
     });
+	
 }
 
 function saveResult(result){
